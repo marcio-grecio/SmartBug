@@ -1,0 +1,17 @@
+C:\MeetWeb\SmartBug\SmartBug.Context\bin\Debug\net8.0\SmartBug.Context.deps.json
+C:\MeetWeb\SmartBug\SmartBug.Context\bin\Debug\net8.0\SmartBug.Context.runtimeconfig.json
+C:\MeetWeb\SmartBug\SmartBug.Context\bin\Debug\net8.0\SmartBug.Context.dll
+C:\MeetWeb\SmartBug\SmartBug.Context\bin\Debug\net8.0\SmartBug.Context.pdb
+C:\MeetWeb\SmartBug\SmartBug.Context\bin\Debug\net8.0\SmartBug.Models.dll
+C:\MeetWeb\SmartBug\SmartBug.Context\bin\Debug\net8.0\SmartBug.Models.pdb
+C:\MeetWeb\SmartBug\SmartBug.Context\obj\Debug\net8.0\SmartBug.Context.csproj.AssemblyReference.cache
+C:\MeetWeb\SmartBug\SmartBug.Context\obj\Debug\net8.0\SmartBug.Context.GeneratedMSBuildEditorConfig.editorconfig
+C:\MeetWeb\SmartBug\SmartBug.Context\obj\Debug\net8.0\SmartBug.Context.AssemblyInfoInputs.cache
+C:\MeetWeb\SmartBug\SmartBug.Context\obj\Debug\net8.0\SmartBug.Context.AssemblyInfo.cs
+C:\MeetWeb\SmartBug\SmartBug.Context\obj\Debug\net8.0\SmartBug.Context.csproj.CoreCompileInputs.cache
+C:\MeetWeb\SmartBug\SmartBug.Context\obj\Debug\net8.0\SmartBug.425BC3DB.Up2Date
+C:\MeetWeb\SmartBug\SmartBug.Context\obj\Debug\net8.0\SmartBug.Context.dll
+C:\MeetWeb\SmartBug\SmartBug.Context\obj\Debug\net8.0\refint\SmartBug.Context.dll
+C:\MeetWeb\SmartBug\SmartBug.Context\obj\Debug\net8.0\SmartBug.Context.pdb
+C:\MeetWeb\SmartBug\SmartBug.Context\obj\Debug\net8.0\SmartBug.Context.genruntimeconfig.cache
+C:\MeetWeb\SmartBug\SmartBug.Context\obj\Debug\net8.0\ref\SmartBug.Context.dll

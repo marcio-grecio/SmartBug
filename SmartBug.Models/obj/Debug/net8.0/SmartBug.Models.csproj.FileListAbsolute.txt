@@ -1,0 +1,11 @@
+C:\MeetWeb\SmartBug\SmartBug.Models\bin\Debug\net8.0\SmartBug.Models.deps.json
+C:\MeetWeb\SmartBug\SmartBug.Models\bin\Debug\net8.0\SmartBug.Models.dll
+C:\MeetWeb\SmartBug\SmartBug.Models\bin\Debug\net8.0\SmartBug.Models.pdb
+C:\MeetWeb\SmartBug\SmartBug.Models\obj\Debug\net8.0\SmartBug.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\MeetWeb\SmartBug\SmartBug.Models\obj\Debug\net8.0\SmartBug.Models.AssemblyInfoInputs.cache
+C:\MeetWeb\SmartBug\SmartBug.Models\obj\Debug\net8.0\SmartBug.Models.AssemblyInfo.cs
+C:\MeetWeb\SmartBug\SmartBug.Models\obj\Debug\net8.0\SmartBug.Models.csproj.CoreCompileInputs.cache
+C:\MeetWeb\SmartBug\SmartBug.Models\obj\Debug\net8.0\SmartBug.Models.dll
+C:\MeetWeb\SmartBug\SmartBug.Models\obj\Debug\net8.0\refint\SmartBug.Models.dll
+C:\MeetWeb\SmartBug\SmartBug.Models\obj\Debug\net8.0\SmartBug.Models.pdb
+C:\MeetWeb\SmartBug\SmartBug.Models\obj\Debug\net8.0\ref\SmartBug.Models.dll
