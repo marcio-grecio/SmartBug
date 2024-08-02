@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\MeetWeb\\SmartBug\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|c:\\meetweb\\smartbug\\smartbug.models\\viewmodel\\userloginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|solutionrelative:smartbug.models\\viewmodel\\userloginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,40 +26,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserLoginViewModel.cs",
-              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\ViewModel\\UserLoginViewModel.cs",
-              "RelativeDocumentMoniker": "SmartBug.Models\\ViewModel\\UserLoginViewModel.cs",
-              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\ViewModel\\UserLoginViewModel.cs",
-              "RelativeToolTip": "SmartBug.Models\\ViewModel\\UserLoginViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAQAAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T23:26:59.006Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\AuthController.cs",
               "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\AuthController.cs",
               "RelativeToolTip": "SmartBug.Api\\Controllers\\AuthController.cs",
-              "ViewState": "AQIAAC4AAAAAAAAAAAAewEMAAABfAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T23:26:56.594Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-01T00:37:40.283Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Program.cs",
-              "RelativeDocumentMoniker": "SmartBug.Api\\Program.cs",
-              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Program.cs",
-              "RelativeToolTip": "SmartBug.Api\\Program.cs",
-              "ViewState": "AQIAAGYAAAAAAAAAAAAewHkAAAAIAAAA",
+              "DocumentIndex": 0,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\UserController.cs",
+              "RelativeToolTip": "SmartBug.Api\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T23:19:07.1Z"
+              "WhenOpened": "2024-08-01T00:37:33.398Z",
+              "EditorCaption": ""
             }
           ]
         }

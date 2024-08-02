@@ -74,3 +74,4 @@ C:\MeetWeb\SmartBug\SmartBug.Api\obj\Debug\net8.0\SmartBug.Api.pdb
 C:\MeetWeb\SmartBug\SmartBug.Api\obj\Debug\net8.0\SmartBug.Api.genruntimeconfig.cache
 C:\MeetWeb\SmartBug\SmartBug.Api\obj\Debug\net8.0\ref\SmartBug.Api.dll
 C:\MeetWeb\SmartBug\SmartBug.Api\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\MeetWeb\SmartBug\SmartBug.Api\obj\Debug\net8.0\SmartBug.Api.sourcelink.json
