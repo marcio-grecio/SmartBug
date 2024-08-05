@@ -1,4 +1,5 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const plugin = require('tailwindcss/plugin');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -11,6 +12,7 @@ module.exports = {
     screens: {
       '2xsm': '375px',
       xsm: '425px',
+      xs: '480px', // Adicionando o breakpoint xs
       '3xl': '2000px',
       ...defaultTheme.screens,
     },
@@ -250,5 +252,27 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function({ addUtilities, theme, e }) {
+      const generateColUtilities = (size) => {
+        let cols = {};
+        for (let i = 1; i <= 12; i++) {
+          cols[`.${e(`col-${size}-${i}`)}`] = {
+            [`@screen ${size}`]: {
+              'flex': `0 0 ${(i / 12) * 100}%`,
+              'maxWidth': `${(i / 12) * 100}%`,
+            },
+          };
+        }
+        return cols;
+      };
+
+      addUtilities({
+        ...generateColUtilities('xs'),
+        ...generateColUtilities('sm'),
+        ...generateColUtilities('md'),
+        ...generateColUtilities('lg'),
+      });
+    })
+  ],
 }

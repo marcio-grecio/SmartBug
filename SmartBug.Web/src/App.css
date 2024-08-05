@@ -1,0 +1,18 @@
+::-webkit-scrollbar {
+    width: 2em;
+    height: 2em;
+    position: relative;
+    top: 136px;
+    float: right;
+    width: 6px;
+    height: 10px;
+    border: 3px;
+    background-clip: padding-box;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(96, 125, 139, 0.5);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
