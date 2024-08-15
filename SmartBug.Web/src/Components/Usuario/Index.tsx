@@ -42,7 +42,7 @@ const UsuarioForm: React.FC<UsuarioFormProps> = ({ formData, handleInputChange, 
     <div className="bg-white dark:bg-boxdark p-6 rounded-md shadow-lg w-203">
       <h2 className="text-lg font-medium text-black dark:text-white mb-5">Novo Usuário</h2>
 
-      <form className="row">
+      <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }} className="row">
         <div className="col-md-12 mb-4">
           <hr className="border-bodydark dark:border-strokedark" />
         </div>
@@ -99,7 +99,6 @@ const UsuarioForm: React.FC<UsuarioFormProps> = ({ formData, handleInputChange, 
             onChange={handleInputChange}
             multiple={true}
           />
-
         </div>
 
         <div className="col-xs-12 mb-4">
@@ -108,7 +107,7 @@ const UsuarioForm: React.FC<UsuarioFormProps> = ({ formData, handleInputChange, 
 
         <div className="col-xs-12 flex justify-end space-x-4">
           <Button color='#ff6b6b' text='Cancelar' onClick={toggleModal} disabled={false} height={32} width={100} fontWeight={'500'} />
-          <Button color='#28C76F' text='Salvar' onClick={handleSubmit} disabled={false} height={32} width={100} fontWeight={'500'} />
+          <Button color='#28C76F' text='Salvar' disabled={false} height={32} width={100} fontWeight={'500'} type="submit" />
         </div>
       </form>
     </div>

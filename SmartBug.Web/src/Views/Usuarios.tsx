@@ -148,7 +148,9 @@ const Usuarios: React.FC = () => {
     avatar: '',
     perfil: 0, // Default value as number
     isActive: true, // Default value as boolean
+    empreendimentos: [] as string[], // Inicializa como array vazio de strings
   });
+  
 
   const handleButtonClick = (id: any, actionType: any) => {
     console.log(`Clicked ID: ${id}, Action: ${actionType}`);
@@ -233,6 +235,7 @@ const Usuarios: React.FC = () => {
         avatar: '',
         perfil: 0,
         isActive: true,
+        empreendimentos: [],
       });
     }
   };
@@ -246,7 +249,8 @@ const Usuarios: React.FC = () => {
       } else if (name === 'isActive') {
         return { ...prevFormData, [name]: value === 'true' };
       } else if (name === 'empreendimentos') {
-        return { ...prevFormData, [name]: value }; // value já será um array se multiple for true
+        // Assegurar que 'empreendimentos' seja sempre um array de strings
+        return { ...prevFormData, [name]: Array.isArray(value) ? value : [value] };
       } else {
         return { ...prevFormData, [name]: value };
       }
