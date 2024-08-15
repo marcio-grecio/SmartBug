@@ -1,0 +1,60 @@
+[
+  {
+    "ContainingType": "SmartBug.Api.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/v1/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.UserLoginViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.EmpreendimentoController",
+    "Method": "GetAllEmpreendimentosAsync",
+    "RelativePath": "api/v1/Empreendimento/get-all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.UserController",
+    "Method": "CreateUserAsync",
+    "RelativePath": "api/v1/User/create-user",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.UsuarioViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.UserController",
+    "Method": "GetAllUsersAsync",
+    "RelativePath": "api/v1/User/get-all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "enterpriseId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

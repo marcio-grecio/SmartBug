@@ -239,11 +239,21 @@ const Usuarios: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: name === 'perfil' ? parseInt(value) : name === 'isActive' ? value === 'true' : value,
+  
+    setFormData((prevFormData) => {
+      if (name === 'perfil') {
+        return { ...prevFormData, [name]: parseInt(value) };
+      } else if (name === 'isActive') {
+        return { ...prevFormData, [name]: value === 'true' };
+      } else if (name === 'empreendimentos') {
+        return { ...prevFormData, [name]: value }; // value já será um array se multiple for true
+      } else {
+        return { ...prevFormData, [name]: value };
+      }
     });
   };
+  
+  
 
   const handleSubmit = () => {
     console.log('Form Data:', formData);

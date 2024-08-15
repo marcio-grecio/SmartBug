@@ -3,7 +3,6 @@ import Button from "../Button/Index";
 import Input from "../Input/Index";
 import InputDropDown from "../Input/InputDropDown";
 import { getAllSelectEmpreendimentos } from "../../Services/EmpreendimentoService";
-import { infoLog } from "../../Utils/Logger";
 
 interface UsuarioFormProps {
   formData: {
@@ -22,8 +21,6 @@ interface UsuarioFormProps {
 
 const UsuarioForm: React.FC<UsuarioFormProps> = ({ formData, handleInputChange, handleSubmit, toggleModal }) => {
   const [empreendimentos, setEmpreendimentos] = useState<{ label: string; value: string }[]>([]);
-
-  infoLog('Empreendimentos:', empreendimentos);
 
   useEffect(() => {
     const fetchEmpreendimentos = async () => {
@@ -100,8 +97,9 @@ const UsuarioForm: React.FC<UsuarioFormProps> = ({ formData, handleInputChange, 
             value={formData.empreendimentos}
             options={empreendimentos}
             onChange={handleInputChange}
-            multiple={true} // Permitir múltipla seleção
+            multiple={true}
           />
+
         </div>
 
         <div className="col-xs-12 mb-4">

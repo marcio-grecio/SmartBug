@@ -14,18 +14,25 @@ const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, optio
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (multiple) {
       const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
+  
+      // Criar um evento personalizado com as propriedades desejadas
       const event = {
         ...e,
         target: {
           ...e.target,
+          name: e.target.name,
           value: selectedOptions,
         },
-      } as unknown as React.ChangeEvent<HTMLSelectElement>;
+      } as unknown as React.ChangeEvent<HTMLSelectElement>; // Convertendo para unknown antes de reconverter para ChangeEvent
+  
       onChange(event);
     } else {
       onChange(e);
     }
   };
+  
+  
+
 
   return (
     <div>
@@ -33,7 +40,7 @@ const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, optio
         <label className="block text-sm font-medium text-gray-200 dark:text-white">{label}</label>
       )}
       <select
-        name={name}
+        name={name} // Verifique se "name" está sendo passado corretamente
         value={value}
         onChange={handleChange}
         multiple={multiple}
@@ -45,6 +52,7 @@ const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, optio
           </option>
         ))}
       </select>
+
     </div>
   );
 };
