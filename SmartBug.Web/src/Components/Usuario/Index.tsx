@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Button from "../Button/Index";
 import Input from "../Input/Index";
+import Button from "../Button/Index";
+import React, { useState, useEffect } from "react";
 import InputDropDown from "../Input/InputDropDown";
 import { getAllSelectEmpreendimentos } from "../../Services/EmpreendimentoService";
-
 interface UsuarioFormProps {
   formData: {
     nome: string;
@@ -31,7 +30,6 @@ const UsuarioForm: React.FC<UsuarioFormProps> = ({ formData, handleInputChange, 
         label: empreendimento.nome,
         value: empreendimento.id.toString(), // Presume-se que `value` seja uma string
       }));
-
       setEmpreendimentos(formattedEmpreendimentos);
     };
 
@@ -76,7 +74,6 @@ const UsuarioForm: React.FC<UsuarioFormProps> = ({ formData, handleInputChange, 
           />
         </div>
 
-
         <div className="col-md-4 mb-4">
           <InputDropDown
             label="Situação"
@@ -100,6 +97,7 @@ const UsuarioForm: React.FC<UsuarioFormProps> = ({ formData, handleInputChange, 
             multiple={true}
           />
         </div>
+
 
         <div className="col-xs-12 mb-4">
           <hr className="border-bodydark dark:border-strokedark" />

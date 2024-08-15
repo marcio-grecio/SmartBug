@@ -1,54 +1,130 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import Select from 'react-select';
+import { ThemeContext } from '../../Contexts/ThemeContext';
 
 interface InputDropDownProps {
   label?: string;
   name: string;
-  value: string | number | readonly string[] | string[];
+  value: any; // o react-select usa um tipo diferente de valor
   options: { label: string; value: string }[];
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange: (selectedOption: any) => void;
   multiple?: boolean;
+  height?: string; // Adicionado prop para altura customizada
 }
 
 const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, options, onChange, multiple = false }) => {
+  const { colorMode } = useContext(ThemeContext) || {};
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const isDarkMode = colorMode === 'dark';
+
+  const handleChange = (selectedOption: any) => {
     if (multiple) {
-      const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
-  
-      const event = {
-        ...e,
+      const selectedValues = selectedOption ? selectedOption.map((option: any) => option.value) : [];
+      onChange({
         target: {
-          ...e.target,
-          name: e.target.name,
-          value: selectedOptions,
+          name,
+          value: selectedValues,
         },
-      } as unknown as React.ChangeEvent<HTMLSelectElement>; 
-  
-      onChange(event);
+      });
     } else {
-      onChange(e);
+      onChange({
+        target: {
+          name,
+          value: selectedOption ? selectedOption.value : '',
+        },
+      });
     }
   };
 
   return (
     <div>
       {label && (
-        <label className="block text-sm font-medium text-gray-200 dark:text-white">{label}</label>
+        <label className={`block text-sm font-medium ${isDarkMode ? 'text-white' : 'text-black'}`}>{label}</label>
       )}
-      <select
-        name={name} 
-        value={value}
+      <Select
+        name={name}
+        value={options.filter(option => multiple ? value.includes(option.value) : option.value === value)}
         onChange={handleChange}
-        multiple={multiple}
-        className="w-full border border-stroke bg-gray py-1 px-2 text-black focus:border-[#cfebff] focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary rounded-none"
-      >
-        {options.map((option) => (
-          <option key={option.value} value={option.value} className="rounded-xs">
-            {option.label}
-          </option>
-        ))}
-      </select>
-
+        options={options}
+        isMulti={multiple}
+        classNamePrefix="react-select"
+        className="react-select-container"
+        styles={{
+          control: (provided, state) => ({
+            ...provided,
+            backgroundColor: isDarkMode ? '#313d4b' : '#eff4f9',
+            color: isDarkMode ? 'white' : 'black',
+            border: state.isFocused ? '1px solid #1d4ed8' : `1px solid ${isDarkMode ? '#313d4b' : '#eff4f9'}`,
+            boxShadow: 'none', // Remove a sombra de foco
+            '&:hover': {
+              border: state.isFocused ? '1px solid #1d4ed8' : `1px solid ${isDarkMode ? '#313d4b' : '#eff4f9'}`, // Desabilita a borda ao passar o mouse
+            },
+            height: 34, // Define a altura do componente
+            minHeight: 34, // Garante que a altura mínima seja respeitada
+            borderRadius: 2, // Adiciona bordas arredondadas
+          }),
+          singleValue: (provided) => ({
+            ...provided,
+            color: isDarkMode ? 'white' : 'black',
+          }),
+          multiValue: (provided) => ({
+            ...provided,
+            backgroundColor: isDarkMode ? '#313d4b' : '#eff4f9',
+            color: isDarkMode ? 'white' : 'black',
+          }),
+          multiValueLabel: (provided) => ({
+            ...provided,
+            color: isDarkMode ? 'white' : 'black',
+          }),
+          multiValueRemove: (provided) => ({
+            ...provided,
+            color: isDarkMode ? 'white' : 'black',
+            ':hover': {
+              backgroundColor: isDarkMode ? 'white' : 'black',
+              color: isDarkMode ? 'black' : 'white',
+            },
+          }),
+          option: (provided, state) => ({
+            ...provided,
+            backgroundColor: state.isSelected ? '#1d4ed8' : isDarkMode ? '#313d4b' : '#eff4f9',
+            color: isDarkMode ? 'white' : 'black',
+            border: state.isSelected ? '1px solid #1d4ed8' : '1px solid transparent',
+          }),
+          input: (provided) => ({
+            ...provided,
+            color: isDarkMode ? 'white' : 'black',
+          }),
+          placeholder: (provided) => ({
+            ...provided,
+            color: isDarkMode ? 'white' : 'black',
+          }),
+          dropdownIndicator: (provided) => ({
+            ...provided,
+            color: isDarkMode ? 'white' : 'black',
+          }),
+          indicatorSeparator: (provided) => ({
+            ...provided,
+            backgroundColor: isDarkMode ? 'white' : 'black',
+          }),
+          clearIndicator: (provided) => ({
+            ...provided,
+            color: isDarkMode ? 'white' : 'black',
+          }),
+          valueContainer: (provided) => ({
+            ...provided,
+            color: isDarkMode ? 'white' : 'black',
+            height: 34, // Define a altura do value container para alinhar os textos
+            minHeight: 34, // Garante que a altura mínima seja respeitada
+            borderRadius: 2, // Adiciona bordas arredondadas   
+            marginTop: -5
+          }),
+          menu: (provided) => ({
+            ...provided,
+            backgroundColor: isDarkMode ? '#313d4b' : '#eff4f9',
+            color: isDarkMode ? 'white' : 'black',
+          }),
+        }}
+      />
     </div>
   );
 };
