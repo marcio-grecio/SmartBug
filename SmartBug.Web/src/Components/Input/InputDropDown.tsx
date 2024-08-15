@@ -54,10 +54,10 @@ const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, optio
             ...provided,
             backgroundColor: isDarkMode ? '#313d4b' : '#eff4f9',
             color: isDarkMode ? 'white' : 'black',
-            border: state.isFocused ? '1px solid #1d4ed8' : `1px solid ${isDarkMode ? '#313d4b' : '#eff4f9'}`,
+            border: state.isFocused ? '1px solid #1d4ed8' : `1px solid ${isDarkMode ? '#313d4b' : '#e2e8f0'}`, // Borda azul no modo claro
             boxShadow: 'none', // Remove a sombra de foco
             '&:hover': {
-              border: state.isFocused ? '1px solid #1d4ed8' : `1px solid ${isDarkMode ? '#313d4b' : '#eff4f9'}`, // Desabilita a borda ao passar o mouse
+              border: state.isFocused ? '1px solid #1d4ed8' : `1px solid ${isDarkMode ? '#313d4b' : '#1d4ed8'}`, // Desabilita a borda ao passar o mouse
             },
             height: 34, // Define a altura do componente
             minHeight: 34, // Garante que a altura mínima seja respeitada
