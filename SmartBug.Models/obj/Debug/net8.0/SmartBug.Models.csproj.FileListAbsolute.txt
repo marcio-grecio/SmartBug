@@ -9,3 +9,4 @@ C:\MeetWeb\SmartBug\SmartBug.Models\obj\Debug\net8.0\SmartBug.Models.dll
 C:\MeetWeb\SmartBug\SmartBug.Models\obj\Debug\net8.0\refint\SmartBug.Models.dll
 C:\MeetWeb\SmartBug\SmartBug.Models\obj\Debug\net8.0\SmartBug.Models.pdb
 C:\MeetWeb\SmartBug\SmartBug.Models\obj\Debug\net8.0\ref\SmartBug.Models.dll
+C:\MeetWeb\SmartBug\SmartBug.Models\obj\Debug\net8.0\SmartBug.Models.sourcelink.json

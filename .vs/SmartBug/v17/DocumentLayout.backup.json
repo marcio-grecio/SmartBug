@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\MeetWeb\\SmartBug\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\empreendimentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\empreendimentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\UserController.cs",
+              "RelativeToolTip": "SmartBug.Api\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-14T00:16:01.039Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmpreendimentoController.cs",
+              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\EmpreendimentoController.cs",
+              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\EmpreendimentoController.cs",
+              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\EmpreendimentoController.cs",
+              "RelativeToolTip": "SmartBug.Api\\Controllers\\EmpreendimentoController.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAADgvxgAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-13T23:57:34.713Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

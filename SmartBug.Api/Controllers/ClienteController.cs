@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SmartBug.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/v1/[controller]")]
     public class ClienteController : ControllerBase
     {
     }

@@ -77,12 +77,10 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   if (!activeUser) {
     const token = getAuth();
-    infoLog('AuthProvider->checkHasToken', token);
     if (!!token) {
       const tokenDecoded = decode(token)
       const avatar = getAvatar()
 
-      infoLog('AuthProvider->checkHasToken', tokenDecoded.id);
 
       const user = {
         id: tokenDecoded.id,

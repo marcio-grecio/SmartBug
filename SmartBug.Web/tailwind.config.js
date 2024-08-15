@@ -24,6 +24,7 @@ module.exports = {
         black: '#1C2434',
         'black-2': '#010101',
         body: '#64748B',
+        bodyWhite: '#f9fafc',
         bodydark: '#AEB7C0',
         bodydark1: '#DEE4EE',
         bodydark2: '#8A99AF',
@@ -200,9 +201,9 @@ module.exports = {
         99999: '99999',
         9999: '9999',
         999: '999',
-        99: '99',
-        9: '9',
-        1: '1',
+         99: '99',
+         9: '9',
+         1: '1',
       },
       opacity: {
         65: '.65',
@@ -259,8 +260,10 @@ module.exports = {
         for (let i = 1; i <= 12; i++) {
           cols[`.${e(`col-${size}-${i}`)}`] = {
             [`@screen ${size}`]: {
-              'flex': `0 0 ${(i / 12) * 100}%`,
-              'maxWidth': `${(i / 12) * 100}%`,
+              flex: `0 0 ${(i / 12) * 100}%`,
+              maxWidth: `${(i / 12) * 100}%`,
+              boxSizing: 'border-box', // Garantir que a largura seja calculada corretamente
+              padding: '0 15px', // Simulando o gutter do Bootstrap
             },
           };
         }
@@ -268,6 +271,25 @@ module.exports = {
       };
 
       addUtilities({
+        '.row': {
+          display: 'flex',
+          flexWrap: 'wrap',
+          margin: '-15px', // Para compensar o padding nas colunas
+        },
+        '.container': {
+          width: '100%',
+          marginRight: 'auto',
+          marginLeft: 'auto',
+          paddingLeft: '15px',
+          paddingRight: '15px',
+        },
+        '.container-fluid': {
+          width: '100%',
+          marginRight: 'auto',
+          marginLeft: 'auto',
+          paddingLeft: '15px',
+          paddingRight: '15px',
+        },
         ...generateColUtilities('xs'),
         ...generateColUtilities('sm'),
         ...generateColUtilities('md'),
@@ -275,4 +297,4 @@ module.exports = {
       });
     })
   ],
-}
+};

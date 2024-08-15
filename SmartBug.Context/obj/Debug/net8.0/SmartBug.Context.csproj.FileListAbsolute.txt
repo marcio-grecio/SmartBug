@@ -15,3 +15,4 @@ C:\MeetWeb\SmartBug\SmartBug.Context\obj\Debug\net8.0\refint\SmartBug.Context.dl
 C:\MeetWeb\SmartBug\SmartBug.Context\obj\Debug\net8.0\SmartBug.Context.pdb
 C:\MeetWeb\SmartBug\SmartBug.Context\obj\Debug\net8.0\SmartBug.Context.genruntimeconfig.cache
 C:\MeetWeb\SmartBug\SmartBug.Context\obj\Debug\net8.0\ref\SmartBug.Context.dll
+C:\MeetWeb\SmartBug\SmartBug.Context\obj\Debug\net8.0\SmartBug.Context.sourcelink.json

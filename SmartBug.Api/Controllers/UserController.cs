@@ -8,7 +8,7 @@ namespace SmartBug.Api.Controllers
 {
     //[Authorize]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class UserController : BaseController
     {
         private readonly ILogger<UserController> _Logger;
@@ -44,6 +44,36 @@ namespace SmartBug.Api.Controllers
             }
 
         }
+
+        [HttpPost]
+        [Route("create-user")]
+        public async Task<IActionResult> CreateUserAsync([FromBody] UsuarioViewModel model)
+        {
+            try
+            {
+                //var user = new Usuario
+                //{
+                //    Nome = model.Nome,
+                //    Email = model.Email,
+                //    Senha = model.Senha,
+                //    Perfil = model.Perfil,
+                //    IsActive = model.IsActive,
+                //    Empreendimentos = new List<Empreendimento> { new Empreendimento { Id = model.EmpreendimentoId } }
+                //};
+
+                //_Db.Usuarios.Add(user);
+                //await _Db.SaveChangesAsync();
+
+                //return Ok(user);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _Logger.LogError(ex, ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
 
     }
 }

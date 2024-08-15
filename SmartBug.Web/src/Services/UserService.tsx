@@ -1,11 +1,10 @@
-import { api } from '../Utils/Axios'
-import { errorLog, infoLog } from '../Utils/Logger'
+import { api } from '../Utils/Axios';
+import { errorLog } from '../Utils/Logger';
 
 export const getAllUsers = async (enterpriseId:number) => {
-    infoLog('UserService->getAllUsers', enterpriseId)
     try {
-        const response = await api.get(`/api/User/get-all?enterpriseId=${enterpriseId}`);
-        return response.data
+        const response = await api.get(`/api/v1/User/get-all?enterpriseId=${enterpriseId}`);
+        return response
     } catch (error) {
       errorLog('UserService->getAllUsers', error)
       throw error
