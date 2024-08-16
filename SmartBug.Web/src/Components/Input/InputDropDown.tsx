@@ -5,14 +5,15 @@ import { ThemeContext } from '../../Contexts/ThemeContext';
 interface InputDropDownProps {
   label?: string;
   name: string;
-  value: any; // o react-select usa um tipo diferente de valor
+  value: any;
   options: { label: string; value: string }[];
   onChange: (selectedOption: any) => void;
   multiple?: boolean;
-  height?: string; // Adicionado prop para altura customizada
+  placeholder?: string; // Adicionada prop para placeholder
+  height?: string;
 }
 
-const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, options, onChange, multiple = false }) => {
+const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, options, onChange, multiple = false, placeholder }) => {
   const { colorMode } = useContext(ThemeContext) || {};
 
   const isDarkMode = colorMode === 'dark';
@@ -47,21 +48,22 @@ const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, optio
         onChange={handleChange}
         options={options}
         isMulti={multiple}
+        placeholder={placeholder} // Adicionado placeholder
         classNamePrefix="react-select"
         className="react-select-container"
         styles={{
           control: (provided, state) => ({
             ...provided,
-            backgroundColor: isDarkMode ? '#313d4b' : '#eff4f9',
+            backgroundColor: isDarkMode ? '#313d4a' : '#eff4f9',
             color: isDarkMode ? 'white' : 'black',
-            border: state.isFocused ? '1px solid #1d4ed8' : `1px solid ${isDarkMode ? '#313d4b' : '#e2e8f0'}`, // Borda azul no modo claro
-            boxShadow: 'none', // Remove a sombra de foco
+            border: state.isFocused ? `1px solid ${isDarkMode ? '#1d4ed8' : '#d3eefc'}` : `1px solid ${isDarkMode ? '#313d4a' : '#e2e8f0'}`,
+            boxShadow: 'none',
             '&:hover': {
-              border: state.isFocused ? '1px solid #1d4ed8' : `1px solid ${isDarkMode ? '#313d4b' : '#1d4ed8'}`, // Desabilita a borda ao passar o mouse
+              border: state.isFocused ? `1px solid  ${isDarkMode ? '#1d4ed8' : '#d3eefc'}` : `1px solid ${isDarkMode ? '#313d4a' : '#d3eefc'}`,
             },
-            height: 34, // Define a altura do componente
-            minHeight: 34, // Garante que a altura mínima seja respeitada
-            borderRadius: 2, // Adiciona bordas arredondadas
+            height: 34,
+            minHeight: 34,
+            borderRadius: 2,
           }),
           singleValue: (provided) => ({
             ...provided,
@@ -69,7 +71,7 @@ const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, optio
           }),
           multiValue: (provided) => ({
             ...provided,
-            backgroundColor: isDarkMode ? '#313d4b' : '#eff4f9',
+            backgroundColor: isDarkMode ? '#313d4a' : '#eff4f9',
             color: isDarkMode ? 'white' : 'black',
           }),
           multiValueLabel: (provided) => ({
@@ -86,9 +88,9 @@ const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, optio
           }),
           option: (provided, state) => ({
             ...provided,
-            backgroundColor: state.isSelected ? '#1d4ed8' : isDarkMode ? '#313d4b' : '#eff4f9',
+            backgroundColor: state.isSelected ?  `${isDarkMode ? '#1d4ed8' : '#d3eefc'}` : isDarkMode ? '#313d4a' : '#eff4f9',
             color: isDarkMode ? 'white' : 'black',
-            border: state.isSelected ? '1px solid #1d4ed8' : '1px solid transparent',
+            border: state.isSelected ? `1px solid  ${isDarkMode ? '#1d4ed8' : '#d3eefc'}` : '1px solid transparent',
           }),
           input: (provided) => ({
             ...provided,
@@ -113,14 +115,14 @@ const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, optio
           valueContainer: (provided) => ({
             ...provided,
             color: isDarkMode ? 'white' : 'black',
-            height: 34, // Define a altura do value container para alinhar os textos
-            minHeight: 34, // Garante que a altura mínima seja respeitada
-            borderRadius: 2, // Adiciona bordas arredondadas   
-            marginTop: -5
+            height: 34,
+            minHeight: 34,
+            borderRadius: 2,
+            marginTop: -6
           }),
           menu: (provided) => ({
             ...provided,
-            backgroundColor: isDarkMode ? '#313d4b' : '#eff4f9',
+            backgroundColor: isDarkMode ? '#313d4a' : '#eff4f9',
             color: isDarkMode ? 'white' : 'black',
           }),
         }}

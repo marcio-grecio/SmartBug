@@ -64,13 +64,14 @@ const UsuarioForm: React.FC<UsuarioFormProps> = ({ formData, handleInputChange, 
           <InputDropDown
             label="Perfil"
             name="perfil"
-            value={formData.perfil.toString()} // Converte o valor de perfil para string
+            value={formData.perfil.toString()}
             options={[
               { label: 'SIMPLES', value: '1' },
               { label: 'SUPERVISOR', value: '2' },
               { label: 'ADMINISTRADOR', value: '3' },
             ]}
             onChange={handleInputChange}
+            placeholder="Selecione um perfil" // Placeholder adicionado
           />
         </div>
 
@@ -84,6 +85,7 @@ const UsuarioForm: React.FC<UsuarioFormProps> = ({ formData, handleInputChange, 
               { label: 'INATIVO', value: 'false' },
             ]}
             onChange={handleInputChange}
+            placeholder="Selecione uma situação" // Placeholder adicionado
           />
         </div>
 
@@ -95,8 +97,10 @@ const UsuarioForm: React.FC<UsuarioFormProps> = ({ formData, handleInputChange, 
             options={empreendimentos}
             onChange={handleInputChange}
             multiple={true}
+            placeholder="Selecione os empreendimentos" // Placeholder adicionado
           />
         </div>
+
 
 
         <div className="col-xs-12 mb-4">
