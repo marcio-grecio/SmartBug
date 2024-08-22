@@ -8,6 +8,8 @@ module.exports = {
   theme: {
     fontFamily: {
       satoshi: ['Satoshi', 'sans-serif'],
+      nunito: ['Nunito', 'sans-serif'], 
+      exo2: ['Exo 2', 'sans-serif'], 
     },
     screens: {
       '2xsm': '375px',

@@ -17,12 +17,70 @@
   },
   {
     "ContainingType": "SmartBug.Api.Controllers.EmpreendimentoController",
+    "Method": "CreateEmpreendimentoAsync",
+    "RelativePath": "api/v1/Empreendimento/create-empreendimento",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.EmpreendimentoViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.EmpreendimentoController",
     "Method": "GetAllEmpreendimentosAsync",
     "RelativePath": "api/v1/Empreendimento/get-all",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.EmpreendimentoController",
+    "Method": "GetUserAsync",
+    "RelativePath": "api/v1/Empreendimento/get-empreendimento",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "empreendimentoId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.EmpreendimentoController",
+    "Method": "GetSelectAllEmpreendimentosAsync",
+    "RelativePath": "api/v1/Empreendimento/get-select-all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.EmpreendimentoController",
+    "Method": "UpdateUserAsync",
+    "RelativePath": "api/v1/Empreendimento/update-empreendimento",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.EmpreendimentoViewModel",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -44,7 +102,7 @@
   {
     "ContainingType": "SmartBug.Api.Controllers.UserController",
     "Method": "GetAllUsersAsync",
-    "RelativePath": "api/v1/User/get-all",
+    "RelativePath": "api/v1/User/get-all-users",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -53,6 +111,48 @@
         "Name": "enterpriseId",
         "Type": "System.Int64",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.UserController",
+    "Method": "GetSelectAllUsuariosAsync",
+    "RelativePath": "api/v1/User/get-select-all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.UserController",
+    "Method": "GetUserAsync",
+    "RelativePath": "api/v1/User/get-user",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.UserController",
+    "Method": "UpdateUserAsync",
+    "RelativePath": "api/v1/User/update-user",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.UsuarioViewModel",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

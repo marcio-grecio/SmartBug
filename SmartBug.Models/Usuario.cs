@@ -1,6 +1,7 @@
 ﻿using SmartBug.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace SmartBug.Models
 {
@@ -23,6 +24,9 @@ namespace SmartBug.Models
         [Column("NOME")]
         public string Nome { get; set; }
 
+        [Column("OCUPACAO")]
+        public string Ocupacao { get; set; }
+
         [Column("AVATAR")]
         public string Avatar { get; set; } = "Default";
 
@@ -33,7 +37,7 @@ namespace SmartBug.Models
         public int Perfil { get; set; } = 3;
 
         [Column("SENHA")]
-        public string Senha { get; set; } = MD5Hash.CalculaHash();
+        public string Senha { get; set; } 
 
         [Column("ISACTIVE")]
         public SituacaoEnum IsActive { get; set; } = SituacaoEnum.Active;

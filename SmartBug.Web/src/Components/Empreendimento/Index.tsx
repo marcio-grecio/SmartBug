@@ -1,55 +1,53 @@
-import React, { useState, useEffect } from "react";
 import Input from "../Input/Index";
 import Button from "../Button/Index";
+import React, { useState, useEffect } from "react";
 import InputDropDown from "../Input/InputDropDown";
-import { getAllSelectEmpreendimentos } from "../../Services/EmpreendimentoService";
+import { getAllSelectUsuarios } from "../../Services/UserService";
 
-interface UsuarioFormProps {
+interface EmpreendimentoFormProps {
   formData: {
     id: number;
     nome: string;
-    ocupacao: string;
-    email: string;
-    senha: string;
-    avatar: string;
-    perfil: number;
-    isActive: boolean;
-    empreendimentos: string[]; // Array de strings para múltipla seleção
+    localidade: string;
+    construtora: string;
+    unidadesTotal: number;
+    unidadesDisponiveis: number;
+    usuarios: string[]; 
   };
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   handleSubmit: () => void;
   toggleModal: () => void;
 }
 
-const UsuarioForm: React.FC<UsuarioFormProps> = ({
+const EmpreendimentoForm: React.FC<EmpreendimentoFormProps> = ({
   formData,
   handleInputChange,
   handleSubmit,
   toggleModal
 }) => {
-  const [empreendimentos, setEmpreendimentos] = useState<{ label: string; value: string }[]>([]);
+  const [usuarios, setUsuarios] = useState<{ label: string; value: string }[]>([]);
 
   useEffect(() => {
-    const fetchEmpreendimentos = async () => {
+    const fetchUsuarios = async () => {
       try {
-        const response = await getAllSelectEmpreendimentos();
+        const response = await getAllSelectUsuarios();
         const formattedEmpreendimentos = response.map((empreendimento: { id: number, nome: string }) => ({
           label: empreendimento.nome,
           value: empreendimento.id.toString(),
         }));
-        setEmpreendimentos(formattedEmpreendimentos);
+        setUsuarios(formattedEmpreendimentos);
       } catch (error) {
         console.error("Erro ao buscar empreendimentos:", error);
       }
     };
 
-    fetchEmpreendimentos();
+    fetchUsuarios();
   }, []);
 
   return (
     <div className="bg-white dark:bg-boxdark p-6 rounded-md shadow-lg w-203">
       <h2 className="text-lg font-medium text-black dark:text-white mb-6 -mt-3">
-        {formData.id ? "Alterar Usuário" : "Novo Usuário"}
+        {formData.id ? "Alterar Empreendimento" : "Novo Empreendimento"}
       </h2>
 
       <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }} className="row">
@@ -58,7 +56,7 @@ const UsuarioForm: React.FC<UsuarioFormProps> = ({
         </div>
 
         <div className="col-md-12 mb-4">
-          <label className="block text-sm font-medium text-black dark:text-white">Nome</label>
+          <label className="block text-sm font-medium text-black dark:text-white">Nome do Empreendimento</label>
           <Input
             type="text"
             name="nome"
@@ -68,79 +66,65 @@ const UsuarioForm: React.FC<UsuarioFormProps> = ({
             required
           />
         </div>
-
+        
         <div className="col-md-12 mb-4">
-          <label className="block text-sm font-medium text-black dark:text-white">Ocupação</label>
+          <label className="block text-sm font-medium text-black dark:text-white">Construtora</label>
           <Input
             type="text"
-            name="ocupacao"
-            value={formData.ocupacao}
+            name="construtora"
+            value={formData.construtora}
             onChange={handleInputChange}
             required
           />
         </div>
 
-        <div className="col-md-12 mb-4">
-          <label className="block text-sm font-medium text-black dark:text-white">Email / Login <span className="text-red-500">*</span></label>
+        
+        <div className="col-md-6 mb-4">
+          <label className="block text-sm font-medium text-black dark:text-white">Localidade</label>
           <Input
-            type="email"
-            name="email"
-            value={formData.email}
+            type="text"
+            name="localidade"
+            value={formData.localidade}
             onChange={handleInputChange}
             required
           />
         </div>
 
-        <div className="col-md-4 mb-4">
-          <label className="block text-sm font-medium text-black dark:text-white"> {formData.id ? "Nova Senha" : "Senha"} <span className="text-red-500">*</span></label>
+        
+        <div className="col-md-3 mb-4">
+          <label className="block text-sm font-medium text-black dark:text-white">Unidades Totais</label>
           <Input
-            type="password"
-            name="senha"
-            value={formData.senha}
+            type="number"
+            name="unidadesTotal"
+            value={formData.unidadesTotal}
             onChange={handleInputChange}
-          />
-        </div>
-
-        <div className="col-md-4 mb-4">
-          <InputDropDown
-            label="Perfil"
-            name="perfil"
-            value={formData.perfil.toString()}
-            options={[
-              { label: 'SIMPLES', value: '1' },
-              { label: 'SUPERVISOR', value: '2' },
-              { label: 'ADMINISTRADOR', value: '3' },
-            ]}
-            onChange={handleInputChange}
-            placeholder="Selecione um perfil"
             required
           />
         </div>
 
-        <div className="col-md-4 mb-4">
-          <InputDropDown
-            label="Situação"
-            name="isActive"
-            value={formData.isActive ? "true" : "false"}
-            options={[
-              { label: 'ATIVO', value: 'true' },
-              { label: 'INATIVO', value: 'false' },
-            ]}
+        
+        <div className="col-md-3 mb-4">
+          <label className="block text-sm font-medium text-black dark:text-white">Unidades Disponíveis</label>
+          <Input
+            type="number"
+            name="unidadesDisponiveis"
+            value={formData.unidadesDisponiveis}
             onChange={handleInputChange}
-            placeholder="Selecione uma situação"
             required
           />
         </div>
+
+
 
         <div className="col-md-12 mb-4">
           <InputDropDown
-            label="Empreendimentos"
-            name="empreendimentos"
-            value={formData.empreendimentos}
-            options={empreendimentos}
+            label="Usuários"
+            name="usuarios"
+            value={formData.usuarios}
+            options={usuarios}
             onChange={handleInputChange}
             multiple={true}
-            placeholder="Selecione os empreendimentos"
+            placeholder="Selecione os Usuários"
             required
           />
         </div>
@@ -176,4 +160,4 @@ const UsuarioForm: React.FC<UsuarioFormProps> = ({
   );
 }
 
-export default React.memo(UsuarioForm);
+export default React.memo(EmpreendimentoForm);

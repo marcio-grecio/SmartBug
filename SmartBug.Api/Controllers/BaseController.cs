@@ -12,5 +12,12 @@ namespace SmartBug.Api.Controllers
         {
             _Db = new Conexao();
         }
+
+        internal (string loggedUserId, string loggedUserName) GetLoggedUserInfo()
+        {
+            var loggedUserId = User.FindFirst("id")?.Value;
+            var loggedUserName = User.FindFirst("name")?.Value;
+            return (loggedUserId, loggedUserName);
+        }
     }
 }

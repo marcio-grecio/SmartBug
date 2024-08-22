@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
 import Select from 'react-select';
+import React, { useContext } from 'react';
 import { ThemeContext } from '../../Contexts/ThemeContext';
 
 interface InputDropDownProps {
@@ -9,11 +9,11 @@ interface InputDropDownProps {
   options: { label: string; value: string }[];
   onChange: (selectedOption: any) => void;
   multiple?: boolean;
-  placeholder?: string; // Adicionada prop para placeholder
-  height?: string;
+  placeholder?: string;
+  required?: boolean; // Adicionada prop para validação required
 }
 
-const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, options, onChange, multiple = false, placeholder }) => {
+const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, options, onChange, multiple = false, placeholder, required = false }) => {
   const { colorMode } = useContext(ThemeContext) || {};
 
   const isDarkMode = colorMode === 'dark';
@@ -40,7 +40,9 @@ const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, optio
   return (
     <div>
       {label && (
-        <label className={`block text-sm font-medium ${isDarkMode ? 'text-white' : 'text-black'}`}>{label}</label>
+        <label className={`block text-sm font-medium ${isDarkMode ? 'text-white' : 'text-black'}`}>
+          {label} {required && <span className="text-red-500">*</span>} {/* Adiciona asterisco se for obrigatório */}
+        </label>
       )}
       <Select
         name={name}
@@ -48,7 +50,7 @@ const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, optio
         onChange={handleChange}
         options={options}
         isMulti={multiple}
-        placeholder={placeholder} // Adicionado placeholder
+        placeholder={placeholder}
         classNamePrefix="react-select"
         className="react-select-container"
         styles={{
@@ -126,6 +128,7 @@ const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, optio
             color: isDarkMode ? 'white' : 'black',
           }),
         }}
+        required={required} // Adicionada prop required no Select
       />
     </div>
   );

@@ -1,15 +1,14 @@
-import { errorLog, infoLog } from '../Utils/Logger';
+import Loading from '../Components/Loading';
 import Input from '../Components/Input/Index';
+import Alert from '../Components/Alert/Index';
 import Button from '../Components/Button/Index';
 import { Settings2, Pencil } from 'lucide-react';
-import UsuarioForm from '../Components/Usuario/Index';
-import { addUser, getAllUsers, getUser, UpdateUser } from '../Services/UserService';
+import { errorLog, infoLog } from '../Utils/Logger';
 import { ThemeContext } from '../Contexts/ThemeContext';
 import DataTable, { createTheme } from 'react-data-table-component';
-import { getSelectedEmpreendimentoId } from '../Repository/AuthRepo';
+import EmpreendimentoForm  from '../Components/Empreendimento/Index';
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import Loading from '../Components/Loading';
-import Alert from '../Components/Alert/Index';
+import { addEmpreendimento, getAllEmpreendimentos, getEmpreendimento, UpdateEmpreendimento } from '../Services/EmpreendimentoService';
 
 const customLight = {
   table: {
@@ -136,25 +135,22 @@ const paginationComponentOptions = {
 createTheme('customLight', customLight);
 createTheme('customDark', customDark);
 
-const Usuarios: React.FC = () => {
+const Empreendimentos: React.FC = () => {
   const [loading, setLoading] = useState(true);
-  const [users, setUsers] = useState<any[]>([]);
+  const [empreendimentos, setEmpreendimentos] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const { colorMode } = useContext(ThemeContext) || {};
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [filteredUsers, setFilteredUsers] = useState<any[]>([]);
-  const enterpriseSelectedId = parseInt(getSelectedEmpreendimentoId());
+  const [filteredEmpreendimentos, setFilteredEmpreendimentos] = useState<any[]>([]);
   const [alert, setAlert] = useState<null | { type: 'error' | 'success' | 'warning', title: string, message: string }>(null);
   const [formData, setFormData] = useState({
     id: 0,
     nome: '',
-    email: '',
-    senha: '',
-    avatar: '',
-    perfil: 0,
-    ocupacao: '',
-    isActive: true,
-    empreendimentos: [] as string[],
+    localidade:'',
+    construtora:'',
+    unidadesTotal:0,
+    unidadesDisponiveis:0,
+    usuarios: [] as string[],
   });
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -163,28 +159,26 @@ const Usuarios: React.FC = () => {
 
   const handleButtonClick = async (id: any) => {
     try {
-      const user = await getUser(id);
-
+      const empreendimentoData = await getEmpreendimento(id);
+  
       setFormData({
-        id: user.id, // Adiciona o ID ao formData para identificar que é uma edição
-        nome: user.nome || '',
-        email: user.email || '',
-        senha: '',
-        avatar: user.avatar || '',
-        perfil: user.perfil || 0,
-        ocupacao: user.ocupacao || '',
-        isActive: user.isActive === 'Active', 
-        empreendimentos: user.empreendimentos.map((id: number) => id.toString()), 
+        id: empreendimentoData.id, // Adiciona o ID ao formData para identificar que é uma edição
+        nome: empreendimentoData.nome || '',
+        localidade:empreendimentoData.localidade || '',
+        construtora:empreendimentoData.construtora || '',
+        unidadesTotal:empreendimentoData.unidadesTotal || 0,
+        unidadesDisponiveis:empreendimentoData.unidadesDisponiveis || 0,
+        usuarios: empreendimentoData.usuarios.map((id: number) => id.toString()), 
       });
-
-      setIsModalOpen(true); 
-
+  
+      setIsModalOpen(true);
+  
     } catch (error) {
-      errorLog('Erro ao carregar usuário:', error);
+      errorLog('Erro ao carregar empreendimento:', error);
       setAlert({
         type: 'error',
         title: 'Erro',
-        message: 'Erro ao carregar os dados do usuário. Por favor, tente novamente.',
+        message: 'Erro ao carregar os dados do empreendimento. Por favor, tente novamente.',
       });
     }
   };
@@ -198,29 +192,34 @@ const Usuarios: React.FC = () => {
       cell: (row: any) => <div style={{ textAlign: 'left', width: '100%' }}>{row.id}</div>,
     },
     {
-      name: <div style={{ textAlign: 'left', width: '100%' }}>NOME DO USUÁRIO</div>,
+      name: <div style={{ textAlign: 'left', width: '100%' }}>NOME DO EMPREENDIMENTO</div>,
       selector: (row: any) => row.nome,
       sortable: true,
       cell: (row: any) => <div style={{ textAlign: 'left', width: '100%' }}>{row.nome}</div>,
     },
     {
-      name: <div style={{ textAlign: 'left', width: '100%' }}>OCUPAÇÃO</div>,
-      selector: (row: any) => row.ocupacao,
+      name: <div style={{ textAlign: 'left', width: '100%' }}>NOME DA CONSTRUTORA</div>,
+      selector: (row: any) => row.construtora,
       sortable: true,
-      cell: (row: any) => <div style={{ textAlign: 'left', width: '100%' }}>{row.ocupacao}</div>,
+      cell: (row: any) => <div style={{ textAlign: 'left', width: '100%' }}>{row.construtora}</div>,
     },
     {
-      name: <div style={{ textAlign: 'left', width: '100%' }}>LOGIN DO USUÁRIO</div>,
-      selector: (row: any) => row.email,
+      name: <div style={{ textAlign: 'left', width: '100%' }}>LOCALIDADE</div>,
+      selector: (row: any) => row.localidade,
       sortable: true,
-      cell: (row: any) => <div style={{ textAlign: 'left', width: '100%' }}>{row.email}</div>,
+      cell: (row: any) => <div style={{ textAlign: 'left', width: '100%' }}>{row.localidade}</div>,
     },
     {
-      name: <div style={{ textAlign: 'center', width: '100%' }}>SITUAÇÃO</div>,
-      selector: (row: any) => row.isActive,
+      name: <div style={{ textAlign: 'center', width: '100%' }}>TOTAL DE UNIDADES</div>,
+      selector: (row: any) => row.unidadesDisponiveis,
       sortable: true,
-      width: '130px',
-      cell: (row: any) => <div style={{ textAlign: 'center', width: '100%' }}>{row.isActive}</div>,
+      cell: (row: any) => <div style={{ textAlign: 'center', width: '100%' }}>{row.unidadesDisponiveis}</div>,
+    },
+    {
+      name: <div style={{ textAlign: 'center', width: '100%' }}>UNIDADES DISPONÍVEIS</div>,
+      selector: (row: any) => row.unidadesTotal,
+      sortable: true,
+      cell: (row: any) => <div style={{ textAlign: 'center', width: '100%' }}>{row.unidadesTotal}</div>,
     },
     {
       name: (
@@ -244,16 +243,15 @@ const Usuarios: React.FC = () => {
 
   const getUsersData = useCallback(async () => {
     try {
-      const response = await getAllUsers(enterpriseSelectedId);
+      const response = await getAllEmpreendimentos();
       if (response.status === 200) {
+        infoLog(response);
         const formatterData = response.data.map((s: any) => {
-          infoLog(s);
           s.key = Math.random() + Date.now();
-          s.isActive = s.isActive === 1 ? 'ATIVO' : 'INATIVO';
           return s;
         });
-        setUsers(formatterData);
-        setFilteredUsers(formatterData);
+        setEmpreendimentos(formatterData);
+        setFilteredEmpreendimentos(formatterData);
       }
 
       setLoading(false);
@@ -261,7 +259,7 @@ const Usuarios: React.FC = () => {
       errorLog(error);
       setLoading(false);
     }
-  }, [enterpriseSelectedId]);
+  }, []);
 
   const toggleModal = () => {
     setIsModalOpen((prev) => !prev);
@@ -269,13 +267,11 @@ const Usuarios: React.FC = () => {
       setFormData({
         id: 0,
         nome: '',
-        email: '',
-        senha: '',
-        perfil: 0,
-        avatar: '',
-        ocupacao: '',
-        isActive: true,
-        empreendimentos: [],
+        localidade:'',
+        construtora:'',
+        unidadesTotal:0,
+        unidadesDisponiveis:0,
+        usuarios: [],
       });
     }
   };
@@ -284,23 +280,14 @@ const Usuarios: React.FC = () => {
     const { name, value } = e.target;
 
     setFormData((prevFormData) => {
-      if (name === 'perfil') {
-        return { ...prevFormData, [name]: parseInt(value) };
-      } else if (name === 'isActive') {
-        return { ...prevFormData, [name]: value === 'true' };
-      } else if (name === 'empreendimentos') {
-        // Assegurar que 'empreendimentos' seja sempre um array de strings
-        return { ...prevFormData, [name]: Array.isArray(value) ? value : [value] };
-      } else {
-        return { ...prevFormData, [name]: value };
-      }
+      return { ...prevFormData, [name]: value };
     });
   };
 
 
   const handleSubmit = async () => {
     try {
-      const serviceFunction = formData.id ? UpdateUser : addUser;
+      const serviceFunction = formData.id ? UpdateEmpreendimento : addEmpreendimento;
       const { status, data } = await serviceFunction(formData);
 
       if (status === 200) {
@@ -311,21 +298,21 @@ const Usuarios: React.FC = () => {
         });
         toggleModal();
         getUsersData();
-      } 
+      }
       else if (status === 400) {
         setAlert({
           type: 'error',
           title: 'Erro',
           message: data.message,
         });
-      } 
+      }
       else if (status === 409) {
         setAlert({
           type: 'error',
           title: 'Erro',
           message: data.message,
         });
-      } 
+      }
       else {
         setAlert({
           type: 'warning',
@@ -337,19 +324,19 @@ const Usuarios: React.FC = () => {
       setAlert({
         type: 'error',
         title: 'Erro',
-        message: 'Erro ao salvar usuário. Por favor, tente novamente.',
+        message: 'Erro ao salvar empreendimento. Por favor, tente novamente.',
       });
     }
   };
 
   useEffect(() => {
-    const results = users.filter((user) =>
-      user.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.ocupacao.toLowerCase().includes(searchTerm.toLowerCase()) // Adapte os campos conforme necessário
+    const results = empreendimentos.filter((empreendimento) =>
+      empreendimento.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      empreendimento.localidade.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      empreendimento.construtora.toLowerCase().includes(searchTerm.toLowerCase()) 
     );
-    setFilteredUsers(results);
-  }, [searchTerm, users]);
+    setFilteredEmpreendimentos(results);
+  }, [searchTerm, empreendimentos]);
 
   useEffect(() => {
     getUsersData();
@@ -358,8 +345,7 @@ const Usuarios: React.FC = () => {
   return (
     <section
       className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
-      style={{ height: 'calc(89vh - 3px)' }}
-    >
+      style={{ height: 'calc(89vh - 3px)' }}>
       {loading && <Loading fullscreen text="Carregando usuários..." />}
       {!loading && (
         <>
@@ -367,7 +353,7 @@ const Usuarios: React.FC = () => {
             <div className="row" style={{ marginTop: 0 }}>
               <div className="col-md-9 mb-5 mt-3">
                 <div className="ml-4 mb-3">
-                  <Button color='#28C76F' text='Novo Usuário' onClick={toggleModal} disabled={false} height={32} width={120} fontWeight={'600'} fontFamily='nunito' />
+                  <Button color='#28C76F' text='Novo Empreendimento' onClick={toggleModal} disabled={false} height={32} width={170} fontWeight={'600'} fontFamily='nunito' />
                 </div>
               </div>
 
@@ -382,7 +368,7 @@ const Usuarios: React.FC = () => {
             <div className="col-md-12 mb-4">
               <DataTable
                 columns={columns}
-                data={filteredUsers}
+                data={filteredEmpreendimentos}
                 fixedHeader
                 fixedHeaderScrollHeight="69vh"
                 striped
@@ -408,7 +394,6 @@ const Usuarios: React.FC = () => {
           width='400px'
           duration={2000}
           type={alert.type}
-          // title={alert.title}
           position="top-right"
           showProgress={true}
           message={alert.message}
@@ -418,7 +403,7 @@ const Usuarios: React.FC = () => {
 
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-          <UsuarioForm
+          <EmpreendimentoForm
             formData={formData}
             handleInputChange={handleInputChange}
             handleSubmit={handleSubmit}
@@ -430,4 +415,4 @@ const Usuarios: React.FC = () => {
   );
 };
 
-export default Usuarios;
+export default Empreendimentos;

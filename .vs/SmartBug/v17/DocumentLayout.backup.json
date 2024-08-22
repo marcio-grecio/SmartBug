@@ -9,6 +9,30 @@
     {
       "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|c:\\meetweb\\smartbug\\smartbug.models\\empreendimento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|solutionrelative:smartbug.models\\empreendimento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\vendacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\vendacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|c:\\meetweb\\smartbug\\smartbug.models\\viewmodel\\empreendimentoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|solutionrelative:smartbug.models\\viewmodel\\empreendimentoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|c:\\meetweb\\smartbug\\smartbug.models\\viewmodel\\usuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|solutionrelative:smartbug.models\\viewmodel\\usuarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|c:\\meetweb\\smartbug\\smartbug.models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|solutionrelative:smartbug.models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,23 +42,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Empreendimento.cs",
+              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Empreendimento.cs",
+              "RelativeDocumentMoniker": "SmartBug.Models\\Empreendimento.cs",
+              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Empreendimento.cs",
+              "RelativeToolTip": "SmartBug.Models\\Empreendimento.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T23:28:05.454Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\UserController.cs",
-              "RelativeToolTip": "SmartBug.Api\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "DocumentIndex": 4,
+              "Title": "EmpreendimentoViewModel.cs",
+              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\ViewModel\\EmpreendimentoViewModel.cs",
+              "RelativeDocumentMoniker": "SmartBug.Models\\ViewModel\\EmpreendimentoViewModel.cs",
+              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\ViewModel\\EmpreendimentoViewModel.cs",
+              "RelativeToolTip": "SmartBug.Models\\ViewModel\\EmpreendimentoViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-14T00:16:01.039Z"
+              "WhenOpened": "2024-08-21T23:27:12.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "VendaController.cs",
+              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\VendaController.cs",
+              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\VendaController.cs",
+              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\VendaController.cs",
+              "RelativeToolTip": "SmartBug.Api\\Controllers\\VendaController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T00:30:53.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ClienteController.cs",
+              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\ClienteController.cs",
+              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\ClienteController.cs",
+              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\ClienteController.cs",
+              "RelativeToolTip": "SmartBug.Api\\Controllers\\ClienteController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-20T00:30:50.317Z"
             },
             {
               "$type": "Document",
@@ -44,9 +103,47 @@
               "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\EmpreendimentoController.cs",
               "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\EmpreendimentoController.cs",
               "RelativeToolTip": "SmartBug.Api\\Controllers\\EmpreendimentoController.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAADgvxgAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAwwJ4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-13T23:57:34.713Z",
+              "WhenOpened": "2024-08-18T19:18:46.201Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UsuarioViewModel.cs",
+              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\ViewModel\\UsuarioViewModel.cs",
+              "RelativeDocumentMoniker": "SmartBug.Models\\ViewModel\\UsuarioViewModel.cs",
+              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\ViewModel\\UsuarioViewModel.cs",
+              "RelativeToolTip": "SmartBug.Models\\ViewModel\\UsuarioViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-18T00:23:17.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Usuario.cs",
+              "RelativeDocumentMoniker": "SmartBug.Models\\Usuario.cs",
+              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Usuario.cs",
+              "RelativeToolTip": "SmartBug.Models\\Usuario.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAowCwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-17T21:02:12.354Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\UserController.cs",
+              "RelativeToolTip": "SmartBug.Api\\Controllers\\UserController.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAA5wJ0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-14T00:16:01.039Z",
               "EditorCaption": ""
             }
           ]
