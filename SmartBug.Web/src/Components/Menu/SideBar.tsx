@@ -2,7 +2,7 @@ import Logo from '../../Assets/images/logo/logo-white.webp';
 // import Logo from '../../Assets/images/logo/logo.svg';
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { Calendar, Users, Building } from 'lucide-react';
+import { Calendar, Users, Building, ListFilter } from 'lucide-react';
 interface SidebarProps {
   sidebarOpen: boolean;
   setSidebarOpen: (arg: boolean) => void;
@@ -99,13 +99,14 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             </h3>
 
             <ul className="mb-6 flex flex-col gap-1.5">
+
               <li>
                 <NavLink
-                  to="/Home"
+                  to="/Leads"
                   onClick={() => setSidebarOpen(!sidebarOpen)}
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('Home') && 'bg-graydark dark:bg-meta-4'}`}>
-                  <Calendar className="w-5 h-5" />
-                  Calendar
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('Leads') && 'bg-graydark dark:bg-meta-4'}`}>
+                  <ListFilter className="w-5 h-5" />
+                  Leads
                 </NavLink>
               </li>
 
@@ -121,6 +122,16 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
               <li>
                 <NavLink
+                  to="/Home"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('Home') && 'bg-graydark dark:bg-meta-4'}`}>
+                  <Calendar className="w-5 h-5" />
+                  Dashboard
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
                   to="/Empreendimentos"
                   onClick={() => setSidebarOpen(!sidebarOpen)}
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('Empreendimentos') && 'bg-graydark dark:bg-meta-4'}`}>
@@ -128,6 +139,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   Empreendimentos
                 </NavLink>
               </li>
+
             </ul>
           </div>
         </nav>
