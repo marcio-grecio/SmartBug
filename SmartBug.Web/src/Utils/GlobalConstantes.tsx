@@ -1,15 +1,7 @@
-import { infoLog } from './Logger'
-
 export const devMode = 'true'
 export const defaultLogin = ''
 export const defaultPwd = ''
 export const baseUrl = 'https://localhost:7067'
-
-if (devMode) {
-  infoLog('baseUrl:', baseUrl)
-  infoLog('defaultLogin:', defaultLogin)
-  infoLog('defaultPwd:', defaultPwd)
-}
 
 export const mediaIcon = {
   image: '📷 Foto',

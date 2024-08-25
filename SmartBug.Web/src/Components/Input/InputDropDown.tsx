@@ -11,9 +11,10 @@ interface InputDropDownProps {
   multiple?: boolean;
   placeholder?: string;
   required?: boolean; // Adicionada prop para validação required
+  autoFocus?: boolean;
 }
 
-const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, options, onChange, multiple = false, placeholder, required = false }) => {
+const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, options, onChange, multiple = false, placeholder, required = false, autoFocus = false }) => {
   const { colorMode } = useContext(ThemeContext) || {};
 
   const isDarkMode = colorMode === 'dark';
@@ -61,9 +62,8 @@ const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, optio
             border: state.isFocused ? `1px solid ${isDarkMode ? '#1d4ed8' : '#d3eefc'}` : `1px solid ${isDarkMode ? '#313d4a' : '#e2e8f0'}`,
             boxShadow: 'none',
             '&:hover': {
-              border: state.isFocused ? `1px solid  ${isDarkMode ? '#1d4ed8' : '#d3eefc'}` : `1px solid ${isDarkMode ? '#313d4a' : '#d3eefc'}`,
+              border: state.isFocused ? `1px solid ${isDarkMode ? '#1d4ed8' : '#d3eefc'}` : `1px solid ${isDarkMode ? '#313d4a' : '#d3eefc'}`,
             },
-            height: 34,
             minHeight: 34,
             borderRadius: 2,
           }),
@@ -90,9 +90,9 @@ const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, optio
           }),
           option: (provided, state) => ({
             ...provided,
-            backgroundColor: state.isSelected ?  `${isDarkMode ? '#1d4ed8' : '#d3eefc'}` : isDarkMode ? '#313d4a' : '#eff4f9',
+            backgroundColor: state.isSelected ? `${isDarkMode ? '#1d4ed8' : '#d3eefc'}` : isDarkMode ? '#313d4a' : '#eff4f9',
             color: isDarkMode ? 'white' : 'black',
-            border: state.isSelected ? `1px solid  ${isDarkMode ? '#1d4ed8' : '#d3eefc'}` : '1px solid transparent',
+            border: state.isSelected ? `1px solid ${isDarkMode ? '#1d4ed8' : '#d3eefc'}` : '1px solid transparent',
           }),
           input: (provided) => ({
             ...provided,
@@ -117,10 +117,13 @@ const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, optio
           valueContainer: (provided) => ({
             ...provided,
             color: isDarkMode ? 'white' : 'black',
-            height: 34,
             minHeight: 34,
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            padding: '2px 8px',
             borderRadius: 2,
-            marginTop: -6
+            overflow: 'auto', // Permite que o container se expanda conforme necessário
           }),
           menu: (provided) => ({
             ...provided,
@@ -128,7 +131,8 @@ const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, optio
             color: isDarkMode ? 'white' : 'black',
           }),
         }}
-        required={required} // Adicionada prop required no Select
+        required={required}
+        autoFocus={autoFocus}
       />
     </div>
   );

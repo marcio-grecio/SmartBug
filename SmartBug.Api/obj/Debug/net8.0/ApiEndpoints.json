@@ -16,6 +16,190 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SmartBug.Api.Controllers.CanalController",
+    "Method": "CreateCanalAsync",
+    "RelativePath": "api/v1/Canal/create-canal",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.CanalViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.CanalController",
+    "Method": "GetAllCanalAsync",
+    "RelativePath": "api/v1/Canal/get-all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.CanalController",
+    "Method": "GetCanalAsync",
+    "RelativePath": "api/v1/Canal/get-canal",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "canalId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.CanalController",
+    "Method": "GetSelectAllEmpreendimentoAsync",
+    "RelativePath": "api/v1/Canal/get-select-all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.CanalController",
+    "Method": "UpdateCanalAsync",
+    "RelativePath": "api/v1/Canal/update-canal",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.CanalViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.ClienteController",
+    "Method": "CreateClienteAsync",
+    "RelativePath": "api/v1/Cliente/create-cliente",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.ClienteViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.ClienteController",
+    "Method": "GetAllClienteAsync",
+    "RelativePath": "api/v1/Cliente/get-all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.ClienteController",
+    "Method": "GetClienteAsync",
+    "RelativePath": "api/v1/Cliente/get-cliente",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clienteId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.ClienteController",
+    "Method": "UpdateClienteAsync",
+    "RelativePath": "api/v1/Cliente/update-cliente",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.ClienteViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.DescartadosController",
+    "Method": "CreateLeadAsync",
+    "RelativePath": "api/v1/Descartados/create-lead",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.LeadViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.DescartadosController",
+    "Method": "GetAllLeadAsync",
+    "RelativePath": "api/v1/Descartados/get-all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.DescartadosController",
+    "Method": "GetLeadAsync",
+    "RelativePath": "api/v1/Descartados/get-lead",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "leadId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.DescartadosController",
+    "Method": "UpdateLeadAsync",
+    "RelativePath": "api/v1/Descartados/update-lead",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.LeadViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SmartBug.Api.Controllers.EmpreendimentoController",
     "Method": "CreateEmpreendimentoAsync",
     "RelativePath": "api/v1/Empreendimento/create-empreendimento",
@@ -33,7 +217,7 @@
   },
   {
     "ContainingType": "SmartBug.Api.Controllers.EmpreendimentoController",
-    "Method": "GetAllEmpreendimentosAsync",
+    "Method": "GetAllEmpreendimentoAsync",
     "RelativePath": "api/v1/Empreendimento/get-all",
     "HttpMethod": "GET",
     "IsController": true,
@@ -43,7 +227,7 @@
   },
   {
     "ContainingType": "SmartBug.Api.Controllers.EmpreendimentoController",
-    "Method": "GetUserAsync",
+    "Method": "GetEmpreendimentoAsync",
     "RelativePath": "api/v1/Empreendimento/get-empreendimento",
     "HttpMethod": "GET",
     "IsController": true,
@@ -59,7 +243,7 @@
   },
   {
     "ContainingType": "SmartBug.Api.Controllers.EmpreendimentoController",
-    "Method": "GetSelectAllEmpreendimentosAsync",
+    "Method": "GetSelectAllEmpreendimentoAsync",
     "RelativePath": "api/v1/Empreendimento/get-select-all",
     "HttpMethod": "GET",
     "IsController": true,
@@ -69,7 +253,7 @@
   },
   {
     "ContainingType": "SmartBug.Api.Controllers.EmpreendimentoController",
-    "Method": "UpdateUserAsync",
+    "Method": "UpdateEmpreendimentoAsync",
     "RelativePath": "api/v1/Empreendimento/update-empreendimento",
     "HttpMethod": "POST",
     "IsController": true,
@@ -78,6 +262,180 @@
       {
         "Name": "model",
         "Type": "SmartBug.Models.ViewModel.EmpreendimentoViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.LeadController",
+    "Method": "CreateLeadAsync",
+    "RelativePath": "api/v1/Lead/create-lead",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.LeadViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.LeadController",
+    "Method": "GetAllLeadAsync",
+    "RelativePath": "api/v1/Lead/get-all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.LeadController",
+    "Method": "GetLeadAsync",
+    "RelativePath": "api/v1/Lead/get-lead",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "leadId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.LeadController",
+    "Method": "UpdateLeadAsync",
+    "RelativePath": "api/v1/Lead/update-lead",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.LeadViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.MetaController",
+    "Method": "CreateVendaAsync",
+    "RelativePath": "api/v1/Meta/create-meta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.MetaViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.MetaController",
+    "Method": "GetAllMetaAsync",
+    "RelativePath": "api/v1/Meta/get-all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.MetaController",
+    "Method": "GetVendaAsync",
+    "RelativePath": "api/v1/Meta/get-meta",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "metaId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.MetaController",
+    "Method": "UpdateVendaAsync",
+    "RelativePath": "api/v1/Meta/update-meta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.MetaViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.PropostaController",
+    "Method": "CreatePropostaAsync",
+    "RelativePath": "api/v1/Proposta/create-proposta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.PropostaViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.PropostaController",
+    "Method": "GetAllPropostaAsync",
+    "RelativePath": "api/v1/Proposta/get-all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.PropostaController",
+    "Method": "GetPropostaAsync",
+    "RelativePath": "api/v1/Proposta/get-proposta",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "propostaId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.PropostaController",
+    "Method": "UpdatePropostaAsync",
+    "RelativePath": "api/v1/Proposta/update-proposta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.PropostaViewModel",
         "IsRequired": true
       }
     ],
@@ -152,6 +510,64 @@
       {
         "Name": "model",
         "Type": "SmartBug.Models.ViewModel.UsuarioViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.VendaController",
+    "Method": "CreateVendaAsync",
+    "RelativePath": "api/v1/Venda/create-venda",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.VendaViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.VendaController",
+    "Method": "GetAllVendaAsync",
+    "RelativePath": "api/v1/Venda/get-all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.VendaController",
+    "Method": "GetVendaAsync",
+    "RelativePath": "api/v1/Venda/get-venda",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vendaId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.VendaController",
+    "Method": "UpdateVendaAsync",
+    "RelativePath": "api/v1/Venda/update-venda",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SmartBug.Models.ViewModel.VendaViewModel",
         "IsRequired": true
       }
     ],

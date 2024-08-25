@@ -1,7 +1,7 @@
 import { api } from '../Utils/Axios';
 import { User } from '../Models/User';
+import { errorLog } from '../Utils/Logger';
 import { decode } from '../Utils/JsonWebToken';
-import { errorLog, infoLog } from '../Utils/Logger';
 import { authenticate } from '../Services/AuthService';
 import { useState, createContext, ReactNode } from 'react';
 import { saveAuth, getAuth, getAvatar, saveSelectedEmpreendimento } from '../Repository/AuthRepo';
@@ -22,12 +22,8 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     let data;
     try {
       data = await authenticate(email, senha);
-      infoLog('AuthProvider->handleLogin', { email, senha });
-      infoLog('AuthProvider->handleLogin', data.token);
       saveAuth(data.token);
       api.defaults.headers.Authorization = `Bearer ${data.token}`;
-
-      infoLog('AuthProvider->handleLogin', data.usuario);
 
       const user = {
         id: data.usuario.id,
@@ -49,7 +45,6 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         throw new Error(error.response.data);
       }
 
-      infoLog('AuthProvider->handleLogin', data);
       errorLog('AuthProvider->handleLogin', error);
       throw error;
     }

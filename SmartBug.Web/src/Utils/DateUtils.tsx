@@ -1,4 +1,3 @@
-import { infoLog } from './Logger'
 import { differenceInDays, differenceInMinutes } from 'date-fns'
 
 export const initDateIsFirstThanEndDate = (date1:any, date2:any) => {
@@ -17,7 +16,6 @@ export const initTimeIsFirstThanEndTime = (time1:any, time2:any) => {
 
 export const timeFormatFromDateString = (dateTime:any) => {
   if (typeof dateTime !== 'string') {
-    infoLog('dateTime is not a string', dateTime)
     dateTime = dateTime.toJSON()
   }
   const convertedDateTime = new Date(dateTime.replace('Z', ''))

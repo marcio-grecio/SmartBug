@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SmartBug.Context")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef21b982b56fec4b909ac947a7a8528a016da787")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de1023c63e9420461f00d9cf9e93e6270fd73492")]
 [assembly: System.Reflection.AssemblyProductAttribute("SmartBug.Context")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SmartBug.Context")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

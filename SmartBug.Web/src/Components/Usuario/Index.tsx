@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
 import Input from "../Input/Index";
 import Button from "../Button/Index";
+import { Check, X } from 'lucide-react';
+import React, { useState, useEffect } from "react";
 import InputDropDown from "../Input/InputDropDown";
 import { getAllSelectEmpreendimentos } from "../../Services/EmpreendimentoService";
 
@@ -107,9 +108,9 @@ const UsuarioForm: React.FC<UsuarioFormProps> = ({
             name="perfil"
             value={formData.perfil.toString()}
             options={[
-              { label: 'SIMPLES', value: '1' },
+              { label: 'SIMPLES', value: '3' },
               { label: 'SUPERVISOR', value: '2' },
-              { label: 'ADMINISTRADOR', value: '3' },
+              { label: 'ADMINISTRADOR', value: '1' },
             ]}
             onChange={handleInputChange}
             placeholder="Selecione um perfil"
@@ -159,6 +160,7 @@ const UsuarioForm: React.FC<UsuarioFormProps> = ({
             width={100}
             fontWeight={'600'}
             fontFamily='nunito'
+            icon={X}
           />
           <Button
             color='#28C76F'
@@ -169,6 +171,7 @@ const UsuarioForm: React.FC<UsuarioFormProps> = ({
             fontWeight={'600'}
             fontFamily='nunito'
             type="submit"
+            icon={Check}
           />
         </div>
       </form>

@@ -1,5 +1,5 @@
 import { api } from '../Utils/Axios'
-import { errorLog, infoLog } from '../Utils/Logger'
+import { errorLog } from '../Utils/Logger'
 
 export const authenticate = async (login:string, senha:string) => {
     try {
@@ -7,7 +7,6 @@ export const authenticate = async (login:string, senha:string) => {
         login,
         senha,
       })
-      infoLog('authService->authenticate', response.data)
       return response.data
     } catch (error) {
       errorLog('authService->authenticate', error)

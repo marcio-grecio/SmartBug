@@ -1,9 +1,9 @@
+import { errorLog } from '../Utils/Logger';
 import Loading from '../Components/Loading';
 import Input from '../Components/Input/Index';
 import Alert from '../Components/Alert/Index';
 import Button from '../Components/Button/Index';
-import { Settings2, Pencil } from 'lucide-react';
-import { errorLog, infoLog } from '../Utils/Logger';
+import { Settings2, Pencil, Plus } from 'lucide-react';
 import { ThemeContext } from '../Contexts/ThemeContext';
 import DataTable, { createTheme } from 'react-data-table-component';
 import EmpreendimentoForm  from '../Components/Empreendimento/Index';
@@ -241,11 +241,10 @@ const Empreendimentos: React.FC = () => {
     },
   ], []);
 
-  const getUsersData = useCallback(async () => {
+  const getEmpreendimentoData = useCallback(async () => {
     try {
       const response = await getAllEmpreendimentos();
       if (response.status === 200) {
-        infoLog(response);
         const formatterData = response.data.map((s: any) => {
           s.key = Math.random() + Date.now();
           return s;
@@ -297,7 +296,7 @@ const Empreendimentos: React.FC = () => {
           message: data.message,
         });
         toggleModal();
-        getUsersData();
+        getEmpreendimentoData();
       }
       else if (status === 400) {
         setAlert({
@@ -339,21 +338,21 @@ const Empreendimentos: React.FC = () => {
   }, [searchTerm, empreendimentos]);
 
   useEffect(() => {
-    getUsersData();
-  }, [getUsersData]);
+    getEmpreendimentoData();
+  }, [getEmpreendimentoData]);
 
   return (
     <section
       className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
       style={{ height: 'calc(89vh - 3px)' }}>
-      {loading && <Loading fullscreen text="Carregando usuários..." />}
+      {loading && <Loading fullscreen text="Carregando Empreendimentos..." />}
       {!loading && (
         <>
           <div className="border-b border-stroke dark:bg-boxdark bg-bodyWhite dark:border-strokedark">
             <div className="row" style={{ marginTop: 0 }}>
               <div className="col-md-9 mb-5 mt-3">
                 <div className="ml-4 mb-3">
-                  <Button color='#28C76F' text='Novo Empreendimento' onClick={toggleModal} disabled={false} height={32} width={170} fontWeight={'600'} fontFamily='nunito' />
+                  <Button color='#28C76F' text='Novo Empreendimento' onClick={toggleModal} disabled={false} height={32} width={200} fontWeight={'600'} fontFamily='nunito' icon={Plus} />
                 </div>
               </div>
 

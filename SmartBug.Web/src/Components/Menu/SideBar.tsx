@@ -2,12 +2,15 @@ import Logo from '../../Assets/images/logo/logo-white.webp';
 // import Logo from '../../Assets/images/logo/logo.svg';
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { Calendar, Users, Building, ListFilter } from 'lucide-react';
+import SidebarLinkGroup from './SidebarLinkGroup';
+import React from 'react';
+import { Users, Building, Filter, UsersRound, Target, CircleDollarSign, FilterX, Handshake, ChevronDown, Printer, TvMinimalPlay } from 'lucide-react';
+
+
 interface SidebarProps {
   sidebarOpen: boolean;
   setSidebarOpen: (arg: boolean) => void;
 }
-
 const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const location = useLocation();
   const { pathname } = location;
@@ -16,10 +19,9 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const sidebar = useRef<HTMLDivElement>(null);
 
   const storedSidebarExpanded = localStorage.getItem('sidebar-expanded');
-  const [sidebarExpanded] = useState(
+  const [sidebarExpanded, setSidebarExpanded] = useState(
     storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true'
   );
-
 
   // close on click outside
   useEffect(() => {
@@ -105,8 +107,18 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   to="/Leads"
                   onClick={() => setSidebarOpen(!sidebarOpen)}
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('Leads') && 'bg-graydark dark:bg-meta-4'}`}>
-                  <ListFilter className="w-5 h-5" />
+                  <Filter className="w-5 h-5" color='#1ab380'/>
                   Leads
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/Metas"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('Metas') && 'bg-graydark dark:bg-meta-4'}`}>
+                  <Target className="w-5 h-5" color='#f3aa5a' />
+                  Metas
                 </NavLink>
               </li>
 
@@ -115,18 +127,100 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   to="/Usuarios"
                   onClick={() => setSidebarOpen(!sidebarOpen)}
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('Usuarios') && 'bg-graydark dark:bg-meta-4'}`}>
-                  <Users className="w-5 h-5" />
+                  <Users className="w-5 h-5" color='#2c8ded'/>
                   Usuários
                 </NavLink>
               </li>
 
+              <SidebarLinkGroup activeCondition={ pathname === '/report' || pathname.includes('report')}>
+                {(handleClick, open) => {
+                  return (
+                    <React.Fragment>
+                      <NavLink
+                        to="#"
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/report' || pathname.includes('report')) && 'bg-graydark dark:bg-meta-4'}`}
+                        onClick={(e) => { e.preventDefault(); sidebarExpanded ? handleClick() : setSidebarExpanded(true); }}>
+                        <Printer className="w-5 h-5" color='#25c6da'/>
+                        Relatórios
+                        <ChevronDown className={`absolute right-4 w-5 h-5 top-1/2 -translate-y-1/2 ${open && 'rotate-180'}`} />
+                      </NavLink>
+                      <div
+                        className={`translate transform overflow-hidden ${!open && 'hidden'}`}>
+                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
+                          <li>
+                            <NavLink
+                              to="/forms/form-elements"
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')
+                              }>
+                              Form Elements
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              to="/forms/form-layout"
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')
+                              }>
+                              Form Layout
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </div>
+                    </React.Fragment>
+                  );
+                }}
+              </SidebarLinkGroup>
+
               <li>
+                <NavLink
+                  to="/Clientes"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('Clientes') && 'bg-graydark dark:bg-meta-4'}`}>
+                  <UsersRound className="w-5 h-5" color='#e26cf6'/>
+                  Clientes P4
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/Canais"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('Canais') && 'bg-graydark dark:bg-meta-4'}`}>
+                  <TvMinimalPlay className="w-5 h-5" color='#f98b97'/>
+                  Canais de Lead
+                </NavLink>
+              </li>
+
+              {/* <li>
                 <NavLink
                   to="/Home"
                   onClick={() => setSidebarOpen(!sidebarOpen)}
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('Home') && 'bg-graydark dark:bg-meta-4'}`}>
                   <Calendar className="w-5 h-5" />
                   Dashboard
+                </NavLink>
+              </li> */}
+
+              <li>
+                <NavLink
+                  to="/Vendas"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('Vendas') && 'bg-graydark dark:bg-meta-4'}`}>
+                  <CircleDollarSign className="w-5 h-5" color='#FFE985' />
+                  Vendas Efetivadas
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/Descartados"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('Descartados') && 'bg-graydark dark:bg-meta-4'}`}>
+                  <FilterX className="w-5 h-5" color='#B3315F'/>
+                  Leads Descartados
                 </NavLink>
               </li>
 
@@ -135,8 +229,18 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   to="/Empreendimentos"
                   onClick={() => setSidebarOpen(!sidebarOpen)}
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('Empreendimentos') && 'bg-graydark dark:bg-meta-4'}`}>
-                  <Building className="w-5 h-5" />
+                  <Building className="w-5 h-5" color='#97ABFF'/>
                   Empreendimentos
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/Propostas"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('Propostas') && 'bg-graydark dark:bg-meta-4'}`}>
+                  <Handshake className="w-5 h-5" color='#F05F57'/>
+                  Clientes / Propostas
                 </NavLink>
               </li>
 

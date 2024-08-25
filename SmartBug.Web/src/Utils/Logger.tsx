@@ -1,5 +1,5 @@
-import { getHourMinuteSecondMilisecondFormatedFromDateNow } from './DateUtils'
 import { devMode } from './GlobalConstantes'
+import { getHourMinuteSecondMilisecondFormatedFromDateNow } from './DateUtils'
 
 export const log = (...args: unknown[]) => {
   if (devMode) {

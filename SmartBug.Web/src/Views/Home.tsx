@@ -1,20 +1,27 @@
-// import { Card } from 'primereact/card';
-// import { Message } from 'primereact/message';
-// import { DataTable } from 'primereact/datatable';
-// import { Column } from 'primereact/column';
-// import { useState } from 'react';
+import { useContext } from 'react';
+import dark from '../Assets/images/logo/logo-dark.webp';
+import white from '../Assets/images/logo/logo-white.webp';
+import { ThemeContext } from '../Contexts/ThemeContext';
+
 const Home = () => {
-  // const [products, setProducts] = useState([]);
+  const { colorMode } = useContext(ThemeContext) || {};
 
   return (
         <section className="mi-content rounded-md bg-gray hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-white text-center">
-          <div className="mi-card" style={{ height: '90vh',display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div className="mi-card" style={{ height: '86vh',display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <div className="mi-card-header border-none text-center">
-              <h1 className="mi-error-code" style={{ margin: '0 0 70px 0'}}>HOME</h1>
-              <h3 className="text-center" style={{ margin: '0 150px'}}>Estou na Home</h3>
+            <img alt="Logo" width={170} height={37} src={colorMode !== 'dark' ? dark: white} className="relative"/>
+            <h1 className="text-2xl font-bold text-primary">Inteligência de Marketing Imobiliário.</h1>
             </div>
           </div>
         </section>   
+
+  )
+}
+
+export default Home
+
+
 //     <div className="card">
 //       <Card title="Simple Card">
 //         <p className="m-0">
@@ -70,7 +77,3 @@ const Home = () => {
 //         </div>
         
 //     </div>
-  )
-}
-
-export default Home

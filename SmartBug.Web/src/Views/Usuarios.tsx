@@ -1,15 +1,15 @@
-import { errorLog, infoLog } from '../Utils/Logger';
+import { errorLog } from '../Utils/Logger';
+import Loading from '../Components/Loading';
+import Alert from '../Components/Alert/Index';
 import Input from '../Components/Input/Index';
 import Button from '../Components/Button/Index';
-import { Settings2, Pencil } from 'lucide-react';
 import UsuarioForm from '../Components/Usuario/Index';
-import { addUser, getAllUsers, getUser, UpdateUser } from '../Services/UserService';
+import { Settings2, Pencil, Plus } from 'lucide-react';
 import { ThemeContext } from '../Contexts/ThemeContext';
 import DataTable, { createTheme } from 'react-data-table-component';
 import { getSelectedEmpreendimentoId } from '../Repository/AuthRepo';
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import Loading from '../Components/Loading';
-import Alert from '../Components/Alert/Index';
+import { addUser, getAllUsers, getUser, UpdateUser } from '../Services/UserService';
 
 const customLight = {
   table: {
@@ -247,7 +247,6 @@ const Usuarios: React.FC = () => {
       const response = await getAllUsers(enterpriseSelectedId);
       if (response.status === 200) {
         const formatterData = response.data.map((s: any) => {
-          infoLog(s);
           s.key = Math.random() + Date.now();
           s.isActive = s.isActive === 1 ? 'ATIVO' : 'INATIVO';
           return s;
@@ -367,7 +366,7 @@ const Usuarios: React.FC = () => {
             <div className="row" style={{ marginTop: 0 }}>
               <div className="col-md-9 mb-5 mt-3">
                 <div className="ml-4 mb-3">
-                  <Button color='#28C76F' text='Novo Usuário' onClick={toggleModal} disabled={false} height={32} width={120} fontWeight={'600'} fontFamily='nunito' />
+                  <Button color='#28C76F' text='Novo Usuário' onClick={toggleModal} disabled={false} height={32} width={140} fontWeight={'600'} fontFamily='nunito' icon={Plus} />
                 </div>
               </div>
 

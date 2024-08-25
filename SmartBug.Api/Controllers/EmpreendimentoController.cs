@@ -9,7 +9,7 @@ using System.Net;
 
 namespace SmartBug.Api.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/v1/[controller]")]
     public class EmpreendimentoController : BaseController
@@ -24,7 +24,7 @@ namespace SmartBug.Api.Controllers
 
         [HttpGet]
         [Route("get-select-all")]
-        public async Task<IActionResult> GetSelectAllEmpreendimentosAsync()
+        public async Task<IActionResult> GetSelectAllEmpreendimentoAsync()
         {
             var empreendimentos = await _Db.Empreendimentos
                 .Select(f => new { f.Id, Nome = f.Nome.ToUpper() })
@@ -35,7 +35,7 @@ namespace SmartBug.Api.Controllers
 
         [HttpGet]
         [Route("get-all")]
-        public async Task<IActionResult> GetAllEmpreendimentosAsync()
+        public async Task<IActionResult> GetAllEmpreendimentoAsync()
         {
             var empreendimentos = await _Db.Empreendimentos
                 .Include(i=>i.Usuarios)
@@ -54,7 +54,7 @@ namespace SmartBug.Api.Controllers
 
         [HttpGet]
         [Route("get-empreendimento")]
-        public async Task<IActionResult> GetUserAsync(long empreendimentoId)
+        public async Task<IActionResult> GetEmpreendimentoAsync(long empreendimentoId)
         {
             try
             {
@@ -133,7 +133,7 @@ namespace SmartBug.Api.Controllers
 
         [HttpPost]
         [Route("update-empreendimento")]
-        public async Task<IActionResult> UpdateUserAsync([FromBody] EmpreendimentoViewModel model)
+        public async Task<IActionResult> UpdateEmpreendimentoAsync([FromBody] EmpreendimentoViewModel model)
         {
             try
             {

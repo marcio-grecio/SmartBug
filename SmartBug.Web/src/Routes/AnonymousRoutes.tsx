@@ -11,8 +11,7 @@ const AnonymousRoutes = ({ children }: AnonymousRoutesProps) => {
   const navigate = useNavigate();
 
   if (!context) {
-    // Lidar com o caso onde o contexto não está definido
-    navigate('/Login'); // ou qualquer rota de fallback apropriada
+    navigate('/Login');
     return null;
   }
 

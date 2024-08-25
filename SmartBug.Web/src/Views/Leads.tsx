@@ -1,14 +1,15 @@
+import { format } from 'date-fns';
+import { errorLog } from '../Utils/Logger';
 import Loading from '../Components/Loading';
 import Input from '../Components/Input/Index';
 import Alert from '../Components/Alert/Index';
 import Button from '../Components/Button/Index';
-import { Settings2, Pencil } from 'lucide-react';
-import { errorLog, infoLog } from '../Utils/Logger';
+import LeadForm from '../Components/Lead/Index';
+import { Settings2, Pencil, Plus } from 'lucide-react';
 import { ThemeContext } from '../Contexts/ThemeContext';
 import DataTable, { createTheme } from 'react-data-table-component';
-import EmpreendimentoForm  from '../Components/Empreendimento/Index';
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { addEmpreendimento, getAllEmpreendimentos, getEmpreendimento, UpdateEmpreendimento } from '../Services/EmpreendimentoService';
+import { addLead, getAllLeads, getLead, UpdateLead } from '../Services/LeadService';
 
 const customLight = {
   table: {
@@ -137,20 +138,18 @@ createTheme('customDark', customDark);
 
 const Leads: React.FC = () => {
   const [loading, setLoading] = useState(true);
-  const [empreendimentos, setEmpreendimentos] = useState<any[]>([]);
+  const [leads, setLeads] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const { colorMode } = useContext(ThemeContext) || {};
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [filteredEmpreendimentos, setFilteredEmpreendimentos] = useState<any[]>([]);
+  const [filteredLeads, setFilteredLeads] = useState<any[]>([]);
   const [alert, setAlert] = useState<null | { type: 'error' | 'success' | 'warning', title: string, message: string }>(null);
   const [formData, setFormData] = useState({
     id: 0,
-    nome: '',
-    localidade:'',
-    construtora:'',
-    unidadesTotal:0,
-    unidadesDisponiveis:0,
-    usuarios: [] as string[],
+    canalId: 0,
+    quantidade: 0,
+    empreendimentoId: 0,
+    dataLead: new Date(),
   });
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -159,26 +158,24 @@ const Leads: React.FC = () => {
 
   const handleButtonClick = async (id: any) => {
     try {
-      const empreendimentoData = await getEmpreendimento(id);
-  
+      const leadData = await getLead(id);
+
       setFormData({
-        id: empreendimentoData.id, // Adiciona o ID ao formData para identificar que é uma edição
-        nome: empreendimentoData.nome || '',
-        localidade:empreendimentoData.localidade || '',
-        construtora:empreendimentoData.construtora || '',
-        unidadesTotal:empreendimentoData.unidadesTotal || 0,
-        unidadesDisponiveis:empreendimentoData.unidadesDisponiveis || 0,
-        usuarios: empreendimentoData.usuarios.map((id: number) => id.toString()), 
+        id: leadData.id,
+        canalId: leadData.canalId,
+        dataLead: leadData.dataLead,
+        quantidade: leadData.quantidade,
+        empreendimentoId: leadData.empreendimentoId,
       });
-  
+
       setIsModalOpen(true);
-  
+
     } catch (error) {
-      errorLog('Erro ao carregar empreendimento:', error);
+      errorLog('Erro ao carregar lead:', error);
       setAlert({
         type: 'error',
         title: 'Erro',
-        message: 'Erro ao carregar os dados do empreendimento. Por favor, tente novamente.',
+        message: 'Erro ao carregar os dados do lead. Por favor, tente novamente.',
       });
     }
   };
@@ -192,34 +189,36 @@ const Leads: React.FC = () => {
       cell: (row: any) => <div style={{ textAlign: 'left', width: '100%' }}>{row.id}</div>,
     },
     {
-      name: <div style={{ textAlign: 'left', width: '100%' }}>NOME DO EMPREENDIMENTO</div>,
-      selector: (row: any) => row.nome,
+      name: <div style={{ textAlign: 'left', width: '100%' }}>DATA</div>,
+      selector: (row: any) => row.dataLead,
       sortable: true,
-      cell: (row: any) => <div style={{ textAlign: 'left', width: '100%' }}>{row.nome}</div>,
+      width: '100px',
+      cell: (row: any) => <div style={{ textAlign: 'left', width: '100%' }}>{row.dataLead}</div>,
     },
     {
-      name: <div style={{ textAlign: 'left', width: '100%' }}>NOME DA CONSTRUTORA</div>,
+      name: <div style={{ textAlign: 'left', width: '100%' }}>CANAL DE LEAD</div>,
+      selector: (row: any) => row.canal,
+      sortable: true,
+      cell: (row: any) => <div style={{ textAlign: 'left', width: '100%' }}>{row.canal}</div>,
+    },
+    {
+      name: <div style={{ textAlign: 'center', width: '100%' }}>QUANTIDADE</div>,
+      selector: (row: any) => row.quantidade,
+      sortable: true,
+      width: '150px',
+      cell: (row: any) => <div style={{ textAlign: 'center', width: '100%' }}>{row.quantidade}</div>,
+    },
+    {
+      name: <div style={{ textAlign: 'left', width: '100%' }}>EMPREENDIMENTO</div>,
+      selector: (row: any) => row.empreendimento,
+      sortable: true,
+      cell: (row: any) => <div style={{ textAlign: 'left', width: '100%' }}>{row.empreendimento}</div>,
+    },
+    {
+      name: <div style={{ textAlign: 'left', width: '100%' }}>CONSTRUTORA</div>,
       selector: (row: any) => row.construtora,
       sortable: true,
       cell: (row: any) => <div style={{ textAlign: 'left', width: '100%' }}>{row.construtora}</div>,
-    },
-    {
-      name: <div style={{ textAlign: 'left', width: '100%' }}>LOCALIDADE</div>,
-      selector: (row: any) => row.localidade,
-      sortable: true,
-      cell: (row: any) => <div style={{ textAlign: 'left', width: '100%' }}>{row.localidade}</div>,
-    },
-    {
-      name: <div style={{ textAlign: 'center', width: '100%' }}>TOTAL DE UNIDADES</div>,
-      selector: (row: any) => row.unidadesDisponiveis,
-      sortable: true,
-      cell: (row: any) => <div style={{ textAlign: 'center', width: '100%' }}>{row.unidadesDisponiveis}</div>,
-    },
-    {
-      name: <div style={{ textAlign: 'center', width: '100%' }}>UNIDADES DISPONÍVEIS</div>,
-      selector: (row: any) => row.unidadesTotal,
-      sortable: true,
-      cell: (row: any) => <div style={{ textAlign: 'center', width: '100%' }}>{row.unidadesTotal}</div>,
     },
     {
       name: (
@@ -241,17 +240,17 @@ const Leads: React.FC = () => {
     },
   ], []);
 
-  const getUsersData = useCallback(async () => {
+  const getLeadsData = useCallback(async () => {
     try {
-      const response = await getAllEmpreendimentos();
+      const response = await getAllLeads();
       if (response.status === 200) {
-        infoLog(response);
         const formatterData = response.data.map((s: any) => {
           s.key = Math.random() + Date.now();
+          s.dataLead = format(s.dataLead, 'dd/MM/yyyy')
           return s;
         });
-        setEmpreendimentos(formatterData);
-        setFilteredEmpreendimentos(formatterData);
+        setLeads(formatterData);
+        setFilteredLeads(formatterData);
       }
 
       setLoading(false);
@@ -266,12 +265,10 @@ const Leads: React.FC = () => {
     if (!isModalOpen) {
       setFormData({
         id: 0,
-        nome: '',
-        localidade:'',
-        construtora:'',
-        unidadesTotal:0,
-        unidadesDisponiveis:0,
-        usuarios: [],
+        canalId: 0,
+        quantidade: 0,
+        empreendimentoId: 0,
+        dataLead: new Date(),
       });
     }
   };
@@ -287,7 +284,7 @@ const Leads: React.FC = () => {
 
   const handleSubmit = async () => {
     try {
-      const serviceFunction = formData.id ? UpdateEmpreendimento : addEmpreendimento;
+      const serviceFunction = formData.id ? UpdateLead : addLead;
       const { status, data } = await serviceFunction(formData);
 
       if (status === 200) {
@@ -297,7 +294,7 @@ const Leads: React.FC = () => {
           message: data.message,
         });
         toggleModal();
-        getUsersData();
+        getLeadsData();
       }
       else if (status === 400) {
         setAlert({
@@ -324,36 +321,37 @@ const Leads: React.FC = () => {
       setAlert({
         type: 'error',
         title: 'Erro',
-        message: 'Erro ao salvar empreendimento. Por favor, tente novamente.',
+        message: 'Erro ao salvar lead. Por favor, tente novamente.',
       });
     }
   };
 
   useEffect(() => {
-    const results = empreendimentos.filter((empreendimento) =>
-      empreendimento.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      empreendimento.localidade.toLowerCase().includes(searchTerm.toLowerCase()) || 
-      empreendimento.construtora.toLowerCase().includes(searchTerm.toLowerCase()) 
+    const results = leads.filter((leadSearch) =>
+      leadSearch.canal.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      leadSearch.quantidade.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      leadSearch.construtora.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      leadSearch.empreendimento.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setFilteredEmpreendimentos(results);
-  }, [searchTerm, empreendimentos]);
+    setFilteredLeads(results);
+  }, [searchTerm, leads]);
 
   useEffect(() => {
-    getUsersData();
-  }, [getUsersData]);
+    getLeadsData();
+  }, [getLeadsData]);
 
   return (
     <section
       className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
       style={{ height: 'calc(89vh - 3px)' }}>
-      {loading && <Loading fullscreen text="Carregando usuários..." />}
+      {loading && <Loading fullscreen text="Carregando Leads..." />}
       {!loading && (
         <>
           <div className="border-b border-stroke dark:bg-boxdark bg-bodyWhite dark:border-strokedark">
             <div className="row" style={{ marginTop: 0 }}>
               <div className="col-md-9 mb-5 mt-3">
                 <div className="ml-4 mb-3">
-                  <Button color='#28C76F' text='Novo Empreendimento' onClick={toggleModal} disabled={false} height={32} width={170} fontWeight={'600'} fontFamily='nunito' />
+                  <Button color='#28C76F' text='Novo Lead' onClick={toggleModal} disabled={false} height={32} width={120} fontWeight={'600'} fontFamily='nunito' icon={Plus} />
                 </div>
               </div>
 
@@ -368,7 +366,7 @@ const Leads: React.FC = () => {
             <div className="col-md-12 mb-4">
               <DataTable
                 columns={columns}
-                data={filteredEmpreendimentos}
+                data={filteredLeads}
                 fixedHeader
                 fixedHeaderScrollHeight="69vh"
                 striped
@@ -403,7 +401,7 @@ const Leads: React.FC = () => {
 
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-          <EmpreendimentoForm
+          <LeadForm
             formData={formData}
             handleInputChange={handleInputChange}
             handleSubmit={handleSubmit}

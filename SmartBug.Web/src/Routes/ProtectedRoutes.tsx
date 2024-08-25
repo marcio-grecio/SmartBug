@@ -1,7 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../Contexts/UserContext';
-import { infoLog } from '../Utils/Logger';
 
 interface ProtectedRoutesProps {
   children: React.ReactNode;
@@ -14,17 +13,17 @@ const ProtectedRoutes = ({ children, perfil }: ProtectedRoutesProps) => {
 
   if (!context) {
     // Handle the case where the context is not defined
-    navigate('/Login');
+    navigate('/login');
     return null;
   }
-
+  
   const { activeUser, checkHasToken } = context;
   const isAuthenticated = checkHasToken();
-  infoLog('ProtectedRoutes', 'isAuthenticated', isAuthenticated);
-
+  
+  
   useEffect(() => {
     if (!activeUser || !isAuthenticated || parseInt(activeUser.perfil) > perfil) {
-      navigate('/Login');
+      navigate('/login');
     }
   }, [activeUser, isAuthenticated, navigate, perfil]);
 

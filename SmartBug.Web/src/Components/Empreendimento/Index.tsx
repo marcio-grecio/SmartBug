@@ -1,5 +1,6 @@
 import Input from "../Input/Index";
 import Button from "../Button/Index";
+import { Check, X } from 'lucide-react';
 import React, { useState, useEffect } from "react";
 import InputDropDown from "../Input/InputDropDown";
 import { getAllSelectUsuarios } from "../../Services/UserService";
@@ -12,7 +13,7 @@ interface EmpreendimentoFormProps {
     construtora: string;
     unidadesTotal: number;
     unidadesDisponiveis: number;
-    usuarios: string[]; 
+    usuarios: string[];
   };
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   handleSubmit: () => void;
@@ -66,7 +67,7 @@ const EmpreendimentoForm: React.FC<EmpreendimentoFormProps> = ({
             required
           />
         </div>
-        
+
         <div className="col-md-12 mb-4">
           <label className="block text-sm font-medium text-black dark:text-white">Construtora</label>
           <Input
@@ -78,7 +79,7 @@ const EmpreendimentoForm: React.FC<EmpreendimentoFormProps> = ({
           />
         </div>
 
-        
+
         <div className="col-md-6 mb-4">
           <label className="block text-sm font-medium text-black dark:text-white">Localidade</label>
           <Input
@@ -90,7 +91,7 @@ const EmpreendimentoForm: React.FC<EmpreendimentoFormProps> = ({
           />
         </div>
 
-        
+
         <div className="col-md-3 mb-4">
           <label className="block text-sm font-medium text-black dark:text-white">Unidades Totais</label>
           <Input
@@ -102,7 +103,7 @@ const EmpreendimentoForm: React.FC<EmpreendimentoFormProps> = ({
           />
         </div>
 
-        
+
         <div className="col-md-3 mb-4">
           <label className="block text-sm font-medium text-black dark:text-white">Unidades Disponíveis</label>
           <Input
@@ -143,6 +144,7 @@ const EmpreendimentoForm: React.FC<EmpreendimentoFormProps> = ({
             width={100}
             fontWeight={'600'}
             fontFamily='nunito'
+            icon={X}
           />
           <Button
             color='#28C76F'
@@ -153,6 +155,7 @@ const EmpreendimentoForm: React.FC<EmpreendimentoFormProps> = ({
             fontWeight={'600'}
             fontFamily='nunito'
             type="submit"
+            icon={Check}
           />
         </div>
       </form>

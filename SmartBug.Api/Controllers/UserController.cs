@@ -9,7 +9,7 @@ using System.Net;
 
 namespace SmartBug.Api.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/v1/[controller]")]
     public class UserController : BaseController
