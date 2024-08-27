@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\MeetWeb\\SmartBug\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -66,7 +70,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,7 +78,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "SmartBug.Api\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T22:05:28.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "VendaController.cs",
               "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\VendaController.cs",
               "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\VendaController.cs",
@@ -82,25 +99,24 @@
               "RelativeToolTip": "SmartBug.Api\\Controllers\\VendaController.cs",
               "ViewState": "AgIAAG4AAAAAAAAAAAAIwI4AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T19:49:12.637Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T19:49:12.637Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\UserController.cs",
               "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\UserController.cs",
               "RelativeToolTip": "SmartBug.Api\\Controllers\\UserController.cs",
-              "ViewState": "AgIAALQAAAAAAAAAAAAIwKAAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAwwKAAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-25T18:53:29.436Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "MetaController.cs",
               "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\MetaController.cs",
               "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\MetaController.cs",
@@ -113,7 +129,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Descartado.cs",
               "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Descartado.cs",
               "RelativeDocumentMoniker": "SmartBug.Models\\Descartado.cs",
@@ -121,12 +137,11 @@
               "RelativeToolTip": "SmartBug.Models\\Descartado.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T18:53:13.057Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T18:53:13.057Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "DescartadosController.cs",
               "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\DescartadosController.cs",
               "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\DescartadosController.cs",
@@ -134,12 +149,11 @@
               "RelativeToolTip": "SmartBug.Api\\Controllers\\DescartadosController.cs",
               "ViewState": "AgIAAGcAAAAAAAAAAAAQwH0AAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T18:53:09.759Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T18:53:09.759Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "LeadViewModel.cs",
               "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\ViewModel\\LeadViewModel.cs",
               "RelativeDocumentMoniker": "SmartBug.Models\\ViewModel\\LeadViewModel.cs",
@@ -151,7 +165,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Lead.cs",
               "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Lead.cs",
               "RelativeDocumentMoniker": "SmartBug.Models\\Lead.cs",
@@ -163,7 +177,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "CanalViewModel.cs",
               "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\ViewModel\\CanalViewModel.cs",
               "RelativeDocumentMoniker": "SmartBug.Models\\ViewModel\\CanalViewModel.cs",
@@ -175,7 +189,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Canal.cs",
               "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Canal.cs",
               "RelativeDocumentMoniker": "SmartBug.Models\\Canal.cs",
@@ -187,7 +201,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "EmpreendimentoController.cs",
               "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\EmpreendimentoController.cs",
               "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\EmpreendimentoController.cs",
@@ -195,12 +209,11 @@
               "RelativeToolTip": "SmartBug.Api\\Controllers\\EmpreendimentoController.cs",
               "ViewState": "AgIAAHIAAAAAAAAAAAAwwIgAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T17:54:04.087Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T17:54:04.087Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "MetaViewModel.cs",
               "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\ViewModel\\MetaViewModel.cs",
               "RelativeDocumentMoniker": "SmartBug.Models\\ViewModel\\MetaViewModel.cs",
@@ -208,12 +221,11 @@
               "RelativeToolTip": "SmartBug.Models\\ViewModel\\MetaViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T19:39:44.801Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T19:39:44.801Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Meta.cs",
               "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Meta.cs",
               "RelativeDocumentMoniker": "SmartBug.Models\\Meta.cs",
@@ -221,12 +233,11 @@
               "RelativeToolTip": "SmartBug.Models\\Meta.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAQwCUAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T19:40:00.544Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T19:40:00.544Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "LeadController.cs",
               "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\LeadController.cs",
               "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\LeadController.cs",
@@ -234,12 +245,11 @@
               "RelativeToolTip": "SmartBug.Api\\Controllers\\LeadController.cs",
               "ViewState": "AgIAADIAAAAAAAAAAAAwwEgAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T17:54:04.094Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-25T17:54:04.094Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "CanalController.cs",
               "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\CanalController.cs",
               "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\CanalController.cs",

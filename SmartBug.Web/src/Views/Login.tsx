@@ -1,10 +1,11 @@
 import '../app.min.css';
 import { getYear } from 'date-fns';
 import { useContext, useState } from "react";
-import { UserContext } from "../Contexts/UserContext";
-import dark from '../Assets/images/logo/logo-white.webp';
+import { Eye, EyeOff } from 'lucide-react';
 import Alert from '../Components/Alert/Index';
 import Input from '../Components/Input/Index';
+import { UserContext } from "../Contexts/UserContext";
+import dark from '../Assets/images/logo/logo-dark.webp';
 
 const Login = () => {
   const currentYear = getYear(new Date());
@@ -66,69 +67,59 @@ const Login = () => {
 
       <div className="auth-page-content mt-35">
         <div className="container ">
-          <div className="row">
-            <div className="col-lg-12 ">
-              <div className="text-center mt-sm-5 mb-4 text-white-50">
-                <div>
-                  <a href="/Login" className="d-inline-block auth-logo">
-                    <img
-                      alt="Logo"
-                      width={180}
-                      height={37}
-                      src={dark}
-                      className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
-                    />
-                  </a>
-                </div>
-                <p className="mt-3 fs-15 fw-medium">Inteligência de Marketing Imobiliário.</p>
-              </div>
-            </div>
-          </div>
 
           <div className="row justify-content-center">
             <div className="col-md-8 col-lg-4 col-xl-5">
               <div className="card mt-4">
-                <div className="card-body p-4 rounded-md" style={{ boxShadow: '0 5px 10px rgba(30,32,37,.12)', backgroundColor: 'white' }}>
+                <div className="card-body p-4 rounded-md mt-17" style={{ boxShadow: '0 5px 10px rgba(30,32,37,.12)', backgroundColor: 'white' }}>
                   <div className="text-center mt-2">
-                    <h5 className="text-primary">Bem Vindo!</h5>
-                    <p className="text-muted">Faça login para continuar.</p>
-                  </div>
-                  <div className="p-2 mt-4">
-                    <form>
-                      {/* <div className="mb-3">
-                        <label className="form-label">Login</label>
-                        <input className="form-control" type="email" name="Login" value={email} onChange={(event) => changeEmailValue(event)} />
-                      </div>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
 
-                      <div className="mb-3">
-                        <label className="form-label">Senha</label>
-                        <div className="position-relative auth-pass-inputgroup mb-3">
-                          <input className="form-control" type={passwordShown ? 'text' : 'password'} name="Senha" value={senha} onChange={(event) => AlterarSenha(event)} />
-                        </div>
-                      </div> */}
+                    <img
+                      alt="Logo"
+                      width={200}
+                      height={40}
+                      src={dark}
+                      />
+                      </div>
+                    <p className="mt-3 fs-15 fw-medium text-slate-600" style={{fontFamily: 'nunito', fontWeight: '600'}}>Inteligência de Marketing Imobiliário.</p>
+
+                  </div>
+                  <div className="p-2 mt-10">
+                    <form>
                       <div className="col-md-12 mb-4">
-                        <label className="block text-sm font-medium text-black dark:text-white">Email / Login <span className="text-red-500">*</span></label>
+                        <label className="block text-sm font-medium text-slate-600 dark:text-white mb-1" style={{ fontFamily: 'nunito', fontWeight: '700' }}>Login</label>
                         <Input
+                          required
                           type="email"
                           name="email"
-                          // value={formData.email}
-                          // onChange={handleInputChange}
-                          required
+                          value={email} 
+                          onChange={(event) => changeEmailValue(event)} 
                         />
                       </div>
 
-                      <div className="col-md-4 mb-4">
-                        <label className="block text-sm font-medium text-black dark:text-white">"Senha <span className="text-red-500">*</span></label>
-                        <Input
-                          type="password"
-                          name="senha"
-                        // value={formData.senha}
-                        // onChange={handleInputChange}
-                        />
+                      <div className="col-md-12 mb-4">
+                        <label className="block text-sm font-medium text-slate-600 dark:text-white mb-1" style={{ fontFamily: 'nunito', fontWeight: '700' }}>Senha</label>
+                        <div className="relative">
+                          <Input
+                            required
+                            name="senha"
+                            value={senha} 
+                            type={passwordShown ? 'text' : 'password'} 
+                            onChange={(event) => AlterarSenha(event)} 
+                          />
+                          <button
+                            type="button"
+                            onClick={togglePassword}
+                            className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500"
+                          >
+                            {passwordShown ? <EyeOff className="w-5 h-5" color='#607d8b'/> : <Eye className="w-5 h-5" />}
+                          </button>
+                        </div>
                       </div>
 
-                      <div className="mt-4">
-                        <button className="bg-black text-white w-full" onClick={(event) => handleSubmit(event)}>
+                      <div className="col-md-12 mt-4">
+                        <button className="bg-slate-600 text-white w-full rounded-sm h-10" onClick={(event) => handleSubmit(event)}>
                           Entrar
                         </button>
                       </div>
@@ -143,11 +134,11 @@ const Login = () => {
       </div>
 
       <footer className="footer">
-        <div className="container mt-4">
+        <div className="container mt-7">
           <div className="row">
             <div className="col-lg-12">
               <div className="text-center">
-                <p className="mb-0 text-muted text-form-strokedark">
+                <p className="mb-0 text-muted text-slate-300" style={{ fontFamily: 'nunito', fontWeight: '600' }}>
                   SmartBug MKT - © Copyright {currentYear}. All Rights Reserved.
                 </p>
               </div>
@@ -174,4 +165,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;

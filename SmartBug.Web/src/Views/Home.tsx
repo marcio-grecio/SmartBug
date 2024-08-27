@@ -7,14 +7,15 @@ const Home = () => {
   const { colorMode } = useContext(ThemeContext) || {};
 
   return (
-        <section className="mi-content rounded-md bg-gray hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-white text-center">
-          <div className="mi-card" style={{ height: '86vh',display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <div className="mi-card-header border-none text-center">
-            <img alt="Logo" width={170} height={37} src={colorMode !== 'dark' ? dark: white} className="relative"/>
-            <h1 className="text-2xl font-bold text-primary">Inteligência de Marketing Imobiliário.</h1>
-            </div>
-          </div>
-        </section>   
+    <section className="mi-content rounded-md bg-gray hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-white text-center 
+    flex justify-center items-center" style={{ height: 'calc(89vh - 3px)' }}>
+      <div className="text-center">
+        <div className="mi-card-header border-none">
+          <img alt="Logo" width={300} height={37} src={colorMode !== 'dark' ? dark : white} className="mx-auto" />
+        </div>
+      </div>
+    </section>
+
 
   )
 }
