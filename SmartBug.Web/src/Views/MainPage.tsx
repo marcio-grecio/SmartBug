@@ -33,7 +33,7 @@ const MainPage = ({ children }: { children: ReactNode }) => {
 
           {/* <!-- ===== Main Content Start ===== --> */}
           <main>
-            <div className="mx-auto p-4 md:p-3">
+            <div className="mx-auto p-4 md:p-3  overflow-x-hidden">
               {children}
             </div>
           </main>

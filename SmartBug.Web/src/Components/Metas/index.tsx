@@ -71,7 +71,7 @@ const MetaForm: React.FC<VendaFormFormProps> = ({
 
                 <div className="col-md-4 mb-4">
                     <InputDropDown
-                        label="TIPO DA META"
+                        label="Tipo da Meta"
                         name="tipo"
                         value={formData.tipo.toString()}
                         options={[

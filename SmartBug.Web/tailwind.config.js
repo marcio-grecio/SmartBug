@@ -8,13 +8,13 @@ module.exports = {
   theme: {
     fontFamily: {
       satoshi: ['Satoshi', 'sans-serif'],
-      nunito: ['Nunito', 'sans-serif'], 
-      exo2: ['Exo 2', 'sans-serif'], 
+      nunito: ['Nunito', 'sans-serif'],
+      exo2: ['Exo 2', 'sans-serif'],
     },
     screens: {
       '2xsm': '375px',
       xsm: '425px',
-      xs: '480px', // Adicionando o breakpoint xs
+      xs: '480px',
       '3xl': '2000px',
       ...defaultTheme.screens,
     },
@@ -27,6 +27,7 @@ module.exports = {
         'black-2': '#010101',
         body: '#64748B',
         bodyWhite: '#f9fafc',
+        bg: '#F7F9FC',
         bodydark: '#AEB7C0',
         bodydark1: '#DEE4EE',
         bodydark2: '#8A99AF',
@@ -56,16 +57,6 @@ module.exports = {
         success: '#219653',
         danger: '#D34053',
         warning: '#FFA70B',
-      },
-      fontSize: {
-        'title-xxl': ['44px', '55px'],
-        'title-xl': ['36px', '45px'],
-        'title-xl2': ['33px', '45px'],
-        'title-lg': ['28px', '35px'],
-        'title-md': ['24px', '30px'],
-        'title-md2': ['26px', '30px'],
-        'title-sm': ['20px', '26px'],
-        'title-xsm': ['18px', '24px'],
       },
       spacing: {
         4.5: '1.125rem',
@@ -203,9 +194,9 @@ module.exports = {
         99999: '99999',
         9999: '9999',
         999: '999',
-         99: '99',
-         9: '9',
-         1: '1',
+        99: '99',
+        9: '9',
+        1: '1',
       },
       opacity: {
         65: '.65',
@@ -260,12 +251,36 @@ module.exports = {
       const generateColUtilities = (size) => {
         let cols = {};
         for (let i = 1; i <= 12; i++) {
+          const width = `${(i / 12) * 100}%`;
           cols[`.${e(`col-${size}-${i}`)}`] = {
             [`@screen ${size}`]: {
-              flex: `0 0 ${(i / 12) * 100}%`,
-              maxWidth: `${(i / 12) * 100}%`,
-              boxSizing: 'border-box', // Garantir que a largura seja calculada corretamente
-              padding: '0 15px', // Simulando o gutter do Bootstrap
+              flex: `0 0 calc(${width} - 5px)`, // Ajuste o tamanho para subtrair o espaço entre os elementos
+              maxWidth: `calc(${width} - 5px)`,
+              position: 'relative',
+              minHeight: '1px',
+              // margin: '0 2.5px', // Margem para criar espaço entre os elementos
+              boxSizing: 'border-box',
+            },
+          };
+        }
+
+        for (let i = 0; i <= 12; i++) {
+          const offset = `${(i / 12) * 100}%`;
+          cols[`.${e(`col-${size}-offset-${i}`)}`] = {
+            [`@screen ${size}`]: {
+              marginLeft: offset,
+            },
+          };
+
+          cols[`.${e(`col-${size}-push-${i}`)}`] = {
+            [`@screen ${size}`]: {
+              left: offset,
+            },
+          };
+
+          cols[`.${e(`col-${size}-pull-${i}`)}`] = {
+            [`@screen ${size}`]: {
+              right: offset,
             },
           };
         }
@@ -276,7 +291,9 @@ module.exports = {
         '.row': {
           display: 'flex',
           flexWrap: 'wrap',
-          margin: '-15px', // Para compensar o padding nas colunas
+          gap: '5px', // Adiciona espaçamento de 5px entre colunas
+          marginLeft: '-2.5px', 
+          marginRight: '-2.5px',
         },
         '.container': {
           width: '100%',
@@ -292,11 +309,38 @@ module.exports = {
           paddingLeft: '15px',
           paddingRight: '15px',
         },
+        '.overflow-custom': {
+          '&::-webkit-scrollbar': {
+            width: '7px',
+            width: '2em',
+            height: '2em',
+            position: 'relative',
+            top: '136px',
+            float: 'right',
+            width: '6px',
+            height: '10px',
+            border: '3px',
+            backgroundClip: 'padding-box',
+            borderRadius: '3px',
+          },
+          '&::-webkit-scrollbar-track': {
+            background: '#f1f1f1',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            borderBottomLeftRadius: '3px',
+            borderBottomRightRadius: '3px',
+            backgroundColor: '#76bed5',
+          },
+          '&::-webkit-scrollbar-thumb:hover': {
+            background: '#e60000',
+          },
+        },
         ...generateColUtilities('xs'),
         ...generateColUtilities('sm'),
         ...generateColUtilities('md'),
         ...generateColUtilities('lg'),
+        ...generateColUtilities('xl'),
       });
-    })
+    }),
   ],
 };

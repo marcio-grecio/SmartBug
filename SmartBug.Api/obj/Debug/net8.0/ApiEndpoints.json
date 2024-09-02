@@ -142,6 +142,46 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SmartBug.Api.Controllers.DashboardController",
+    "Method": "GetAllCanaisAsync",
+    "RelativePath": "api/v1/Dashboard/get-canais",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.DashboardController",
+    "Method": "GetAllLeadsAsync",
+    "RelativePath": "api/v1/Dashboard/get-leads",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.DashboardController",
+    "Method": "GetAllLeadsMensalAsync",
+    "RelativePath": "api/v1/Dashboard/get-leads-mensal",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.DashboardController",
+    "Method": "GetAllVendasAsync",
+    "RelativePath": "api/v1/Dashboard/get-vendas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SmartBug.Api.Controllers.DescartadosController",
     "Method": "CreateLeadAsync",
     "RelativePath": "api/v1/Descartados/create-lead",

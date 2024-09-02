@@ -4,10 +4,12 @@ import { Check, X } from 'lucide-react';
 import React, { useState, useEffect } from "react";
 import InputDropDown from "../Input/InputDropDown";
 import { getAllSelectUsuarios } from "../../Services/UserService";
+import ColorPicker from "../ColorPicker/Index";
 
 interface EmpreendimentoFormProps {
   formData: {
     id: number;
+    cor: string;
     nome: string;
     localidade: string;
     construtora: string;
@@ -26,6 +28,7 @@ const EmpreendimentoForm: React.FC<EmpreendimentoFormProps> = ({
   handleSubmit,
   toggleModal
 }) => {
+  const [color, setColor] = useState(formData.cor || '#42445A');
   const [usuarios, setUsuarios] = useState<{ label: string; value: string }[]>([]);
 
   useEffect(() => {
@@ -44,6 +47,14 @@ const EmpreendimentoForm: React.FC<EmpreendimentoFormProps> = ({
 
     fetchUsuarios();
   }, []);
+
+  // Atualiza o formData sempre que a cor é alterada
+  const handleColorChange = (newColor: string) => {
+    setColor(newColor);
+    handleInputChange({
+      target: { name: "cor", value: newColor } 
+    } as React.ChangeEvent<HTMLInputElement>);
+  };
 
   return (
     <div className="bg-white dark:bg-boxdark p-6 rounded-md shadow-lg w-203">
@@ -68,7 +79,7 @@ const EmpreendimentoForm: React.FC<EmpreendimentoFormProps> = ({
           />
         </div>
 
-        <div className="col-md-12 mb-4">
+        <div className="col-md-9 mb-4">
           <label className="block text-sm font-medium text-black dark:text-white">Construtora</label>
           <Input
             type="text"
@@ -79,6 +90,10 @@ const EmpreendimentoForm: React.FC<EmpreendimentoFormProps> = ({
           />
         </div>
 
+        <div className="col-md-3 mb-4">
+          <label className="block text-sm font-medium text-black dark:text-white">Selecione uma cor</label>
+          <ColorPicker value={color} onChange={handleColorChange} />
+        </div>
 
         <div className="col-md-6 mb-4">
           <label className="block text-sm font-medium text-black dark:text-white">Localidade</label>
@@ -91,7 +106,6 @@ const EmpreendimentoForm: React.FC<EmpreendimentoFormProps> = ({
           />
         </div>
 
-
         <div className="col-md-3 mb-4">
           <label className="block text-sm font-medium text-black dark:text-white">Unidades Totais</label>
           <Input
@@ -103,7 +117,6 @@ const EmpreendimentoForm: React.FC<EmpreendimentoFormProps> = ({
           />
         </div>
 
-
         <div className="col-md-3 mb-4">
           <label className="block text-sm font-medium text-black dark:text-white">Unidades Disponíveis</label>
           <Input
@@ -114,8 +127,6 @@ const EmpreendimentoForm: React.FC<EmpreendimentoFormProps> = ({
             required
           />
         </div>
-
-
 
         <div className="col-md-12 mb-4">
           <InputDropDown

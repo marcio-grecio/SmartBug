@@ -74,6 +74,16 @@ namespace SmartBug.Api.Controllers
         {
             try
             {
+                var existLead = _Db.Descartados.FirstOrDefault(x=>x.DataLead == model.DataLead && x.EmpreendimentoId == model.EmpreendimentoId && x.CanalId == model.CanalId);
+                if (existLead is not null)
+                {
+                    return Conflict(new
+                    {
+                        StatusCode = HttpStatusCode.Conflict,
+                        Message = "Lead já cadastrado.",
+                    });
+                }
+
                 var (loggedUserId, loggedUserName) = GetLoggedUserInfo();
 
                 var lead = new Descartado

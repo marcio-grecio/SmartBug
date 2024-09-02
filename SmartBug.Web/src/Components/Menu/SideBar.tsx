@@ -4,7 +4,20 @@ import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import SidebarLinkGroup from './SidebarLinkGroup';
 import React from 'react';
-import { Users, Building, Filter, UsersRound, Target, CircleDollarSign, FilterX, Handshake, ChevronDown, Printer, TvMinimalPlay } from 'lucide-react';
+import { 
+  Users, 
+  Filter, 
+  Target, 
+  FilterX, 
+  Printer, 
+  Building, 
+  PieChart, 
+  Handshake, 
+  UsersRound, 
+  ChevronDown, 
+  TvMinimalPlay, 
+  CircleDollarSign, 
+} from 'lucide-react';
 
 
 interface SidebarProps {
@@ -183,6 +196,16 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   Clientes P4
                 </NavLink>
               </li>
+              
+              <li>
+                <NavLink
+                  to="/Dashboard"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('Dashboard') && 'bg-graydark dark:bg-meta-4'}`}>
+                  <PieChart className="w-5 h-5" color='#3b50df'/>
+                  Dashboard
+                </NavLink>
+              </li>
 
               <li>
                 <NavLink
@@ -193,16 +216,6 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   Canais de Lead
                 </NavLink>
               </li>
-
-              {/* <li>
-                <NavLink
-                  to="/Home"
-                  onClick={() => setSidebarOpen(!sidebarOpen)}
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('Home') && 'bg-graydark dark:bg-meta-4'}`}>
-                  <Calendar className="w-5 h-5" />
-                  Dashboard
-                </NavLink>
-              </li> */}
 
               <li>
                 <NavLink

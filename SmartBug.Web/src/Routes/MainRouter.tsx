@@ -14,6 +14,7 @@ import AnonymousRoutes from './AnonymousRoutes';
 import PageNotFound from '../Views/PageNotFound';
 import Empreendimentos from '../Views/Empreendimentos';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Dashboard from '../Views/Dashboard';
 
 const MainRouter = () => {
     return (
@@ -29,6 +30,7 @@ const MainRouter = () => {
                 <Route path="/Usuarios" element={<ProtectedRoutes perfil={1}><MainPage><Usuarios /></MainPage></ProtectedRoutes>} />
                 <Route path="/Clientes" element={<ProtectedRoutes perfil={2}><MainPage><Clientes /></MainPage></ProtectedRoutes>} />
                 <Route path="/Propostas" element={<ProtectedRoutes perfil={2}><MainPage><Proposta /></MainPage></ProtectedRoutes>} />
+                <Route path="/Dashboard" element={<ProtectedRoutes perfil={2}><MainPage><Dashboard /></MainPage></ProtectedRoutes>} />
                 <Route path="/Descartados" element={<ProtectedRoutes perfil={2}><MainPage><Descartados /></MainPage></ProtectedRoutes>} />
                 <Route path="/Empreendimentos" element={<ProtectedRoutes perfil={2}><MainPage><Empreendimentos /></MainPage></ProtectedRoutes>} />
                 <Route path="*" element={<PageNotFound />} />

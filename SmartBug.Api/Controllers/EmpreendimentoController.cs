@@ -41,6 +41,7 @@ namespace SmartBug.Api.Controllers
                 .Include(i=>i.Usuarios)
                 .Select(f => new { 
                     f.Id, 
+                    f.Cor,
                     f.UnidadesTotal,
                     f.UnidadesDisponiveis,
                     Nome = f.Nome.ToUpper(),
@@ -64,6 +65,7 @@ namespace SmartBug.Api.Controllers
                     .Select(x => new
                     {
                         x.Id,
+                        x.Cor,
                         x.Nome,
                         x.Localidade,
                         x.Construtora,
@@ -91,6 +93,7 @@ namespace SmartBug.Api.Controllers
 
                 var empreendimento = new Empreendimento
                 {
+                    Cor = model.Cor,
                     Nome = model.Nome.ToUpper(),
                     DataAlteracao = DateTime.Now,
                     UnidadesTotal = model.UnidadesTotal,
@@ -151,11 +154,14 @@ namespace SmartBug.Api.Controllers
                     });
                 }
 
+                empreendimento.Cor = model.Cor;
                 empreendimento.Nome = model.Nome.ToUpper();
                 empreendimento.DataAlteracao = DateTime.Now;
+                empreendimento.UnidadesTotal = model.UnidadesTotal;
                 empreendimento.Localidade = model.Localidade.ToUpper();
                 empreendimento.Construtora = model.Construtora.ToUpper();
                 empreendimento.UsuarioAlteracao = long.Parse(loggedUserId);
+                empreendimento.UnidadesDisponiveis = model.UnidadesDisponiveis;
 
                 empreendimento.Usuarios.Clear();
 

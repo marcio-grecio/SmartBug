@@ -18,6 +18,7 @@ namespace SmartBug.Models.ViewModel
         public string Construtora { get; set; }
         public int UnidadesTotal { get; set; }
         public int UnidadesDisponiveis { get; set; }
+        public string Cor { get; set; }
         public virtual ICollection<long> Usuarios { get; set; } = new List<long>();
     }
 }

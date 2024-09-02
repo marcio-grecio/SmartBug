@@ -73,6 +73,25 @@ namespace SmartBug.Api.Controllers
             try
             {
                 var (loggedUserId, loggedUserName) = GetLoggedUserInfo();
+                var empreendimento = await _Db.Empreendimentos.FirstOrDefaultAsync(x => x.Id == model.EmpreendimentoId);
+
+                if (empreendimento.UnidadesDisponiveis <= 0)
+                {
+                    return NotFound(new
+                    {
+                        StatusCode = HttpStatusCode.NotFound,
+                        Message = "Empreendimento sem unidades disponíveis.",
+                    });
+                }
+
+                if (empreendimento.UnidadesDisponiveis < model.Quantidade)
+                {
+                    return NotFound(new
+                    {
+                        StatusCode = HttpStatusCode.NotFound,
+                        Message = "Empreendimento não possui unidades suficiente.",
+                    });
+                }
 
                 var venda = new Venda
                 {
@@ -86,11 +105,10 @@ namespace SmartBug.Api.Controllers
                 _Db.Venda.Add(venda);
                 await _Db.SaveChangesAsync();
 
-                var empreendimento = await _Db.Empreendimentos.FirstOrDefaultAsync(x => x.Id == model.EmpreendimentoId);
                 if (empreendimento is not null)
                 {
                     empreendimento.UnidadesDisponiveis = empreendimento.UnidadesDisponiveis - model.Quantidade;
-                    _Db.Empreendimentos.Add(empreendimento);
+                    _Db.Entry(empreendimento).State = EntityState.Modified;
                     await _Db.SaveChangesAsync();
                 }
                 return Ok(new
@@ -113,7 +131,25 @@ namespace SmartBug.Api.Controllers
             try
             {
                 var (loggedUserId, loggedUserName) = GetLoggedUserInfo();
+                var empreendimento = await _Db.Empreendimentos.FirstOrDefaultAsync(x => x.Id == model.EmpreendimentoId);
 
+                if (empreendimento.UnidadesDisponiveis <= 0)
+                {
+                    return NotFound(new
+                    {
+                        StatusCode = HttpStatusCode.NotFound,
+                        Message = "Empreendimento sem unidades disponíveis.",
+                    });
+                }
+
+                if (empreendimento.UnidadesDisponiveis < model.Quantidade)
+                {
+                    return NotFound(new
+                    {
+                        StatusCode = HttpStatusCode.NotFound,
+                        Message = "Empreendimento não possui unidades suficiente.",
+                    });
+                }
 
                 var venda = await _Db.Venda
                     .FirstOrDefaultAsync(u => u.Id == model.Id);
@@ -134,11 +170,10 @@ namespace SmartBug.Api.Controllers
                 venda.UsuarioAlteracao = long.Parse(loggedUserId);
                 await _Db.SaveChangesAsync();
 
-                var empreendimento = await _Db.Empreendimentos.FirstOrDefaultAsync(x => x.Id == model.EmpreendimentoId);
                 if (empreendimento is not null)
                 {
                     empreendimento.UnidadesDisponiveis = empreendimento.UnidadesDisponiveis - model.Quantidade;
-                    _Db.Empreendimentos.Add(empreendimento);
+                    _Db.Entry(empreendimento).State = EntityState.Modified;
                     await _Db.SaveChangesAsync();
                 }
 

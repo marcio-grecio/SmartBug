@@ -145,6 +145,7 @@ const Empreendimentos: React.FC = () => {
   const [alert, setAlert] = useState<null | { type: 'error' | 'success' | 'warning', title: string, message: string }>(null);
   const [formData, setFormData] = useState({
     id: 0,
+    cor: '',
     nome: '',
     localidade:'',
     construtora:'',
@@ -162,7 +163,8 @@ const Empreendimentos: React.FC = () => {
       const empreendimentoData = await getEmpreendimento(id);
   
       setFormData({
-        id: empreendimentoData.id, // Adiciona o ID ao formData para identificar que é uma edição
+        id: empreendimentoData.id, 
+        cor: empreendimentoData.cor || '',
         nome: empreendimentoData.nome || '',
         localidade:empreendimentoData.localidade || '',
         construtora:empreendimentoData.construtora || '',
@@ -213,13 +215,13 @@ const Empreendimentos: React.FC = () => {
       name: <div style={{ textAlign: 'center', width: '100%' }}>TOTAL DE UNIDADES</div>,
       selector: (row: any) => row.unidadesDisponiveis,
       sortable: true,
-      cell: (row: any) => <div style={{ textAlign: 'center', width: '100%' }}>{row.unidadesDisponiveis}</div>,
+      cell: (row: any) => <div style={{ textAlign: 'center', width: '100%' }}>{row.unidadesTotal}</div>,
     },
     {
       name: <div style={{ textAlign: 'center', width: '100%' }}>UNIDADES DISPONÍVEIS</div>,
       selector: (row: any) => row.unidadesTotal,
       sortable: true,
-      cell: (row: any) => <div style={{ textAlign: 'center', width: '100%' }}>{row.unidadesTotal}</div>,
+      cell: (row: any) => <div style={{ textAlign: 'center', width: '100%' }}>{row.unidadesDisponiveis}</div>,
     },
     {
       name: (
@@ -265,6 +267,7 @@ const Empreendimentos: React.FC = () => {
     if (!isModalOpen) {
       setFormData({
         id: 0,
+        cor: '',
         nome: '',
         localidade:'',
         construtora:'',
@@ -350,13 +353,13 @@ const Empreendimentos: React.FC = () => {
         <>
           <div className="border-b border-stroke dark:bg-boxdark bg-bodyWhite dark:border-strokedark">
             <div className="row" style={{ marginTop: 0 }}>
-              <div className="col-md-9 mb-5 mt-3">
+              <div className="col-md-9 mb-2 mt-3">
                 <div className="ml-4 mb-3">
                   <Button color='#28C76F' text='Novo Empreendimento' onClick={toggleModal} disabled={false} height={32} width={200} fontWeight={'600'} fontFamily='nunito' icon={Plus} />
                 </div>
               </div>
 
-              <div className="col-md-3 mb-5 mt-3">
+              <div className="col-md-3 mb-2 mt-3">
                 <div className="mr-4">
                   <Input type="text" placeholder="Pesquisar" value={searchTerm} onChange={handleSearchChange} />
                 </div>

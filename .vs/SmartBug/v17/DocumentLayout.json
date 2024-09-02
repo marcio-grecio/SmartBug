@@ -3,64 +3,32 @@
   "WorkspaceRootPath": "C:\\MeetWeb\\SmartBug\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\empreendimentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\empreendimentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|c:\\meetweb\\smartbug\\smartbug.models\\empreendimento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|solutionrelative:smartbug.models\\empreendimento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\vendacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\vendacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\metacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\metacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|c:\\meetweb\\smartbug\\smartbug.models\\venda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|solutionrelative:smartbug.models\\venda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|c:\\meetweb\\smartbug\\smartbug.models\\meta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|solutionrelative:smartbug.models\\meta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|c:\\meetweb\\smartbug\\smartbug.models\\viewmodel\\metaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|solutionrelative:smartbug.models\\viewmodel\\metaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\leadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\leadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\descartadoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\descartadoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|c:\\meetweb\\smartbug\\smartbug.models\\descartado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|solutionrelative:smartbug.models\\descartado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|c:\\meetweb\\smartbug\\smartbug.models\\lead.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|solutionrelative:smartbug.models\\lead.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|c:\\meetweb\\smartbug\\smartbug.models\\viewmodel\\leadviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|solutionrelative:smartbug.models\\viewmodel\\leadviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|c:\\meetweb\\smartbug\\smartbug.models\\canal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|solutionrelative:smartbug.models\\canal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|c:\\meetweb\\smartbug\\smartbug.models\\viewmodel\\canalviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B9B8A0A9-1AB4-4781-994F-1AC2E6393A0A}|SmartBug.Models\\SmartBug.Models.csproj|solutionrelative:smartbug.models\\viewmodel\\canalviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\canalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\canalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|c:\\meetweb\\smartbug\\smartbug.api\\controllers\\metacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13D6245B-5714-4072-BF34-181B90A3FC4E}|SmartBug.Api\\SmartBug.Api.csproj|solutionrelative:smartbug.api\\controllers\\metacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -79,149 +47,41 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "SmartBug.Api\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-26T22:05:28.02Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "VendaController.cs",
-              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\VendaController.cs",
-              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\VendaController.cs",
-              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\VendaController.cs",
-              "RelativeToolTip": "SmartBug.Api\\Controllers\\VendaController.cs",
-              "ViewState": "AgIAAG4AAAAAAAAAAAAIwI4AAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T19:49:12.637Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\UserController.cs",
-              "RelativeToolTip": "SmartBug.Api\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAHMAAAAAAAAAAAAwwKAAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T18:53:29.436Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MetaController.cs",
-              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\MetaController.cs",
-              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\MetaController.cs",
-              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\MetaController.cs",
-              "RelativeToolTip": "SmartBug.Api\\Controllers\\MetaController.cs",
-              "ViewState": "AgIAAFgAAAAAAAAAAAAwwG4AAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T18:53:29.457Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Descartado.cs",
-              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Descartado.cs",
-              "RelativeDocumentMoniker": "SmartBug.Models\\Descartado.cs",
-              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Descartado.cs",
-              "RelativeToolTip": "SmartBug.Models\\Descartado.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T18:53:13.057Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "DescartadosController.cs",
-              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\DescartadosController.cs",
-              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\DescartadosController.cs",
-              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\DescartadosController.cs",
-              "RelativeToolTip": "SmartBug.Api\\Controllers\\DescartadosController.cs",
-              "ViewState": "AgIAAGcAAAAAAAAAAAAQwH0AAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T18:53:09.759Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "LeadViewModel.cs",
-              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\ViewModel\\LeadViewModel.cs",
-              "RelativeDocumentMoniker": "SmartBug.Models\\ViewModel\\LeadViewModel.cs",
-              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\ViewModel\\LeadViewModel.cs",
-              "RelativeToolTip": "SmartBug.Models\\ViewModel\\LeadViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAkAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T18:51:59.576Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Lead.cs",
-              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Lead.cs",
-              "RelativeDocumentMoniker": "SmartBug.Models\\Lead.cs",
-              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Lead.cs",
-              "RelativeToolTip": "SmartBug.Models\\Lead.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB4AAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T18:48:23.123Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "CanalViewModel.cs",
-              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\ViewModel\\CanalViewModel.cs",
-              "RelativeDocumentMoniker": "SmartBug.Models\\ViewModel\\CanalViewModel.cs",
-              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\ViewModel\\CanalViewModel.cs",
-              "RelativeToolTip": "SmartBug.Models\\ViewModel\\CanalViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T18:44:38.798Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Canal.cs",
-              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Canal.cs",
-              "RelativeDocumentMoniker": "SmartBug.Models\\Canal.cs",
-              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Canal.cs",
-              "RelativeToolTip": "SmartBug.Models\\Canal.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T17:55:01.332Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "EmpreendimentoController.cs",
               "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\EmpreendimentoController.cs",
               "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\EmpreendimentoController.cs",
               "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\EmpreendimentoController.cs",
               "RelativeToolTip": "SmartBug.Api\\Controllers\\EmpreendimentoController.cs",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAwwIgAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAcwKMAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T17:54:04.087Z"
+              "WhenOpened": "2024-09-02T00:04:40.281Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MetaViewModel.cs",
-              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\ViewModel\\MetaViewModel.cs",
-              "RelativeDocumentMoniker": "SmartBug.Models\\ViewModel\\MetaViewModel.cs",
-              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\ViewModel\\MetaViewModel.cs",
-              "RelativeToolTip": "SmartBug.Models\\ViewModel\\MetaViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAYAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "VendaController.cs",
+              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\VendaController.cs",
+              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\VendaController.cs",
+              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\VendaController.cs",
+              "RelativeToolTip": "SmartBug.Api\\Controllers\\VendaController.cs",
+              "ViewState": "AgIAAGgAAAAAAAAAAAAIwJcAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T19:39:44.801Z"
+              "WhenOpened": "2024-09-02T00:02:05.972Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Venda.cs",
+              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Venda.cs",
+              "RelativeDocumentMoniker": "SmartBug.Models\\Venda.cs",
+              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Venda.cs",
+              "RelativeToolTip": "SmartBug.Models\\Venda.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-01T23:40:46.659Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -231,33 +91,49 @@
               "RelativeDocumentMoniker": "SmartBug.Models\\Meta.cs",
               "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Meta.cs",
               "RelativeToolTip": "SmartBug.Models\\Meta.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCUAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T19:40:00.544Z"
+              "WhenOpened": "2024-09-01T23:39:12.429Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "LeadController.cs",
-              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\LeadController.cs",
-              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\LeadController.cs",
-              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\LeadController.cs",
-              "RelativeToolTip": "SmartBug.Api\\Controllers\\LeadController.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAwwEgAAAAIAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "MetaController.cs",
+              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\MetaController.cs",
+              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\MetaController.cs",
+              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\MetaController.cs",
+              "RelativeToolTip": "SmartBug.Api\\Controllers\\MetaController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T17:54:04.094Z"
+              "WhenOpened": "2024-08-31T11:52:55.228Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "CanalController.cs",
-              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\CanalController.cs",
-              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\CanalController.cs",
-              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\CanalController.cs",
-              "RelativeToolTip": "SmartBug.Api\\Controllers\\CanalController.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAxwC4AAAAcAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Empreendimento.cs",
+              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Empreendimento.cs",
+              "RelativeDocumentMoniker": "SmartBug.Models\\Empreendimento.cs",
+              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Models\\Empreendimento.cs",
+              "RelativeToolTip": "SmartBug.Models\\Empreendimento.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T17:24:20.211Z"
+              "WhenOpened": "2024-09-01T23:39:02.706Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\DashboardController.cs",
+              "RelativeDocumentMoniker": "SmartBug.Api\\Controllers\\DashboardController.cs",
+              "ToolTip": "C:\\MeetWeb\\SmartBug\\SmartBug.Api\\Controllers\\DashboardController.cs",
+              "RelativeToolTip": "SmartBug.Api\\Controllers\\DashboardController.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAAKgAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-01T23:35:35.999Z",
+              "EditorCaption": ""
             }
           ]
         }

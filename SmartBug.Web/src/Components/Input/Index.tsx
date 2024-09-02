@@ -24,7 +24,7 @@ const Input = ({ label, focus, ...props }: InputProps) => {
       <input
         {...props}
         ref={inputRef}
-        className="w-full rounded-sm border border-stroke bg-gray py-1 px-2 text-black focus:border-[#cfebff] focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+        className="w-full rounded-sm border border-stroke bg-gray py-1.5 px-2 text-black focus:border-[#cfebff] focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
       />
     </div>
   );

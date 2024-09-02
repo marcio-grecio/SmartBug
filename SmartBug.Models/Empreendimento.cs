@@ -35,6 +35,9 @@ namespace SmartBug.Models
         [Column("UNIDADES_DISPONIVEIS")]
         public int UnidadesDisponiveis { get; set; } = 0;
 
+        [Column("COR")]
+        public string Cor { get; set; }
+
         public virtual ICollection<Usuario> Usuarios { get; set; } = new List<Usuario>();
     }
 }

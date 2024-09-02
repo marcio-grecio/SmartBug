@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { errorLog } from '../Utils/Logger';
+import { errorLog, infoLog } from '../Utils/Logger';
 import Loading from '../Components/Loading';
 import Input from '../Components/Input/Index';
 import Alert from '../Components/Alert/Index';
@@ -318,6 +318,7 @@ const Leads: React.FC = () => {
         });
       }
     } catch (error) {
+      infoLog('Erro ao salvar lead:', error);
       setAlert({
         type: 'error',
         title: 'Erro',
@@ -349,13 +350,13 @@ const Leads: React.FC = () => {
         <>
           <div className="border-b border-stroke dark:bg-boxdark bg-bodyWhite dark:border-strokedark">
             <div className="row" style={{ marginTop: 0 }}>
-              <div className="col-md-9 mb-5 mt-3">
+              <div className="col-md-9 mb-2 mt-3">
                 <div className="ml-4 mb-3">
                   <Button color='#28C76F' text='Novo Lead' onClick={toggleModal} disabled={false} height={32} width={120} fontWeight={'600'} fontFamily='nunito' icon={Plus} />
                 </div>
               </div>
 
-              <div className="col-md-3 mb-5 mt-3">
+              <div className="col-md-3 mb-2 mt-3">
                 <div className="mr-4">
                   <Input type="text" placeholder="Pesquisar" value={searchTerm} onChange={handleSearchChange} />
                 </div>
