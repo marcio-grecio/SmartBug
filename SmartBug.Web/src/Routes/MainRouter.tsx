@@ -8,13 +8,14 @@ import Clientes from '../Views/Clientes';
 import Usuarios from '../Views/Usuarios';
 import MainPage from '../Views/MainPage';
 import Proposta from '../Views/Proposta';
+import Dashboard from '../Views/Dashboard';
 import Descartados from '../Views/Descartados';
 import ProtectedRoutes from './ProtectedRoutes';
 import AnonymousRoutes from './AnonymousRoutes';
 import PageNotFound from '../Views/PageNotFound';
 import Empreendimentos from '../Views/Empreendimentos';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Dashboard from '../Views/Dashboard';
+import EmpreendimentoLeads from '../Components/Report/EmpreendimentoLeads';
 
 const MainRouter = () => {
     return (
@@ -33,6 +34,7 @@ const MainRouter = () => {
                 <Route path="/Dashboard" element={<ProtectedRoutes perfil={2}><MainPage><Dashboard /></MainPage></ProtectedRoutes>} />
                 <Route path="/Descartados" element={<ProtectedRoutes perfil={2}><MainPage><Descartados /></MainPage></ProtectedRoutes>} />
                 <Route path="/Empreendimentos" element={<ProtectedRoutes perfil={2}><MainPage><Empreendimentos /></MainPage></ProtectedRoutes>} />
+                <Route path="/report/leads" element={<ProtectedRoutes perfil={2}><MainPage><EmpreendimentoLeads /></MainPage></ProtectedRoutes>} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
         </Router>

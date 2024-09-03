@@ -143,11 +143,15 @@ createTheme('customDark', customDark);
 const formatDataForChart = (apiData: any) => {
   const { data, xAxisData } = apiData;
 
+  // Obtém o mês atual (indexado em 0, então adiciona 1)
+  const currentMonth = new Date().getMonth() + 1;
+  const currentMonthString = currentMonth.toString().padStart(2, '0'); // Formata como 'MM'
+
   const formattedData = data.map((item: any) => {
     const values = Array(xAxisData.length).fill(0);
 
     item.values.forEach((v: any) => {
-      const dayString = v.day.toString().padStart(2, '0') + '-08'; // Formata o dia como "dd-MM"
+      const dayString = v.day.toString().padStart(2, '0') + '-' + currentMonthString; // Usa o mês correto
       const dayIndex = xAxisData.indexOf(dayString);
       if (dayIndex !== -1) {
         values[dayIndex] = v.quantity;
@@ -166,6 +170,7 @@ const formatDataForChart = (apiData: any) => {
   };
 };
 
+
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [leads, setLeads] = useState<any[]>([]);
@@ -175,24 +180,9 @@ const Dashboard = () => {
   const [leadsMensal, setLeadsMensal] = useState<any[]>([]);
   const [vendasMensal, setVendasMensal] = useState<any[]>([]);
 
-  // const deviceData = [
-  //   { name: 'Desktop', total: 100, executed: 30,color: '#0396FF' },
-  //   { name: 'Mobile', total: 100, executed: 37, color: '#28C76F' },
-  //   { name: 'Tablet', total: 100, executed: 39, color: '#97ABFF' },
-  //   { name: 'Tablet', total: 100, executed: 40, color: '#cd6f6e' },
-  //   { name: 'Tablet', total: 100, executed: 27, color: '#efd76a' },
-  //   { name: 'Tablet', total: 100, executed: 50, color: '#0db981' },
-  //   { name: 'Tablet', total: 100, executed: 70, color: '#97ABFF' },
-  //   { name: 'Tablet', total: 100, executed: 70, color: '#97ABFF' },
-  //   { name: 'Tablet', total: 100, executed: 70, color: '#97ABFF' },
-  //   { name: 'Tablet', total: 100, executed: 70, color: '#97ABFF' },
-  //   { name: 'Tablet', total: 100, executed: 70, color: '#97ABFF' },
-  //   { name: 'Tablet', total: 100, executed: 70, color: '#97ABFF' },
-  // ];
-
   const columns = useMemo(() => {
     if (leads.length === 0) return [];
-  
+
     const empreendimentoColumn = {
       name: <div style={{ textAlign: 'left', width: '100%' }}>EMPREENDIMENTO</div>,
       selector: (row: any) => row.nome,
@@ -204,12 +194,12 @@ const Dashboard = () => {
       },
       cell: (row: any) => (
         <div style={{ display: 'flex', alignItems: 'center', textAlign: 'left', width: '100%' }}>
-          <span className='mr-2 flex h-5 w-5 items-center justify-center rounded-lg -mt-1' style={{backgroundColor: row.cor}}></span>
+          <span className='mr-2 flex h-5 w-5 items-center justify-center rounded-lg -mt-1' style={{ backgroundColor: row.cor }}></span>
           <span>{row.nome}</span>
         </div>
       ),
     };
-  
+
     // Cria as colunas para cada data centralizadas
     const dateColumns = leads[0].datas.map((date: string, index: number) => ({
       name: <div style={{ textAlign: 'center', width: '100%' }}>{date}</div>,
@@ -227,17 +217,16 @@ const Dashboard = () => {
         fontFamily: 'nunito',
       },
     }));
-  
+
     return [empreendimentoColumn, ...dateColumns];
   }, [leads]);
-  
 
-  const getPropostaData = useCallback(async () => {
+  const getData = useCallback(async () => {
     try {
       const leadsDb = await getAllLeadsDashboard();
       if (leadsDb.status === 200) {
         const jsonData = leadsDb.data;
-
+  
         // Verifica se jsonData está definido e tem as propriedades esperadas
         if (jsonData && jsonData.datas && jsonData.empreendimentos) {
           // Formatar os dados para a tabela
@@ -247,74 +236,79 @@ const Dashboard = () => {
             quantidades: emp.quantidades,
             datas: jsonData.datas,
           }));
-
+  
           setLeads(formattedData);
         } else {
-          console.warn('Dados recebidos não estão no formato esperado.', jsonData);
+          errorLog('Dados recebidos não estão no formato esperado.', jsonData);
         }
       }
-
+  
       const canaisDb = await getAllCanaisDashboard();
       if (canaisDb.status === 200) {
         const jsonData = canaisDb.data;
         if (jsonData) {
           setCanais(jsonData);
         } else {
-          console.warn('Dados recebidos não estão no formato esperado.', jsonData);
+          errorLog('Dados recebidos não estão no formato esperado.', jsonData);
         }
       }
-
+  
       const leadsMensalDb = await getAllLeadsMensalDashboard();
       if (leadsMensalDb.status === 200) {
         const jsonData = leadsMensalDb.data;
-
+  infoLog(jsonData);
         if (jsonData) {
           infoLog(jsonData);
-
+  
           // Formatar os dados da API para o gráfico
           const { data: formattedData, xAxisData: formattedXAxisData } = formatDataForChart(jsonData);
-
+  
           setLeadsMensal(formattedData);
           setXAxisData(formattedXAxisData);
         } else {
-          console.warn('Dados recebidos não estão no formato esperado.', jsonData);
+          errorLog('Dados recebidos não estão no formato esperado.', jsonData);
         }
       }
-
+  
       const VendasDb = await getAllVendasDashboard();
-      
-      infoLog('VendasDb', VendasDb);
-
+  
       if (VendasDb.status === 200) {
         const jsonData = VendasDb.data;
         if (jsonData) {
           setVendasMensal(jsonData);
         } else {
-          console.warn('Dados recebidos não estão no formato esperado.', jsonData);
+          errorLog('Dados recebidos não estão no formato esperado.', jsonData);
         }
       }
-
+  
       setLoading(false);
     } catch (error) {
       errorLog(error);
       setLoading(false);
     }
   }, []);
-
+  
   useEffect(() => {
-    getPropostaData();
-  }, [getPropostaData]);
+    getData(); // Executa a primeira busca de dados imediatamente.
+  
+    const intervalId = setInterval(() => {
+      getData(); // Executa a função de busca de dados a cada 10 minutos.
+    }, 10 * 60 * 1000); // 10 minutos em milissegundos
+  
+    return () => clearInterval(intervalId); // Limpa o intervalo quando o componente é desmontado.
+  }, [getData]);
+  
 
   return (
     <section
       className="w-full max-w-full rounded-sm"
-      style={{ height: 'calc(89vh - 3px)', }}
+      style={{ height: 'calc(91vh - 3px)', }}
     >
       {loading && <Loading fullscreen text="Carregando Dashboard..." />}
       {!loading && (
         <>
           <div className="row">
-            <div className="col-md-9 mb-4 relative rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            <div className="col-md-9 mb-1 relative rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <DataTable
                 columns={columns}
                 data={leads}
@@ -335,39 +329,37 @@ const Dashboard = () => {
               />
             </div>
 
-            <div className="col-md-3 mb-4 relative rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-2">
+            <div className="col-md-3 mb-1 relative rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-1">
               <PieChart
+              title='CANAIS DE LEADS'
+              subtitle='Percentual de leads por canal'
                 data={canais}
                 theme={colorMode === 'dark' ? 'dark' : 'light'}
                 colors={['#5370c6', '#db6a6f', '#d789bd', '#3c9f77']}
               />
-
             </div>
-            <div className="col-md-12 mb-4 relative rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-2">
+
+            <div className="col-md-12 mb-1 relative rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-1">
 
               <StackedLineChart
+                subtitle="MÊS ATUAL"
                 showLegend={false}
                 data={leadsMensal}
                 xAxisData={xAxisData}
+                title="META DE VENDAS"
                 theme={colorMode === 'dark' ? 'dark' : 'light'}
               />
-
-
             </div>
 
-            <div className="col-md-12 mb-4 relative rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-2">
-              {/* Exibição Horizontal */}
+            <div className="col-md-12 mb-1 relative rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-1">
               <RateBar
                 align="center"
                 data={vendasMensal}
                 showLegend={false}
                 direction="horizontal"
                 title="META DE VENDAS"
-                subtitle="Empreendimentos"
+                subtitle=""
               />
-   
-              {/* Exibição Vertical */}
-              {/* <RateBar data={deviceData} direction="vertical" /> */}
             </div>
 
 

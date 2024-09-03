@@ -10,9 +10,11 @@ type PieProps = {
     data: PieData[];
     theme?: 'light' | 'dark';
     colors?: string[]; // Adicionando a propriedade de cores
+    title?: string;
+    subtitle?: string;
 };
 
-const PieChart: React.FC<PieProps> = ({ data, theme = 'light', colors }) => {
+const PieChart: React.FC<PieProps> = ({ data, theme = 'light', colors, title, subtitle }) => {
     const chartRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -21,9 +23,17 @@ const PieChart: React.FC<PieProps> = ({ data, theme = 'light', colors }) => {
 
             const option = {
                 title: {
-                    text: 'CANAIS DE LEADS',
-                    subtext: 'Percentual de leads',
-                    left: 'center'
+                    text: title,
+                    subtext: subtitle,
+                    left: 'center',
+                    textStyle: {
+                        fontFamily: 'Nunito', // Define a fonte como Nunito
+                        fontSize: 19, // Define o tamanho da fonte do título
+                    },
+                    subtextStyle: {
+                        fontFamily: 'Nunito', // Define a fonte do subtítulo
+                        fontSize: 14, // Define o tamanho da fonte do subtítulo
+                    },
                 },
                 backgroundColor: 'transparent',
                 tooltip: {
@@ -66,7 +76,7 @@ const PieChart: React.FC<PieProps> = ({ data, theme = 'light', colors }) => {
         }
     }, [data, theme, colors]);
 
-    return <div ref={chartRef} style={{ width: '100%', minHeight: '270px' }} />;
+    return <div ref={chartRef} style={{ width: '100%', minHeight: '270px', height: '100%' }} />;
 };
 
 export default PieChart;

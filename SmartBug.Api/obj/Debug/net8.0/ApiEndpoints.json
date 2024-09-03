@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "SmartBug.Api.Controllers.ReportController",
+    "Method": "GetSelectAllEmpreendimentoAsync",
+    "RelativePath": "api/Report/get-select-all-empreendimento",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SmartBug.Api.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "api/v1/Auth/login",

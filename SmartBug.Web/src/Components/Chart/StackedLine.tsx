@@ -13,10 +13,12 @@ type StackedLineProps = {
   theme?: 'light' | 'dark';
   colors?: string[];
   showLegend?: boolean; // Propriedade para controlar a exibição da legenda
+  title?: string;
+  subtitle?: string;
 };
 
 // Componente do gráfico de linhas empilhadas
-const StackedLineChart: React.FC<StackedLineProps> = ({ data, xAxisData, theme = 'light', colors, showLegend = true }) => {
+const StackedLineChart: React.FC<StackedLineProps> = ({ data, xAxisData, theme = 'light', colors, showLegend = true, title, subtitle }) => {
   const chartRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -25,9 +27,17 @@ const StackedLineChart: React.FC<StackedLineProps> = ({ data, xAxisData, theme =
 
       const option = {
         title: {
-          text: 'LEADS POR EMPREENDIMENTO',
-          subtext: 'leads do mês atual',
+          text: title,
+          subtext: subtitle,
           left: 'center',
+          textStyle: {
+            fontFamily: 'Nunito', // Define a fonte como Nunito
+            fontSize: 19, // Define o tamanho da fonte do título
+          },
+          subtextStyle: {
+            fontFamily: 'Nunito', // Define a fonte do subtítulo
+            fontSize: 14, // Define o tamanho da fonte do subtítulo
+          },
         },
         backgroundColor: 'transparent',
         tooltip: {
@@ -65,7 +75,7 @@ const StackedLineChart: React.FC<StackedLineProps> = ({ data, xAxisData, theme =
     }
   }, [data, xAxisData, theme, colors, showLegend]);
 
-  return <div ref={chartRef} style={{ width: '100%', height: '300px', margin: 0 }} />;
+  return <div ref={chartRef} style={{ width: '100%', height: '290px', margin: 0 }} />;
 };
 
 export default StackedLineChart;

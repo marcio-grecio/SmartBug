@@ -24,8 +24,8 @@ const RateBar: React.FC<Props> = ({ data, direction = 'horizontal', title, subti
       {/* Título e subtítulo */}
       {(title || subtitle) && (
         <div className={`text-${align} mb-4`}>
-          {title && <h3 className="text-xl font-bold mb-1">{title}</h3>}
-          {subtitle && <p className="text-sm text-gray-500">{subtitle}</p>}
+          {title && <h3 className="font-bold mb-1" style={{fontFamily: 'nunito', fontSize: '19px'}}>{title}</h3>}
+          {subtitle && <p className="text-gray-500" style={{fontFamily: 'nunito', fontSize: '14px'}}>{subtitle}</p>}
         </div>
       )}
 
@@ -36,6 +36,7 @@ const RateBar: React.FC<Props> = ({ data, direction = 'horizontal', title, subti
             className={`col-md-3 flex-grow rounded flex items-center py-1 mb-5 ${item.color} ${
               isVertical ? 'w-full mb-4' : ''
             }`}
+            title={item.name}
             style={{ backgroundColor: `${item.color}20` }}
           >
             <span className="text-xl ml-1"></span>

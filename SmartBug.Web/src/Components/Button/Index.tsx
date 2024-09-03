@@ -12,6 +12,8 @@ type ButtonProps = {
   fontFamily?: string;
   fontSize?: string | number;
   icon?: LucideIcon; 
+  marginTop?: string;
+  borderRadious?: string;
 };
 
 const Button = ({
@@ -25,6 +27,8 @@ const Button = ({
   type = 'button',
   fontFamily = 'inherit',
   fontSize = '14px',
+  marginTop,
+  borderRadious,
   icon: Icon, 
 }: ButtonProps) => {
   const buttonStyle = {
@@ -36,6 +40,8 @@ const Button = ({
     fontWeight: fontWeight,
     fontFamily: fontFamily,
     fontSize: fontSize,
+    marginTop: marginTop,
+    borderRadius: borderRadious,
   };
 
   return (
