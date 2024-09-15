@@ -5,6 +5,7 @@ using SmartBug.Models.ViewModel;
 using SmartBug.Models;
 using System.Data.Entity;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace SmartBug.Api.Controllers
 {
@@ -14,8 +15,7 @@ namespace SmartBug.Api.Controllers
     public class MetaController : BaseController
     {
 
-        private readonly ILogger<MetaController> _Logger;
-
+        private readonly ILogger _Logger;
         public MetaController(ILogger<MetaController> logger)
         {
             _Logger = logger;
@@ -61,11 +61,21 @@ namespace SmartBug.Api.Controllers
                         x.EmpreendimentoId,
                     }).AsNoTracking().FirstOrDefaultAsync();
 
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "GET",
+                    Descricao = "Consulta de meta",
+                    Controller = "Meta",
+                    NewValue = JsonConvert.SerializeObject(meta),
+                    OldValue = "N/A"
+
+                });
+
                 return Ok(meta);
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -92,6 +102,15 @@ namespace SmartBug.Api.Controllers
                 _Db.Metas.Add(meta);
                 await _Db.SaveChangesAsync();
 
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "POST",
+                    Descricao = "Criação de uma meta",
+                    Controller = "Meta",
+                    NewValue = JsonConvert.SerializeObject(meta),
+                    OldValue = "N/A"
+                });
+
                 return Ok(new
                 {
                     StatusCode = HttpStatusCode.OK,
@@ -100,7 +119,7 @@ namespace SmartBug.Api.Controllers
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -116,6 +135,12 @@ namespace SmartBug.Api.Controllers
 
                 var meta = await _Db.Metas
                     .FirstOrDefaultAsync(u => u.Id == model.Id);
+
+                // Captura o valor antigo do objeto antes das alterações
+                var oldValue = JsonConvert.SerializeObject(meta, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
 
                 if (meta == null)
                 {
@@ -135,6 +160,21 @@ namespace SmartBug.Api.Controllers
                 meta.UsuarioAlteracao = long.Parse(loggedUserId);
                 await _Db.SaveChangesAsync();
 
+                // Captura o valor novo do objeto após as alterações
+                var newValue = JsonConvert.SerializeObject(meta, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "POST",
+                    Descricao = "Atualização de uma meta",
+                    Controller = "Meta",
+                    NewValue = newValue,
+                    OldValue = oldValue
+                });
+
                 return Ok(new
                 {
                     StatusCode = HttpStatusCode.OK,
@@ -143,7 +183,7 @@ namespace SmartBug.Api.Controllers
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }

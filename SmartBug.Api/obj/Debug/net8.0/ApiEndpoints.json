@@ -1,23 +1,17 @@
 [
   {
-    "ContainingType": "SmartBug.Api.Controllers.ReportController",
-    "Method": "GetSelectAllEmpreendimentoAsync",
-    "RelativePath": "api/Report/get-select-all-empreendimento",
+    "ContainingType": "SmartBug.Api.Controllers.HomeController",
+    "Method": "Index",
+    "RelativePath": "",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int64",
-        "IsRequired": false
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
     "ContainingType": "SmartBug.Api.Controllers.AuthController",
-    "Method": "Login",
+    "Method": "LoginAsync",
     "RelativePath": "api/v1/Auth/login",
     "HttpMethod": "POST",
     "IsController": true,
@@ -493,6 +487,48 @@
         "Name": "model",
         "Type": "SmartBug.Models.ViewModel.PropostaViewModel",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.ReportController",
+    "Method": "GetLeadsByEnterpriseAsync",
+    "RelativePath": "api/v1/Report/get-leads-by-enterprise",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "initDate",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      },
+      {
+        "Name": "endDate",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      },
+      {
+        "Name": "empreendimentoId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.ReportController",
+    "Method": "GetSelectAllEmpreendimentoAsync",
+    "RelativePath": "api/v1/Report/get-select-all-empreendimento",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int64",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

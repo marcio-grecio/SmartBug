@@ -5,6 +5,7 @@ using SmartBug.Models.ViewModel;
 using SmartBug.Models;
 using System.Data.Entity;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace SmartBug.Api.Controllers
 {
@@ -13,9 +14,7 @@ namespace SmartBug.Api.Controllers
     [Route("api/v1/[controller]")]
     public class VendaController : BaseController
     {
-
-        private readonly ILogger<VendaController> _Logger;
-
+        private readonly ILogger _Logger;
         public VendaController(ILogger<VendaController> logger)
         {
             _Logger = logger;
@@ -57,11 +56,20 @@ namespace SmartBug.Api.Controllers
                         x.EmpreendimentoId,
                     }).AsNoTracking().FirstOrDefaultAsync();
 
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "GET",
+                    NewValue = user.ToString(),
+                    OldValue = "N/A",
+                    Descricao = "Consulta de venda",
+                    Controller = "Venda",
+                });
+
                 return Ok(user);
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -111,6 +119,16 @@ namespace SmartBug.Api.Controllers
                     _Db.Entry(empreendimento).State = EntityState.Modified;
                     await _Db.SaveChangesAsync();
                 }
+
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "POST",
+                    NewValue = model.ToString(),
+                    OldValue = "N/A",
+                    Descricao = "Criação de venda",
+                    Controller = "Venda",
+                });
+
                 return Ok(new
                 {
                     StatusCode = HttpStatusCode.OK,
@@ -119,7 +137,7 @@ namespace SmartBug.Api.Controllers
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -163,6 +181,12 @@ namespace SmartBug.Api.Controllers
                     });
                 }
 
+                // Captura o valor antigo do objeto antes das alterações
+                var oldValue = JsonConvert.SerializeObject(venda, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
                 venda.Data = model.Data;
                 venda.DataAlteracao = DateTime.Now;
                 venda.Quantidade = model.Quantidade;
@@ -177,6 +201,21 @@ namespace SmartBug.Api.Controllers
                     await _Db.SaveChangesAsync();
                 }
 
+                // Captura o valor novo do objeto após as alterações
+                var newValue = JsonConvert.SerializeObject(venda, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "POST",
+                    NewValue = newValue,
+                    OldValue = oldValue,
+                    Descricao = "Atualização de venda",
+                    Controller = "Venda",
+                });
+
                 return Ok(new
                 {
                     StatusCode = HttpStatusCode.OK,
@@ -185,7 +224,7 @@ namespace SmartBug.Api.Controllers
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }

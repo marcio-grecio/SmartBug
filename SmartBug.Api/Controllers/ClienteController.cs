@@ -5,6 +5,7 @@ using SmartBug.Models.ViewModel;
 using SmartBug.Models;
 using System.Data.Entity;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace SmartBug.Api.Controllers
 {
@@ -13,9 +14,7 @@ namespace SmartBug.Api.Controllers
     [Route("api/v1/[controller]")]
     public class ClienteController : BaseController
     {
-
-        private readonly ILogger<ClienteController> _Logger;
-
+        private readonly ILogger _Logger;
         public ClienteController(ILogger<ClienteController> logger)
         {
             _Logger = logger;
@@ -57,11 +56,20 @@ namespace SmartBug.Api.Controllers
                         x.EmpreendimentoId,
                     }).AsNoTracking().FirstOrDefaultAsync();
 
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "GET",
+                    NewValue = JsonConvert.SerializeObject(user),
+                    OldValue = "N/A",
+                    Descricao = "Consulta de Cliente P4",
+                    Controller = "Cliente",
+                });
+
                 return Ok(user);
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -83,6 +91,15 @@ namespace SmartBug.Api.Controllers
                     UsuarioAlteracao = long.Parse(loggedUserId),
                 };
 
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "POST",
+                    NewValue = JsonConvert.SerializeObject(cliente),
+                    OldValue = null,
+                    Descricao = "Criação de Cliente P4",
+                    Controller = "Cliente",
+                });
+
                 _Db.Cliente.Add(cliente);
                 await _Db.SaveChangesAsync();
 
@@ -94,7 +111,7 @@ namespace SmartBug.Api.Controllers
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -120,12 +137,34 @@ namespace SmartBug.Api.Controllers
                     });
                 }
 
+                // Captura o valor antigo do objeto antes das alterações
+                var oldValue = JsonConvert.SerializeObject(cliente, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
                 cliente.Data = model.Data;
                 cliente.DataAlteracao = DateTime.Now;
                 cliente.Quantidade = model.Quantidade;
                 cliente.EmpreendimentoId = model.EmpreendimentoId;
                 cliente.UsuarioAlteracao = long.Parse(loggedUserId);
                 await _Db.SaveChangesAsync();
+
+                // Captura o valor novo do objeto após as alterações
+                var newValue = JsonConvert.SerializeObject(cliente, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "POST",
+                    NewValue = newValue,
+                    OldValue = oldValue,
+                    Descricao = "Atualização de Cliente P4",
+                    Controller = "Cliente",
+                });
+
 
                 return Ok(new
                 {
@@ -135,7 +174,7 @@ namespace SmartBug.Api.Controllers
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SmartBug.Models;
 using SmartBug.Models.Enums;
 using SmartBug.Models.ViewModel;
@@ -14,8 +15,7 @@ namespace SmartBug.Api.Controllers
     [Route("api/v1/[controller]")]
     public class UserController : BaseController
     {
-        private readonly ILogger<UserController> _Logger;
-
+        private readonly ILogger _Logger;
         public UserController(ILogger<UserController> logger)
         {
             _Logger = logger;
@@ -54,7 +54,7 @@ namespace SmartBug.Api.Controllers
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
 
@@ -82,11 +82,20 @@ namespace SmartBug.Api.Controllers
                         Empreendimentos = x.Empreendimentos.Select(s => s.Id).ToList()
                     }).AsNoTracking().FirstOrDefaultAsync();
 
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "GET",
+                    NewValue = JsonConvert.SerializeObject(user),
+                    OldValue = "N/A",
+                    Descricao = "Consulta de usuário",
+                    Controller = "UserController",
+                });
+
                 return Ok(user);
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -141,6 +150,15 @@ namespace SmartBug.Api.Controllers
                 _Db.Usuarios.Add(user);
                 await _Db.SaveChangesAsync();
 
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "POST",
+                    NewValue = JsonConvert.SerializeObject(user),
+                    OldValue = "N/A",
+                    Descricao = "Criação de usuário",
+                    Controller = "UserController",
+                });
+
                 return Ok(new
                 {
                     StatusCode = HttpStatusCode.OK,
@@ -149,7 +167,7 @@ namespace SmartBug.Api.Controllers
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -175,6 +193,12 @@ namespace SmartBug.Api.Controllers
                         Message = "Usuário não encontrado.",
                     });
                 }
+
+                // Captura o valor antigo do objeto antes das alterações
+                var oldValue = JsonConvert.SerializeObject(user, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
 
                 if (!string.IsNullOrWhiteSpace(model.Senha))
                 {
@@ -209,6 +233,21 @@ namespace SmartBug.Api.Controllers
 
                 await _Db.SaveChangesAsync();
 
+                // Captura o valor novo do objeto após as alterações
+                var newValue = JsonConvert.SerializeObject(user, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "POST",
+                    NewValue = newValue,
+                    OldValue = oldValue,
+                    Descricao = "Atualização de usuário",
+                    Controller = "UserController",
+                });
+
                 return Ok(new
                 {
                     StatusCode = HttpStatusCode.OK,
@@ -217,7 +256,7 @@ namespace SmartBug.Api.Controllers
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }

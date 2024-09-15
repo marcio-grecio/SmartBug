@@ -34,6 +34,9 @@ namespace SmartBug.Models
         [Column("QUANTIDADE")]
         public int Quantidade { get; set; }
 
+        [Column("TIPO_LEAD")]
+        public string TipoLead { get; set; }
+
         [Column("EMPREENDIMENTOID")]
         public long EmpreendimentoId { get; set; }
         public virtual Empreendimento Empreendimento { get; set; }

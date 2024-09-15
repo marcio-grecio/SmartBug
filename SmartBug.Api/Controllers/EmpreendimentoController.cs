@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SmartBug.Models;
 using SmartBug.Models.Enums;
 using SmartBug.Models.ViewModel;
@@ -14,13 +15,12 @@ namespace SmartBug.Api.Controllers
     [Route("api/v1/[controller]")]
     public class EmpreendimentoController : BaseController
     {
-
-        private readonly ILogger<EmpreendimentoController> _Logger;
-
+        private readonly ILogger _Logger;
         public EmpreendimentoController(ILogger<EmpreendimentoController> logger)
         {
             _Logger = logger;
         }
+
 
         [HttpGet]
         [Route("get-select-all")]
@@ -74,11 +74,20 @@ namespace SmartBug.Api.Controllers
                         Usuarios = x.Usuarios.Select(s => s.Id).ToList()
                     }).AsNoTracking().FirstOrDefaultAsync();
 
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "GET",
+                    Descricao = $"Consulta de empreendimento {empreendimentoId}",
+                    Controller = "Empreendimento",
+                    NewValue = JsonConvert.SerializeObject(user),
+                    OldValue = "N/A"
+                });
+
                 return Ok(user);
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -114,12 +123,22 @@ namespace SmartBug.Api.Controllers
                     }
                     else
                     {
-                        _Logger.LogWarning($"Empreendimento com ID {usuarioId} não encontrado.");
+                        _Logger.LogWarning("Empreendimento com ID {UsuarioId} não encontrado.", usuarioId);
+
                     }
                 }
 
                 _Db.Empreendimentos.Add(empreendimento);
                 await _Db.SaveChangesAsync();
+
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "POST",
+                    Descricao = "Criação de um empreendimento",
+                    Controller = "Empreendimento",
+                    NewValue = JsonConvert.SerializeObject(empreendimento),
+                    OldValue = null,
+                });
 
                 return Ok(new
                 {
@@ -129,7 +148,7 @@ namespace SmartBug.Api.Controllers
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -154,6 +173,12 @@ namespace SmartBug.Api.Controllers
                     });
                 }
 
+                // Captura o valor antigo do objeto antes das alterações
+                var oldValue = JsonConvert.SerializeObject(empreendimento, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
                 empreendimento.Cor = model.Cor;
                 empreendimento.Nome = model.Nome.ToUpper();
                 empreendimento.DataAlteracao = DateTime.Now;
@@ -175,11 +200,26 @@ namespace SmartBug.Api.Controllers
                     }
                     else
                     {
-                        _Logger.LogWarning($"Empreendimento com ID {userId} não encontrado.");
+                        _Logger.LogWarning("Empreendimento com ID {userId} não encontrado.", userId);
                     }
                 }
 
                 await _Db.SaveChangesAsync();
+
+                // Captura o valor novo do objeto após as alterações
+                var newValue = JsonConvert.SerializeObject(empreendimento, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "POST",
+                    Descricao = "Atualização de um empreendimento",
+                    Controller = "Empreendimento",
+                    NewValue = newValue,
+                    OldValue = oldValue,
+                });
 
                 return Ok(new
                 {
@@ -189,7 +229,7 @@ namespace SmartBug.Api.Controllers
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }

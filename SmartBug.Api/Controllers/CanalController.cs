@@ -5,6 +5,7 @@ using SmartBug.Models.ViewModel;
 using SmartBug.Models;
 using System.Data.Entity;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace SmartBug.Api.Controllers
 {
@@ -13,13 +14,12 @@ namespace SmartBug.Api.Controllers
     [Route("api/v1/[controller]")]
     public class CanalController : BaseController
     {
-
-        private readonly ILogger<CanalController> _Logger;
-
+        private readonly ILogger _Logger;
         public CanalController(ILogger<CanalController> logger)
         {
             _Logger = logger;
         }
+
 
         [HttpGet]
         [Route("get-all")]
@@ -62,11 +62,20 @@ namespace SmartBug.Api.Controllers
                         x.Nome,
                     }).AsNoTracking().FirstOrDefaultAsync();
 
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "GET",
+                    Descricao = "Consulta de um canal",
+                    Controller = "Canal",
+                    NewValue = $"Consulta realizada com sucesso para o canal {canalId}",
+                    OldValue = "N/A"
+                });
+
                 return Ok(canal);
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -86,6 +95,15 @@ namespace SmartBug.Api.Controllers
                     UsuarioAlteracao = long.Parse(loggedUserId),
                 };
 
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "POST",
+                    Descricao = "Criação de um canal",
+                    Controller = "Canal",
+                    NewValue = JsonConvert.SerializeObject(canal),
+                    OldValue = "N/A"
+                });
+
                 _Db.Canais.Add(canal);
                 await _Db.SaveChangesAsync();
 
@@ -97,7 +115,7 @@ namespace SmartBug.Api.Controllers
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -109,7 +127,6 @@ namespace SmartBug.Api.Controllers
             try
             {
                 var (loggedUserId, loggedUserName) = GetLoggedUserInfo();
-
 
                 var canal = await _Db.Canais
                     .FirstOrDefaultAsync(u => u.Id == model.Id);
@@ -123,10 +140,33 @@ namespace SmartBug.Api.Controllers
                     });
                 }
 
+                // Captura o valor antigo do objeto antes das alterações
+                var oldValue = JsonConvert.SerializeObject(canal, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+                // Atualiza o objeto com os novos valores
                 canal.Nome = model.Nome.ToUpper();
                 canal.DataAlteracao = DateTime.Now;
                 canal.UsuarioAlteracao = long.Parse(loggedUserId);
                 await _Db.SaveChangesAsync();
+
+                // Captura o valor novo do objeto após as alterações
+                var newValue = JsonConvert.SerializeObject(canal, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+                // Registra a auditoria
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "PUT",
+                    Descricao = "Atualização de um canal",
+                    Controller = "Canal",
+                    NewValue = newValue,
+                    OldValue = oldValue,
+                });
 
                 return Ok(new
                 {
@@ -136,10 +176,9 @@ namespace SmartBug.Api.Controllers
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
-
     }
 }

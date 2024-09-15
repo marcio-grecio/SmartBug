@@ -255,7 +255,7 @@ module.exports = {
           cols[`.${e(`col-${size}-${i}`)}`] = {
             [`@screen ${size}`]: {
               flex: `0 0 calc(${width} - 5px)`, // Ajuste o tamanho para subtrair o espaço entre os elementos
-              maxWidth: `calc(${width} - 5px)`,
+              maxWidth: `calc(${width} - 0px)`,
               position: 'relative',
               minHeight: '1px',
               // margin: '0 2.5px', // Margem para criar espaço entre os elementos

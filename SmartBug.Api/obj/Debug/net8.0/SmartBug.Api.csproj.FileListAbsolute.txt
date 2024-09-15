@@ -75,3 +75,8 @@ C:\MeetWeb\SmartBug\SmartBug.Api\obj\Debug\net8.0\SmartBug.Api.genruntimeconfig.
 C:\MeetWeb\SmartBug\SmartBug.Api\obj\Debug\net8.0\ref\SmartBug.Api.dll
 C:\MeetWeb\SmartBug\SmartBug.Api\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\MeetWeb\SmartBug\SmartBug.Api\obj\Debug\net8.0\SmartBug.Api.sourcelink.json
+C:\MeetWeb\SmartBug\SmartBug.Api\bin\Debug\net8.0\System.Private.Windows.Core.dll
+C:\MeetWeb\SmartBug\SmartBug.Api\bin\Debug\net8.0\System.IO.Pipelines.dll
+C:\MeetWeb\SmartBug\SmartBug.Api\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+C:\MeetWeb\SmartBug\SmartBug.Api\bin\Debug\net8.0\System.Text.Json.dll
+C:\MeetWeb\SmartBug\SmartBug.Api\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll

@@ -1,23 +1,48 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SmartBug.Context;
+using SmartBug.Models;
+using SmartBug.Models.ViewModel;
 
-namespace SmartBug.Api.Controllers
+public class BaseController : ControllerBase
 {
-    public class BaseController : ControllerBase
+    protected readonly Conexao _Db;
+
+
+    public BaseController()
     {
-        protected readonly Conexao _Db;
+        _Db = new Conexao();
+    }
 
-        public BaseController()
+    internal (string loggedUserId, string loggedUserName) GetLoggedUserInfo()
+    {
+        var loggedUserId = User.FindFirst("id")?.Value;
+        var loggedUserName = User.FindFirst("nome")?.Value;
+        return (loggedUserId, loggedUserName);
+    }
+
+    protected async Task PublishAuditoria(AuditoriaViewModel model)
+    {
+        try
         {
-            _Db = new Conexao();
+
+        var (loggedUserId, loggedUserName) = GetLoggedUserInfo();
+
+        var auditoria = new Auditoria
+        {
+            Tipo = model?.Tipo,
+            UsuarioId = long.Parse(loggedUserId),
+            NewValue = model?.NewValue,
+            OldValue = model?.OldValue,
+            Descricao = model?.Descricao,
+            Controller = model?.Controller
+        };
+
+        _Db.Auditoria.Add(auditoria);
+        await _Db.SaveChangesAsync();
         }
-
-        internal (string loggedUserId, string loggedUserName) GetLoggedUserInfo()
+        catch (Exception ex)
         {
-            var loggedUserId = User.FindFirst("id")?.Value;
-            var loggedUserName = User.FindFirst("name")?.Value;
-            return (loggedUserId, loggedUserName);
+            Console.WriteLine(ex.Message);
         }
     }
 }

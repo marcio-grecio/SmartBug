@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "C642qWbgK3zkdpQwbwGKznuwgGKGxZsFzbOEVAVk/B0=",
+  "Source": "SmartBug.Api",
+  "BasePath": "_content/SmartBug.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

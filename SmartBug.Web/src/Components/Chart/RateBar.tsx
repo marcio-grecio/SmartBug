@@ -24,36 +24,38 @@ const RateBar: React.FC<Props> = ({ data, direction = 'horizontal', title, subti
       {/* Título e subtítulo */}
       {(title || subtitle) && (
         <div className={`text-${align} mb-4`}>
-          {title && <h3 className="font-bold mb-1" style={{fontFamily: 'nunito', fontSize: '19px'}}>{title}</h3>}
-          {subtitle && <p className="text-gray-500" style={{fontFamily: 'nunito', fontSize: '14px'}}>{subtitle}</p>}
+          {title && <h3 className="font-bold mb-1" style={{ fontFamily: 'nunito', fontSize: '19px' }}>{title}</h3>}
+          {subtitle && <p className="text-gray-500" style={{ fontFamily: 'nunito', fontSize: '14px' }}>{subtitle}</p>}
         </div>
       )}
 
       <div className={`row ${isVertical ? 'flex flex-col' : 'flex-row flex-wrap'}`}>
-        {data.map((item, index) => (
-          <div
-            key={index}
-            className={`col-md-3 flex-grow rounded flex items-center py-1 mb-5 ${item.color} ${
-              isVertical ? 'w-full mb-4' : ''
-            }`}
-            title={item.name}
-            style={{ backgroundColor: `${item.color}20` }}
-          >
-            <span className="text-xl ml-1"></span>
-            <div className="flex-grow flex items-center">
-              <div
-                className="h-8 flex items-center justify-end rounded"
-                style={{ width: `${(item.executed / item.total) * 100}%`, backgroundColor: item.color }}
-              >
-                <div className="text-xs px-2 text-slate-50">{`${Math.round((item.executed / item.total) * 100)}%`}</div>
+        {data.map((item, index) => {
+          const percentage = Math.min((item.executed / item.total) * 100, 100); // Limita a porcentagem ao máximo de 100%
+          return (
+            <div
+              key={index}
+              className={`col-md-3 flex-grow rounded flex items-center py-1 mb-5 ${item.color} ${
+                isVertical ? 'w-full mb-4' : ''
+              }`}
+              title={item.name}
+              style={{ backgroundColor: `${item.color}20` }}
+            >
+              <span className="text-xl ml-1"></span>
+              <div className="flex-grow flex items-center">
+                <div
+                  className="h-8 flex items-center justify-end rounded"
+                  style={{ width: `${percentage}%`, backgroundColor: item.color }}
+                >
+                  <div className="text-xs px-2 text-slate-50">{`${Math.round(percentage)}%`}</div>
+                </div>
               </div>
+              <div className="ml-auto pr-3 text-current w-14 text-end">{item.total}</div>
             </div>
-            <div className="ml-auto pr-3 text-current w-14 text-end">{item.total}</div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
-      {/* Legenda condicional */}
       {showLegend && (
         <ul className="flex flex-wrap justify-center items-center gap-x-4 m-0 p-0 list-none">
           {data.map((item, index) => (

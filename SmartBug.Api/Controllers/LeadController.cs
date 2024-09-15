@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SmartBug.Models;
 using SmartBug.Models.ViewModel;
 using System.Data.Entity;
@@ -13,8 +14,7 @@ namespace SmartBug.Api.Controllers
     public class LeadController : BaseController
     {
 
-        private readonly ILogger<LeadController> _Logger;
-
+        private readonly ILogger _Logger;
         public LeadController(ILogger<LeadController> logger)
         {
             _Logger = logger;
@@ -25,6 +25,7 @@ namespace SmartBug.Api.Controllers
         public async Task<IActionResult> GetAllLeadAsync()
         {
             var empreendimentos = await _Db.Leads
+                .Where(x=>x.TipoLead == "QUALIFICADO")
                 .Include(i => i.Empreendimento)
                 .Select(f => new
                 {
@@ -47,8 +48,8 @@ namespace SmartBug.Api.Controllers
         {
             try
             {
-                var user = await _Db.Leads
-                    .Where(x => x.Id == leadId)
+                var lead = await _Db.Leads
+                    .Where(x => x.Id == leadId && x.TipoLead == "QUALIFICADO")
                     .Select(x => new
                     {
                         x.Id,
@@ -58,11 +59,21 @@ namespace SmartBug.Api.Controllers
                         x.EmpreendimentoId,
                     }).AsNoTracking().FirstOrDefaultAsync();
 
-                return Ok(user);
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "GET",
+                    Descricao = $"Consulta de empreendimento {leadId}",
+                    Controller = "Lead",
+                    NewValue = JsonConvert.SerializeObject(lead),
+                    OldValue = "N/A"
+                });
+                    
+
+                return Ok(lead);
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -73,8 +84,8 @@ namespace SmartBug.Api.Controllers
         {
             try
             {
-
-                var existLead = _Db.Leads.FirstOrDefault(x => x.DataLead == model.DataLead && x.EmpreendimentoId == model.EmpreendimentoId && x.CanalId == model.CanalId);
+                model.DataLead = new DateTime(model.DataLead.Year, model.DataLead.Month, model.DataLead.Day, 0, 0, 0);
+                var existLead = _Db.Leads.FirstOrDefault(x => x.DataLead == model.DataLead && x.EmpreendimentoId == model.EmpreendimentoId && x.CanalId == model.CanalId && x.TipoLead == "QUALIFICADO");
                 if (existLead is not null)
                 {
                     return Conflict(new
@@ -89,6 +100,7 @@ namespace SmartBug.Api.Controllers
                 var lead = new Lead
                 {
                     CanalId = model.CanalId,
+                    TipoLead = "QUALIFICADO",
                     DataLead = model.DataLead,
                     DataAlteracao = DateTime.Now,
                     Quantidade = model.Quantidade,
@@ -99,6 +111,15 @@ namespace SmartBug.Api.Controllers
                 _Db.Leads.Add(lead);
                 await _Db.SaveChangesAsync();
 
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "POST",
+                    Descricao = "Criação de um lead",
+                    Controller = "Lead",
+                    NewValue = JsonConvert.SerializeObject(lead),
+                    OldValue = "N/A"
+                });
+
                 return Ok(new
                 {
                     StatusCode = HttpStatusCode.OK,
@@ -107,7 +128,7 @@ namespace SmartBug.Api.Controllers
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
@@ -122,7 +143,13 @@ namespace SmartBug.Api.Controllers
 
 
                 var lead = await _Db.Leads
-                    .FirstOrDefaultAsync(u => u.Id == model.Id);
+                    .FirstOrDefaultAsync(u => u.Id == model.Id && u.TipoLead == "QUALIFICADO");
+
+                // Captura o valor antigo do objeto antes das alterações
+                var oldValue = JsonConvert.SerializeObject(lead, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
 
                 if (lead == null)
                 {
@@ -134,12 +161,28 @@ namespace SmartBug.Api.Controllers
                 }
 
                 lead.CanalId = model.CanalId;
+                lead.TipoLead = "QUALIFICADO";
                 lead.DataLead = model.DataLead;
                 lead.DataAlteracao = DateTime.Now;
                 lead.Quantidade = model.Quantidade;
                 lead.EmpreendimentoId = model.EmpreendimentoId;
                 lead.UsuarioAlteracao = long.Parse(loggedUserId);
                 await _Db.SaveChangesAsync();
+
+                // Captura o valor novo do objeto após as alterações
+                var newValue = JsonConvert.SerializeObject(lead, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+                await PublishAuditoria(new AuditoriaViewModel
+                {
+                    Tipo = "POST",
+                    Descricao = "Atualização de um lead",
+                    Controller = "Lead",
+                    NewValue = newValue,
+                    OldValue = oldValue
+                });
 
                 return Ok(new
                 {
@@ -149,7 +192,7 @@ namespace SmartBug.Api.Controllers
             }
             catch (Exception ex)
             {
-                _Logger.LogError(ex, ex.Message);
+                _Logger.LogError(ex, "An error occurred: {Message}", ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }

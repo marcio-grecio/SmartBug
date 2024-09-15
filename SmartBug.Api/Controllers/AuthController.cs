@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using SmartBug.Models;
 using SmartBug.Models.Enums;
 using SmartBug.Models.ViewModel;
+using System.Data.Entity;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -13,10 +14,9 @@ namespace SmartBug.Api.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class AuthController : BaseController
+    public class AuthController: BaseController
     {
-        private readonly ILogger<AuthController> _Logger;
-
+        private readonly ILogger _Logger;
         public AuthController(ILogger<AuthController> logger)
         {
             _Logger = logger;
@@ -25,13 +25,13 @@ namespace SmartBug.Api.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]
-        public IActionResult Login([FromBody] UserLoginViewModel model)
+        public async Task<IActionResult> LoginAsync([FromBody] UserLoginViewModel model)
         {
             try
             {
                 model.Senha = MD5Hash.CalculaHash(model.Senha);
-                var user = _Db.Usuarios
-                              .FirstOrDefault(x => x.Email == model.Login && x.Senha == model.Senha && x.IsActive == SituacaoEnum.Active);
+                var user = await _Db.Usuarios
+                              .FirstOrDefaultAsync(x => x.Email == model.Login && x.Senha == model.Senha && x.IsActive == SituacaoEnum.Active);
 
                 if (user == null)
                 {
@@ -43,9 +43,6 @@ namespace SmartBug.Api.Controllers
 
                 var claims = new[]
                 {
-                    //new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                    //new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-
                     new Claim(JwtRegisteredClaimNames.Sub, user.Nome ?? ""),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(ClaimTypes.Email, user.Email ?? ""),
@@ -59,7 +56,7 @@ namespace SmartBug.Api.Controllers
                 };
 
                 var token = new JwtSecurityToken(
-                    issuer: user.Email,
+                    issuer: user.Email,                   
                     audience: user.Email,
                     claims: claims,
                     expires: DateTime.Now.AddMonths(6),

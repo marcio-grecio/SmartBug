@@ -19,11 +19,11 @@ import {
   CircleDollarSign, 
 } from 'lucide-react';
 
-
 interface SidebarProps {
   sidebarOpen: boolean;
   setSidebarOpen: (arg: boolean) => void;
 }
+
 const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const location = useLocation();
   const { pathname } = location;
@@ -36,7 +36,12 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true'
   );
 
-  // close on click outside
+  // Estado para controlar o menu de relatórios
+  const [reportMenuOpen, setReportMenuOpen] = useState(
+    pathname.includes('report')
+  );
+
+  // Fechar ao clicar fora
   useEffect(() => {
     const clickHandler = ({ target }: MouseEvent) => {
       if (!sidebar.current || !trigger.current) return;
@@ -52,7 +57,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     return () => document.removeEventListener('click', clickHandler);
   });
 
-  // close if the esc key is pressed
+  // Fechar ao pressionar ESC
   useEffect(() => {
     const keyHandler = ({ keyCode }: KeyboardEvent) => {
       if (!sidebarOpen || keyCode !== 27) return;
@@ -62,6 +67,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     return () => document.removeEventListener('keydown', keyHandler);
   });
 
+  // Controlar expansão do sidebar
   useEffect(() => {
     localStorage.setItem('sidebar-expanded', sidebarExpanded.toString());
     if (sidebarExpanded) {
@@ -71,13 +77,16 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     }
   }, [sidebarExpanded]);
 
+  // Manter o menu de relatórios expandido quando a rota inclui "report"
+  useEffect(() => {
+    setReportMenuOpen(pathname.includes('report'));
+  }, [pathname]);
 
   return (
     <aside
       ref={sidebar}
       className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black dark:bg-boxdark duration-300 ease-linear ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}
     >
-
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
         <NavLink to="/">
           <img src={Logo} alt="Logo" style={{ marginTop: -20 }} />
@@ -145,47 +154,34 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 </NavLink>
               </li>
 
-              <SidebarLinkGroup activeCondition={ pathname === '/report' || pathname.includes('report')}>
-                {(handleClick, open) => {
-                  return (
-                    <React.Fragment>
-                      <NavLink
-                        to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(pathname === '/report' || pathname.includes('report')) && 'bg-graydark dark:bg-meta-4'}`}
-                        onClick={(e) => { e.preventDefault(); sidebarExpanded ? handleClick() : setSidebarExpanded(true); }}>
-                        <Printer className="w-5 h-5" color='#25c6da'/>
-                        Relatórios
-                        <ChevronDown className={`absolute right-4 w-5 h-5 top-1/2 -translate-y-1/2 ${open && 'rotate-180'}`} />
-                      </NavLink>
-                      <div
-                        className={`translate transform overflow-hidden ${!open && 'hidden'}`}>
-                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
-                          <li>
-                            <NavLink
-                              to="/report/leads"
-                              onClick={() => setSidebarOpen(!sidebarOpen)}
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }>
-                              Leads
-                            </NavLink>
-                          </li>
-                          {/* <li>
-                            <NavLink
-                              to="/forms/form-layout"
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }>
-                              Form Layout
-                            </NavLink>
-                          </li> */}
-                        </ul>
-                      </div>
-                    </React.Fragment>
-                  );
-                }}
+              <SidebarLinkGroup activeCondition={pathname.includes('report')}>
+                {(handleClick, open) => (
+                  <>
+                    <NavLink
+                      to="#"
+                      className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('report') && 'bg-graydark dark:bg-meta-4'}`}
+                      onClick={(e) => { e.preventDefault(); setReportMenuOpen(!reportMenuOpen); }}>
+                      <Printer className="w-5 h-5" color='#25c6da'/>
+                      Relatórios
+                      <ChevronDown className={`absolute right-4 w-5 h-5 top-1/2 -translate-y-1/2 ${reportMenuOpen && 'rotate-180'}`} />
+                    </NavLink>
+                    <div className={`transform overflow-hidden ${!reportMenuOpen && 'hidden'}`}>
+                      <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
+                        <li>
+                          <NavLink
+                            to="/report/leads"
+                            onClick={() => setSidebarOpen(!sidebarOpen)}
+                            className={({ isActive }) =>
+                              'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                              (isActive && '!text-white')
+                            }>
+                            Leads
+                          </NavLink>
+                        </li>
+                      </ul>
+                    </div>
+                  </>
+                )}
               </SidebarLinkGroup>
 
               <li>
@@ -197,7 +193,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   Clientes P4
                 </NavLink>
               </li>
-              
+
               <li>
                 <NavLink
                   to="/Dashboard"
@@ -262,9 +258,8 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           </div>
         </nav>
       </div>
-
     </aside>
-  )
+  );
 }
 
-export default SideBar
+export default SideBar;

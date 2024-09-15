@@ -129,6 +129,7 @@ const InputDropDown: React.FC<InputDropDownProps> = ({ label, name, value, optio
             ...provided,
             backgroundColor: isDarkMode ? '#313d4a' : '#eff4f9',
             color: isDarkMode ? 'white' : 'black',
+            zIndex: 9999,
           }),
         }}
         required={required}
