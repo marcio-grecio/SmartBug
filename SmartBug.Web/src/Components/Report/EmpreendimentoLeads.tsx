@@ -21,13 +21,13 @@ const customLight = {
   header: {
     style: {
       color: '#000',
-      backgroundColor: '#cb4b16',
+      backgroundColor: '#f5f5f5',
     },
   },
   headRow: {
     style: {
       color: '#223336',
-      backgroundColor: '#cb4b16',
+      backgroundColor: '#f5f5f5',
     },
   },
   headCells: {
@@ -153,14 +153,19 @@ const EmpreendimentoLeads = () => {
     return `${day}/${month}/${year}`;
   };
 
-  const exportColumns: { header: string; key: string; width: number; alignment: 'left' | 'center' | 'right' }[] = [
-    { header: 'CANAL DO LEAD', key: 'canal', width: 70, alignment: 'left' },
-    { header: 'TOTAL', key: 'total', width: 22, alignment: 'center' },
-    { header: 'QUALIFICADOS', key: 'qualificado', width: 22, alignment: 'center' },
-    { header: 'DESCARTADOS', key: 'descartado', width: 22, alignment: 'center' },
-  ];
- 
-  
+  const exportColumns: {
+    header: string;
+    key: string;
+    width?: number;
+    alignment?: 'left' | 'center' | 'right'; // Corrigido para usar tipos específicos
+    sum?: boolean;
+  }[] = [
+      { header: 'CANAL DO LEAD', key: 'canal', width: 70, alignment: 'left' },
+      { header: 'TOTAL', key: 'total', width: 22, alignment: 'center', sum: true },
+      { header: 'QUALIFICADOS', key: 'qualificado', width: 22, alignment: 'center', sum: true },
+      { header: 'DESCARTADOS', key: 'descartado', width: 22, alignment: 'center', sum: true }
+    ];
+
   const columns = useMemo(() => [
     {
       name: <div style={{ textAlign: 'left', width: '100%' }}>CANAL</div>,
@@ -296,7 +301,7 @@ const EmpreendimentoLeads = () => {
                   width={130}
                   type="submit"
                   text='Filtrar'
-                  color='#28C76F'
+                  color='#3f51b5'
                   disabled={false}
                   fontWeight={'600'}
                   fontFamily='nunito'
@@ -304,28 +309,44 @@ const EmpreendimentoLeads = () => {
                   borderRadious="2px"
                   onClick={handleSubmit}
                 />
-                <ExportXlsButton
-                  color="blue"
-                  text="Export to Excel"
-                  data={leads}
-                  columns={exportColumns}
-                  fileName="leads_data.xlsx"
-                  title="Relatório de Leads por Empreendimento"
-                  subtitle={`Período: ${formatDate(dataInicial)} à ${formatDate(dataFinal)}`}
-                  titleFontSize={16}
-                  subtitleFontSize={12}
-                  titleBackgroundColor="4473c5"
-                  subtitleBackgroundColor="8ea9de"
-                  headerFontSize={12}
-                  headerTextColor="FFFFFFFF"
-                  headerBackgroundColor="9ac2e6"
-                  titleHeight={40}
-                  subtitleHeight={20}
-                />
+              </div>
+              <div className="col-md-1 mt-1.5 mb-1.5 -ml-6">
+                {leads.length > 0 && (
+                  <ExportXlsButton
+                    height={36}
+                    width={130}
+                    text='Excel'
+                    data={leads}
+                    sumColspan={1}
+                    color='#28C76F'
+                    marginTop='-1px'
+                    titleHeight={40}
+                    fontWeight={'600'}
+                    titleFontSize={16}
+                    borderRadious='2px'
+                    fontFamily='nunito'
+                    headerFontSize={12}
+                    subtitleHeight={20}
+                    subtitleFontSize={12}
+                    sumText="Total Geral"
+                    columns={exportColumns}
+                    sumTextColor="FFFFFFFF"
+                    headerTextColor="FFFFFFFF"
+                    sumBackgroundColor="9ac2e6"
+                    titleBackgroundColor="4473c5"
+                    headerBackgroundColor="9ac2e6"
+                    subtitleBackgroundColor="8ea9de"
+                    title="Relatório de Leads por Empreendimento"
+                    fileName="Relatório de Leads por Empreendimento.xlsx"
+                    subtitleRight={`Período: ${formatDate(dataInicial)} à ${formatDate(dataFinal)}`}
+                    subtitleLeft={empreendimentos.find(e => e.value === selectedEmpreendimento)?.label || 'Todos os empreendimentos'}
+                  />
+                )}
+
               </div>
             </div>
 
-            <div className="mi-card mt-4">
+            <div className="mi-card">
               <div className="col-md-12 mb-4">
                 <DataTable
                   columns={columns}

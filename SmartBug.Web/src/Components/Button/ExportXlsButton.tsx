@@ -1,32 +1,46 @@
 import { FC } from 'react';
-import ExcelJS from 'exceljs'; // Importa o ExcelJS
-import { saveAs } from 'file-saver'; // Importa o file-saver para salvar o arquivo no navegador
-import Button from '../Button/Index'; // Importa seu componente Button existente
+import ExcelJS from 'exceljs';
+import { saveAs } from 'file-saver';
+import Button from '../Button/Index';
 import { infoLog } from '../../Utils/Logger';
 
 type ExportButtonProps = {
-  data: any[]; // O array de dados que será exportado
-  columns: Array<{ header: string; key: string; width?: number; alignment?: 'left' | 'center' | 'right' }>; // Novo formato de colunas
-  fileName?: string; // Nome do arquivo de exportação (opcional)
-  title?: string; // Título para o Excel
-  subtitle?: string; // Subtítulo para o Excel
-  titleFontSize?: number; // Tamanho da fonte do título
-  subtitleFontSize?: number; // Tamanho da fonte do subtítulo
-  titleBackgroundColor?: string; // Cor de fundo do título
-  subtitleBackgroundColor?: string; // Cor de fundo do subtítulo
-  headerFontSize?: number; // Tamanho da fonte do cabeçalho
-  headerTextColor?: string; // Cor do texto do cabeçalho
-  headerBackgroundColor?: string; // Cor de fundo do cabeçalho
-  titleHeight?: number; // Altura da linha do título
-  subtitleHeight?: number; // Altura da linha do subtítulo
-} & Omit<React.ComponentProps<typeof Button>, 'onClick'>; // Inclui todas as propriedades de Button, exceto onClick
+  data: any[];
+  columns: Array<{
+    header: string;
+    key: string;
+    width?: number;
+    alignment?: 'left' | 'center' | 'right';
+    sum?: boolean;
+  }>;
+  fileName?: string;
+  title?: string;
+  subtitleLeft?: string;
+  subtitleRight?: string;
+  subtitleCenter?: string;
+  titleFontSize?: number;
+  subtitleFontSize?: number;
+  titleBackgroundColor?: string;
+  subtitleBackgroundColor?: string;
+  headerFontSize?: number;
+  headerTextColor?: string;
+  headerBackgroundColor?: string;
+  titleHeight?: number;
+  subtitleHeight?: number;
+  sumText?: string;
+  sumColspan?: number;
+  sumBackgroundColor?: string;
+  sumTextColor?: string; // Nova propriedade para cor do texto na somatória
+} & Omit<React.ComponentProps<typeof Button>, 'onClick'>;
 
 const ExportButton: FC<ExportButtonProps> = ({
   data,
   columns,
   fileName = 'data.xlsx',
   title,
-  subtitle,
+  subtitleLeft,
+  subtitleRight,
+  subtitleCenter,
   titleFontSize = 14,
   subtitleFontSize = 12,
   titleBackgroundColor = 'FFCC00',
@@ -36,36 +50,60 @@ const ExportButton: FC<ExportButtonProps> = ({
   headerBackgroundColor = '333333',
   titleHeight = 30,
   subtitleHeight = 20,
+  sumText = 'Total',
+  sumColspan = 1,
+  sumBackgroundColor = 'FFFFCC',
+  sumTextColor = 'FF0000', // Valor padrão para a cor do texto na somatória (vermelho)
   ...buttonProps
 }) => {
   const handleExport = async () => {
-    const workbook = new ExcelJS.Workbook(); // Cria um novo workbook
-    const worksheet = workbook.addWorksheet('Sheet1'); // Cria uma nova planilha
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Sheet1');
 
     infoLog('Exportando colunas', columns);
 
     // Adiciona o título
     if (title) {
       const titleRange = `A1:${String.fromCharCode(65 + columns.length - 1)}1`;
-      worksheet.mergeCells(titleRange); // Mescla as células para o título
+      worksheet.mergeCells(titleRange);
       const titleCell = worksheet.getCell('A1');
       titleCell.value = title;
-      titleCell.font = { size: titleFontSize, bold: true, color: { argb: 'FFFFFFFF' } }; // Define a fonte e a cor
-      titleCell.alignment = { vertical: 'middle', horizontal: 'center' }; // Centraliza o texto
-      titleCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: titleBackgroundColor } }; // Define a cor de fundo
-      worksheet.getRow(1).height = titleHeight; // Define a altura da linha do título
+      titleCell.font = { size: titleFontSize, bold: true, color: { argb: 'FFFFFFFF' } };
+      titleCell.alignment = { vertical: 'middle', horizontal: 'center' };
+      titleCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: titleBackgroundColor } };
+      worksheet.getRow(1).height = titleHeight;
     }
 
     // Adiciona o subtítulo
-    if (subtitle) {
-      const subtitleRange = `A2:${String.fromCharCode(65 + columns.length - 1)}2`;
-      worksheet.mergeCells(subtitleRange); // Mescla as células para o subtítulo
+    const totalColumns = columns.length;
+    if (subtitleCenter) {
+      const subtitleRange = `A2:${String.fromCharCode(65 + totalColumns - 1)}2`;
+      worksheet.mergeCells(subtitleRange);
       const subtitleCell = worksheet.getCell('A2');
-      subtitleCell.value = subtitle;
-      subtitleCell.font = { size: subtitleFontSize, color: { argb: 'FFFFFFFF' } }; // Define a fonte e a cor
-      subtitleCell.alignment = { vertical: 'middle', horizontal: 'center' }; // Centraliza o texto
-      subtitleCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: subtitleBackgroundColor } }; // Define a cor de fundo
-      worksheet.getRow(2).height = subtitleHeight; // Define a altura da linha do subtítulo
+      subtitleCell.value = subtitleCenter;
+      subtitleCell.font = { size: subtitleFontSize, color: { argb: 'FFFFFFFF' } };
+      subtitleCell.alignment = { vertical: 'middle', horizontal: 'center' };
+      subtitleCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: subtitleBackgroundColor } };
+      worksheet.getRow(2).height = subtitleHeight;
+    } else if (subtitleLeft || subtitleRight) {
+      const leftColspan = Math.floor(totalColumns / 2);
+      const leftTextCell = worksheet.getCell('A2');
+      leftTextCell.value = subtitleLeft || '';
+      leftTextCell.font = { size: subtitleFontSize, color: { argb: 'FFFFFFFF' } };
+      leftTextCell.alignment = { vertical: 'middle', horizontal: 'left' };
+      leftTextCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: subtitleBackgroundColor } };
+      const leftTextCellRange = `A2:${String.fromCharCode(65 + leftColspan - 1)}2`;
+      worksheet.mergeCells(leftTextCellRange);
+
+      const rightTextCell = worksheet.getCell(`${String.fromCharCode(65 + leftColspan)}2`);
+      rightTextCell.value = subtitleRight || '';
+      rightTextCell.font = { size: subtitleFontSize, color: { argb: 'FFFFFFFF' } };
+      rightTextCell.alignment = { vertical: 'middle', horizontal: 'right' };
+      rightTextCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: subtitleBackgroundColor } };
+      const rightTextCellRange = `${String.fromCharCode(65 + leftColspan)}2:${String.fromCharCode(65 + totalColumns - 1)}2`;
+      worksheet.mergeCells(rightTextCellRange);
+
+      worksheet.getRow(2).height = subtitleHeight;
     }
 
     // Adiciona o cabeçalho com base na configuração de colunas
@@ -73,32 +111,64 @@ const ExportButton: FC<ExportButtonProps> = ({
 
     // Aplica estilo ao cabeçalho e configura as colunas
     columns.forEach((column, index) => {
-      const colNumber = index + 1; // Números de colunas começam em 1 no ExcelJS
+      const colNumber = index + 1;
       const headerCell = headerRow.getCell(colNumber);
 
       headerCell.font = { size: headerFontSize, bold: true, color: { argb: headerTextColor } };
       headerCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: headerBackgroundColor } };
-      
-      // Define o alinhamento e largura da coluna
-      worksheet.getColumn(colNumber).alignment = { vertical: 'middle', horizontal: column.alignment || 'left' }; // Define o alinhamento da coluna
-      worksheet.getColumn(colNumber).width = column.width || 20; // Define a largura da coluna
+      worksheet.getColumn(colNumber).alignment = { vertical: 'middle', horizontal: column.alignment || 'left' };
+      worksheet.getColumn(colNumber).width = column.width || 20;
     });
 
-    // Adiciona os dados da tabela
+    // Inicializa um objeto para armazenar as somatórias das colunas
+    const sums: { [key: string]: number } = {};
+
+    // Adiciona os dados da tabela e calcula a somatória das colunas
     data.forEach(row => {
-      const rowData = columns.map(column => row[column.key]);
-      const dataRow = worksheet.addRow(rowData);
+      const rowData = columns.map(column => {
+        const value = row[column.key];
 
-      // Aplica o alinhamento de cada coluna a cada célula da linha de dados
-      dataRow.eachCell((cell, colNumber) => {
-        cell.alignment = { vertical: 'middle', horizontal: columns[colNumber - 1].alignment || 'left' }; // Aplica o alinhamento com base na configuração
+        if (column.sum) {
+          sums[column.key] = (sums[column.key] || 0) + (typeof value === 'number' ? value : 0);
+        }
+
+        return value;
       });
+
+      worksheet.addRow(rowData);
     });
+
+    // Adiciona a linha de somatória no rodapé, se houver colunas a serem somadas
+    if (Object.keys(sums).length > 0) {
+      const sumRow = worksheet.addRow([]);
+
+      // Mescla as células conforme o colspan especificado
+      const sumStartCell = sumRow.getCell(1);
+      sumStartCell.value = sumText;
+      sumStartCell.font = { bold: true, color: { argb: sumTextColor } }; // Aplica a cor do texto
+      sumStartCell.alignment = { vertical: 'middle', horizontal: 'center' };
+      sumStartCell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: sumBackgroundColor } };
+
+      if (sumColspan > 1) {
+        const sumTextRange = `A${sumRow.number}:${String.fromCharCode(65 + sumColspan - 1)}${sumRow.number}`;
+        worksheet.mergeCells(sumTextRange);
+      }
+
+      columns.forEach((column, index) => {
+        if (column.sum) {
+          const cell = sumRow.getCell(index + 1 + (sumColspan - 1));
+          cell.value = sums[column.key];
+          cell.font = { bold: true, color: { argb: sumTextColor } }; // Aplica a cor do texto
+          cell.alignment = { vertical: 'middle', horizontal: 'center' };
+          cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: sumBackgroundColor } };
+        }
+      });
+    }
 
     // Gera o arquivo Excel
     const buffer = await workbook.xlsx.writeBuffer();
     const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-    saveAs(blob, fileName); // Salva o arquivo usando o file-saver
+    saveAs(blob, fileName);
   };
 
   return <Button {...buttonProps} onClick={handleExport} />;
