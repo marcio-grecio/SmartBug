@@ -1,9 +1,7 @@
-import Logo from '../../Assets/images/logo/logo-white.webp';
-// import Logo from '../../Assets/images/logo/logo.svg';
+import Logo from '../../Assets/images/logo/LogoWhite.png';
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import SidebarLinkGroup from './SidebarLinkGroup';
-import React from 'react';
 import { 
   Users, 
   Filter, 
@@ -32,7 +30,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const sidebar = useRef<HTMLDivElement>(null);
 
   const storedSidebarExpanded = localStorage.getItem('sidebar-expanded');
-  const [sidebarExpanded, setSidebarExpanded] = useState(
+  const [sidebarExpanded] = useState(
     storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true'
   );
 
@@ -155,7 +153,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </li>
 
               <SidebarLinkGroup activeCondition={pathname.includes('report')}>
-                {(handleClick, open) => (
+                {() => (
                   <>
                     <NavLink
                       to="#"

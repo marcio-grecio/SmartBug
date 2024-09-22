@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SmartBug.Api.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/v1/[controller]")]
     public class HomeController : ControllerBase

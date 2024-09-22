@@ -1,7 +1,8 @@
 export const devMode = 'true'
 export const defaultLogin = ''
 export const defaultPwd = ''
-export const baseUrl = 'https://localhost:7067'
+// export const baseUrl = 'https://localhost:7067'
+export const baseUrl = 'https://api.smartbug.meetweb.com.br'
 
 export const mediaIcon = {
   image: '📷 Foto',
@@ -344,7 +345,7 @@ export const mimeTypes = {
     'text/plain, text/csv, application/pdf, application/vnd.ms-powerpoint, application/msword, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 }
 
-export const sleep = async (time) => {
+export const sleep = async (time:any) => {
   await new Promise((resolve) => setTimeout(resolve, time))
 }
 

@@ -8,7 +8,7 @@ import { getAllSelectEmpreendimentos } from "../../Services/EmpreendimentoServic
 interface VendaFormFormProps {
     formData: {
         id: number;
-        tipo: number;
+        tipo: string;
         quantidade: number;
         empreendimentoId: number;
         dataInicial: string | Date;

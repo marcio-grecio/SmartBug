@@ -5,7 +5,7 @@ import { Eye, EyeOff } from 'lucide-react';
 import Alert from '../Components/Alert/Index';
 import Input from '../Components/Input/Index';
 import { UserContext } from "../Contexts/UserContext";
-import dark from '../Assets/images/logo/logo-dark.webp';
+import dark from '../Assets/images/logo/LogoBlack.png';
 
 const Login = () => {
   const currentYear = getYear(new Date());

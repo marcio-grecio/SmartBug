@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import DropdownUser from './DropdownUser';
 import DarkModeSwitcher from "./DarkModeSwitcher";
-import dark from '../../Assets/images/logo/logo-dark.webp';
+import dark from '../../Assets/images/logo/LogoBlack.png';
 import { ThemeContext } from '../../Contexts/ThemeContext'; 
-import white from '../../Assets/images/logo/logo-white.webp';
+import white from '../../Assets/images/logo/LogoWhite.png';
 
 
 const NavBar = (props: {
@@ -19,7 +19,7 @@ const NavBar = (props: {
       <div className="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-4">
         <div className="flex items-center gap-2 sm:gap-4">
           <Link className="block flex-shrink-0" to="/">
-            <img src={colorMode === "dark" ? white : dark } alt="Logo" />
+            <img src={colorMode === "dark" ? white : dark } alt="Logo" style={{width: 170}} />
           </Link>
 
           <button

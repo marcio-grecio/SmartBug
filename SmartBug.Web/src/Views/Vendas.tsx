@@ -4,7 +4,7 @@ import Input from '../Components/Input/Index';
 import Alert from '../Components/Alert/Index';
 import Button from '../Components/Button/Index';
 import VendaForm from '../Components/Venda/Index';
-import { errorLog, infoLog } from '../Utils/Logger';
+import { errorLog } from '../Utils/Logger';
 import { Settings2, Pencil,Plus } from 'lucide-react';
 import { ThemeContext } from '../Contexts/ThemeContext';
 import DataTable, { createTheme } from 'react-data-table-component';

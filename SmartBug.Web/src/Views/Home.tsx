@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import dark from '../Assets/images/logo/logo-dark.webp';
-import white from '../Assets/images/logo/logo-white.webp';
+import dark from '../Assets/images/logo/LogoBlack.png';
+import white from '../Assets/images/logo/LogoWhite.png';
 import { ThemeContext } from '../Contexts/ThemeContext';
 
 const Home = () => {
