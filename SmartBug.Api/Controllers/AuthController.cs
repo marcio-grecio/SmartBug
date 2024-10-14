@@ -50,6 +50,7 @@ namespace SmartBug.Api.Controllers
                     new Claim("nome", user.Nome ?? ""),
                     new Claim("email", user.Email?? ""),
                     new Claim("ocupacao", user.Ocupacao),
+                    new Claim("userName", user.Email?? ""),
                     new Claim("avatar", user.Avatar ?? ""),
                     new Claim("perfil", user.Perfil.ToString()),
                     new Claim("empreendimentos", JsonConvert.SerializeObject(user.Empreendimentos.Select(s => new { value = s.Id, label = s.Nome }))),

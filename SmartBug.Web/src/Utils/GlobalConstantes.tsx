@@ -1,8 +1,8 @@
 export const devMode = 'true'
 export const defaultLogin = ''
 export const defaultPwd = ''
-// export const baseUrl = 'https://localhost:7067'
-export const baseUrl = 'https://api.smartbug.meetweb.com.br'
+export const baseUrl = 'https://localhost:7067'
+// export const baseUrl = 'https://api.smartbug.meetweb.com.br'
 
 export const mediaIcon = {
   image: '📷 Foto',

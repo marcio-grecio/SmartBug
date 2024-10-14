@@ -1,8 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {},
-    "net8.0/win-x64": {}
+    "net8.0": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
@@ -68,12 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
-      }
-    },
-    "runtimes": {
-      "win-x64": {
-        "#import": []
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

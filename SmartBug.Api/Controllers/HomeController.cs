@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SmartBug.Api.Hubs;
 
 namespace SmartBug.Api.Controllers
 {
@@ -22,6 +23,14 @@ namespace SmartBug.Api.Controllers
             {
                 online = true,
             });
+        }
+
+        [HttpGet]
+        [Route("/Conectados")]
+        public IActionResult Conectados()
+        {
+            var result = SignalRHub.SignalRConnections.Select(x => x.Value).ToList();
+            return Ok(result);
         }
     }
 }

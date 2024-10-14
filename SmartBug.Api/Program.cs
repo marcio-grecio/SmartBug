@@ -1,48 +1,16 @@
-
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using SmartBug.Api.Hubs;
 using SmartBug.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Adicione esta linha para registrar o HttpClient
+// Registre o HttpClient e outros serviços aqui
 builder.Services.AddHttpClient();
-
 builder.Services.AddControllers();
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-    {
-        Name = "Authorization",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer"
-    });
-
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-            Reference = new OpenApiReference
-                {
-                Type = ReferenceType.SecurityScheme,
-                Id = "Bearer"
-                },
-                Scheme = "oauth2",
-                Name = "Bearer",
-                In = ParameterLocation.Header,
-
-            },
-            new List<string>()
-        }
-    });
-});
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "EnableCors",
@@ -55,11 +23,14 @@ builder.Services.AddCors(options =>
                 )
             .SetIsOriginAllowedToAllowWildcardSubdomains()
             .AllowAnyHeader()
-            .AllowAnyMethod();
+            .AllowAnyMethod()
+            .AllowCredentials();
+
         });
 });
 
-var key = Encoding.ASCII.GetBytes(KeyValidationToken.Secret);
+// Adicione esta linha para registrar o SignalR
+builder.Services.AddSignalR();
 
 builder.Services.AddAuthentication(x =>
 {
@@ -72,11 +43,10 @@ builder.Services.AddAuthentication(x =>
     x.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(key),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(KeyValidationToken.Secret)),
         ValidateIssuer = false,
         ValidateAudience = false
     };
-
     //item utilizado para debuggar o token
     //x.Events = new JwtBearerEvents
     //{
@@ -99,6 +69,36 @@ builder.Services.AddAuthentication(x =>
 
 });
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                },
+                Scheme = "oauth2",
+                Name = "Bearer",
+                In = ParameterLocation.Header,
+            },
+            new List<string>()
+        }
+    });
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -109,22 +109,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("EnableCors");
-
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.Use(async (context, next) =>
-{
-    context.Response.OnStarting(() =>
-    {
-        context.Response.Headers.Append("X-Powered-By", "ASP.NET");
-        return Task.CompletedTask;
-    });
-
-    await next();
-});
+// Registre o hub do SignalR aqui
+app.MapHub<SignalRHub>("/Hubs/SignalHub");
 
 app.MapControllers();
 

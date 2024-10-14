@@ -13,10 +13,10 @@
         }
 
         public long? Id { get; set; }
+        public int Perfil { get; set; }
         public string Nome { get; set; }
         public string Login { get; set; }
         public string Avatar { get; set; }
-        public int Perfil { get; set; }
         public IEnumerable<GenericSelectOptions> Empreendimentos { get; protected set; }
 
     }

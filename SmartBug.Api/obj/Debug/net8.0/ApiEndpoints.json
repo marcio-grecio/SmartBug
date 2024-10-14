@@ -664,5 +664,15 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SmartBug.Api.Controllers.HomeController",
+    "Method": "Conectados",
+    "RelativePath": "Conectados",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   }
 ]
