@@ -55,7 +55,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.10, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -63,7 +63,7 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.7.3, )"
+              "version": "[6.9.0, )"
             }
           },
           "imports": [
